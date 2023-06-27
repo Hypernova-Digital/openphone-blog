@@ -128,8 +128,85 @@ add_action( 'after_setup_theme', 'openphone_setup' );
 function openphone_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => __( 'Footer', 'openphone' ),
-			'id'            => 'sidebar-1',
+			'name'          => __( 'Footer Categories 1', 'openphone' ),
+			'id'            => 'footer-categories-1',
+			'description'   => __( 'Add widgets here to appear in your footer.', 'openphone' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer Categories 2', 'openphone' ),
+			'id'            => 'footer-categories-2',
+			'description'   => __( 'Add widgets here to appear in your footer.', 'openphone' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer Categories 3', 'openphone' ),
+			'id'            => 'footer-categories-3',
+			'description'   => __( 'Add widgets here to appear in your footer.', 'openphone' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer Categories 4', 'openphone' ),
+			'id'            => 'footer-categories-4',
+			'description'   => __( 'Add widgets here to appear in your footer.', 'openphone' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer Categories 5', 'openphone' ),
+			'id'            => 'footer-categories-5',
+			'description'   => __( 'Add widgets here to appear in your footer.', 'openphone' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer 1', 'openphone' ),
+			'id'            => 'footer-1',
+			'description'   => __( 'Add widgets here to appear in your footer.', 'openphone' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer 2', 'openphone' ),
+			'id'            => 'footer-2',
+			'description'   => __( 'Add widgets here to appear in your footer.', 'openphone' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer 3', 'openphone' ),
+			'id'            => 'footer-3',
 			'description'   => __( 'Add widgets here to appear in your footer.', 'openphone' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
