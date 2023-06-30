@@ -17,7 +17,29 @@ module.exports = {
 	],
 	theme: {
 		// Extend the default Tailwind theme.
-		extend: {},
+		extend: {
+			colors: {
+				transparent: 'transparent',
+				current: 'currentColor',
+				purple: {
+					25: '#F7F5FE',
+					50: '#F0ECFE',
+					100: '#cffafe',
+					200: '#a5f3fc',
+					300: '#67e8f9',
+					400: '#22d3ee',
+					500: '#06b6d4',
+					600: '#0891b2',
+					700: '#0e7490',
+					800: '#155e75',
+					900: '#6439F5',
+					1400: '#190E3D',
+				},
+				violet: {
+					50: '#F4EEFF',
+				},
+			},
+		},
 	},
 	corePlugins: {
 		// Disable Preflight base styles in builds targeting the editor.
@@ -32,22 +54,22 @@ module.exports = {
 
 		function ({ addComponents }) {
 			addComponents({
-			  '.container': {
-				maxWidth: '100%',
-				'@screen sm': {
-				  maxWidth: '640px',
+				'.container': {
+					maxWidth: '100%',
+					'@screen sm': {
+						maxWidth: '640px',
+					},
+					'@screen md': {
+						maxWidth: '768px',
+					},
+					'@screen lg': {
+						maxWidth: '1200px',
+					},
+					'@screen xl': {
+						maxWidth: '1200px',
+					},
 				},
-				'@screen md': {
-				  maxWidth: '768px',
-				},
-				'@screen lg': {
-				  maxWidth: '1200px',
-				},
-				'@screen xl': {
-				  maxWidth: '1200px',
-				},
-			  }
-			})
-		  }
+			});
+		},
 	],
 };

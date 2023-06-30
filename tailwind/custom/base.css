@@ -20,6 +20,35 @@ body {
 	font-size: 16px;
 }
 
+/* Buttons */
+.wp-element-button, .wp-block-button__link {
+	@apply rounded-[10px] bg-black text-lg font-semibold px-8 block w-full md:w-auto;
+}
+
+.above-footer .wp-block-buttons {
+	@apply mt-8;
+}
+
+.above-footer .wp-block-button {
+	@apply block w-full lg:w-auto;
+}
+
+.above-footer .wp-block-button:nth-child(2) .wp-block-button__link {
+	@apply bg-transparent border border-white;
+}
+
+.above-footer aside h2 {
+	@apply text-4xl md:text-5xl lg:text-6xl font-normal;
+}
+
+.above-footer .wp-block-buttons.is-layout-flex {
+	@apply justify-center items-center mt-8;
+}
+
+.above-footer p {
+	@apply text-xl font-normal leading-7 mt-4;
+}
+
 footer h2 {
 	font-size: 0.875rem;
 	font-weight: 500;
