@@ -49,7 +49,7 @@
 		<?php endif; ?>
 	</div>
 
-	<hr class="bg-[rgba(0, 0, 0, 0.10)] container mx-auto my-16">
+	<hr class="bg-[rgba(0, 0, 0, 0.10)] container mx-auto my-8 md:my-16">
 
 	<div class="footer-widgets-bottom flex flex-col md:flex-row justify-between container mx-auto">
 		<?php if (is_active_sidebar('footer-1')) : ?>
@@ -59,27 +59,13 @@
 		<?php endif; ?>
 
 		<?php if (is_active_sidebar('footer-2')) : ?>
-			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="md:w-1/3 md:ml-auto">
+			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="md:w-1/3 md:ml-auto mt-8 md:mt-0">
 				<?php dynamic_sidebar('footer-2'); ?>
 			</aside>
 		<?php endif; ?>
-
-		<?php if (has_nav_menu('menu-2')) : ?>
-			<nav aria-label="<?php esc_attr_e('Footer Menu', 'openphone'); ?>">
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'menu-2',
-						'menu_class'     => 'footer-menu',
-						'depth'          => 1,
-					)
-				);
-				?>
-			</nav>
-		<?php endif; ?>
 	</div>
 
-	<div class="footer-tagline container mx-auto text-xs">
+	<div class="footer-tagline container mx-auto mt-8 md:mt-0 text-xs">
 		<?php
 		$openphone_blog_info = get_bloginfo('name');
 		if (!empty($openphone_blog_info)) :
