@@ -42,11 +42,11 @@ body {
 }
 
 .above-footer .wp-block-buttons.is-layout-flex {
-	@apply justify-center items-center mt-8;
+	@apply justify-center gap-4 items-center mt-8;
 }
 
 .above-footer p {
-	@apply text-xl font-normal leading-7 mt-4;
+	@apply text-xl font-normal leading-7 mt-4 max-w-[632px] mx-auto;
 }
 
 footer h2 {

@@ -11,7 +11,7 @@
 ?>
 
 <section class="above-footer px-6 py-12 md:p-16 text-white bg-purple-900">
-	<div class="container mx-auto text-center">
+	<div class="container max-w-[992px] mx-auto text-center">
 		<?php if (is_active_sidebar('footer-ctas')) : ?>
 			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 text-base">
 				<?php dynamic_sidebar('footer-ctas'); ?>
