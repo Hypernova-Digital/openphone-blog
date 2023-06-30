@@ -54,3 +54,13 @@
 .entry-content > .alignright {
 	@apply float-right ml-8;
 }
+
+/* Social Media */
+.wp-block-social-links .wp-block-social-link-anchor {
+	fill: black !important;
+	color: black !important;
+}
+
+.wp-block-social-link.wp-social-link {
+	background-color: transparent !important;
+}

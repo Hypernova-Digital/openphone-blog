@@ -14,3 +14,64 @@
 body {
 	@apply bg-background text-foreground font-sans;
 }
+
+* {
+	font-family: 'Inter', sans-serif;
+	font-size: 16px;
+}
+
+footer h2 {
+	font-size: 0.875rem;
+	font-weight: 500;
+	line-height: 1.5;
+	@apply mb-2;
+}
+
+footer li a {
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: rgba(0, 0, 0, 0.80);
+}
+
+footer li {
+	font-size: 0.875rem;
+	@apply mb-2;
+}
+
+footer p {
+	font-size: 13px;
+}
+
+.footer-logo {
+	@apply mb-8;
+}
+.mobile footer h2 {
+	@apply flex flex-row justify-between items-center w-full;
+}
+
+footer aside {
+	transition: max-height 0.3s ease-in-out;
+}
+footer aside section:nth-child(2) {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease-in-out;
+}
+footer aside.active section:nth-child(2) {
+	max-height: 1000px; /* Adjust as needed */
+}
+
+.mobile footer h2:after {
+	height: 24px;
+	width: 24px;
+	content: '';
+	display: block;
+	background: url('images/cheveron-down.svg');
+	transition: transform 0.3s ease-in-out;
+}
+
+.mobile footer aside.active h2:after {
+	transform: rotate(180deg);
+	
+}
