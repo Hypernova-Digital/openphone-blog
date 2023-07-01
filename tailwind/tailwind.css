@@ -35,3 +35,7 @@
  */
 @import "tailwindcss/utilities";
 @import "./custom/utilities.css";
+
+
+/* Partials */
+@import "./custom/single-post.css";

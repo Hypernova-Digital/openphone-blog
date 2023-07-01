@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part for displaying single posts
  *
@@ -12,24 +13,30 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<div class="header-content">
+			<?php openphone_entry_meta_categories(); ?>
 
-		<?php if ( ! is_page() ) : ?>
-			<div class="entry-meta">
-				<?php openphone_entry_meta(); ?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
+			<?php the_title('<h1 class="entry-title">', '</h1>'); ?>
+
+			<?php if (!is_page()) : ?>
+				<div class="entry-meta">
+					<?php openphone_entry_meta(); ?>
+				</div><!-- .entry-meta -->
+			<?php endif; ?>
+		</div>
+
+		<div class="header-image">
+			<?php openphone_post_thumbnail(); ?>
+		</div>
 	</header><!-- .entry-header -->
 
-	<?php openphone_post_thumbnail(); ?>
-
-	<div <?php openphone_content_class( 'entry-content' ); ?>>
+	<div <?php openphone_content_class('entry-content'); ?>>
 		<?php
 		the_content(
 			sprintf(
 				wp_kses(
 					/* translators: %s: Name of current post. Only visible to screen readers. */
-					__( 'Continue reading<span class="sr-only"> "%s"</span>', 'openphone' ),
+					__('Continue reading<span class="sr-only"> "%s"</span>', 'openphone'),
 					array(
 						'span' => array(
 							'class' => array(),
@@ -42,7 +49,7 @@
 
 		wp_link_pages(
 			array(
-				'before' => '<div>' . __( 'Pages:', 'openphone' ),
+				'before' => '<div>' . __('Pages:', 'openphone'),
 				'after'  => '</div>',
 			)
 		);
