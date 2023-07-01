@@ -296,13 +296,3 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
-
-// Enqueue Tilwind Scripts
-function my_theme_enqueue_scripts() {
-    // Register the script
-    wp_register_script('tailwind', get_template_directory_uri() . '/js/tailwind.js', array(), '1.0', true);
-    
-    // Enqueue the script
-    wp_enqueue_script('tailwind');
-}
-add_action('wp_enqueue_scripts', 'my_theme_enqueue_scripts');
