@@ -25,6 +25,7 @@ body {
 	@apply rounded-[10px] bg-black text-lg font-semibold px-8 block w-full md:w-auto;
 }
 
+/* Above Footer Widget */
 .above-footer .wp-block-buttons {
 	@apply mt-8;
 }
@@ -49,6 +50,7 @@ body {
 	@apply text-xl font-normal leading-7 mt-4 max-w-[632px] mx-auto;
 }
 
+/* Footer Widgets */
 footer h2 {
 	font-size: 0.875rem;
 	font-weight: 500;
@@ -84,6 +86,7 @@ footer .footer-categories aside {
 	@apply mb-8;
 }
 
+/* Mobile Footer Functionality */
 .mobile footer h2 {
 	@apply flex flex-row justify-between items-center w-full text-lg font-normal;
 }
