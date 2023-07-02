@@ -148,62 +148,10 @@ if (!function_exists('openphone_entry_footer')) :
 	 */
 	function openphone_entry_footer()
 	{
-
-		// Hide author, post date, category and tag text for pages.
-		if ('post' === get_post_type()) {
-			/* translators: used between list items, there is a space after the comma. */
-			$categories_list = get_the_category_list(__(', ', 'openphone'));
-			if ($categories_list) {
-				printf(
-					/* translators: 1: posted in label, only visible to screen readers. 2: list of categories. */
-					'<span class="sr-only">%1$s</span>%2$s',
-					esc_html__('Posted in', 'openphone'),
-					$categories_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				);
-			}
-
-			// Posted on.
-			openphone_posted_on();
-
-			// Posted by.
-			openphone_posted_by();
-
-			/* translators: used between list items, there is a space after the comma. */
-			$tags_list = get_the_tag_list('', __(', ', 'openphone'));
-			if ($tags_list) {
-				printf(
-					/* translators: 1: tags label, only visible to screen readers. 2: list of tags. */
-					'<span class="sr-only">%1$s</span>%2$s',
-					esc_html__('Tags:', 'openphone'),
-					$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				);
-			}
-		}
-
-		// Comment count.
-		if (!is_singular()) {
-			openphone_comment_count();
-		}
-
-		// Edit post link.
-		edit_post_link(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers. */
-					__('Edit <span class="sr-only">%s</span>', 'openphone'),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
-			)
-		);
-		?>
+?>
 		<div class="related-posts-after-content">
-
-			<h3>You Might Also Like</h3>
+			<h3>Keep Reading</h3>
+			<a href="openphone.com/blog">all posts</a>
 
 			<?php
 			global $post;
@@ -215,7 +163,7 @@ if (!function_exists('openphone_entry_footer')) :
 				$args = array(
 					'tag__in' => $tag_ids,
 					'post__not_in' => array($post->ID),
-					'posts_per_page' => 4, // Number of related posts to display.
+					'posts_per_page' => 2, // Number of related posts to display.
 					'caller_get_posts' => 1
 				);
 
@@ -225,8 +173,13 @@ if (!function_exists('openphone_entry_footer')) :
 			?>
 
 					<div class="related-thumb">
-						<a rel="external" href="<? the_permalink() ?>"><?php the_post_thumbnail(array(150, 100)); ?><br />
-							<?php the_title(); ?>
+						<a rel="external" href="<? the_permalink() ?>">
+							<?php the_post_thumbnail(array(150, 100)); ?><br />
+							<?php
+							openphone_entry_meta_categories();
+							openphone_posted_on();
+							the_title();
+							?>
 						</a>
 
 					</div>
