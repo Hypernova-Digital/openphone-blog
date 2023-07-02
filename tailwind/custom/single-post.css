@@ -2,17 +2,14 @@
 
 /* .post-template-default.single-post.signle .post.type-post  */
 
-.single-post .entry-header {
-    display: flex;
-} 
-
-.single-post .header-content {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.post-template-default.single.single-post header {
+    @apply bg-purple-50;
 }
 
-.single-post .header-image {
-    width: 50%;
+a[rel="category tag"] {
+    @apply text-purple-900 text-sm sm:text-base lg:text-xl font-semibold leading-5 mb-2;
+}
+
+a[rel="tag"] {
+    @apply rounded-md bg-black bg-opacity-5 inline max-w-max text-xs lg:text-sm px-2 py-1 font-semibold;
 }

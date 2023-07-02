@@ -80,6 +80,22 @@ if (!function_exists('openphone_entry_meta_categories')) :
 	}
 endif;
 
+if (!function_exists('openphone_entry_meta_tags')) :
+	
+	function openphone_entry_meta_tags()
+	{
+		$tags_list = get_the_tag_list('', __(', ', 'openphone'));
+		if ($tags_list) {
+			/* translators: 1: tags label, only visible to screen readers. 2: list of tags. */
+			printf(
+				'<span class="sr-only">%1$s</span>%2$s',
+				esc_html__('Tags:', 'openphone'),
+				$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			);
+		}
+	}
+endif;
+
 if (!function_exists('openphone_entry_meta')) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
@@ -90,22 +106,17 @@ if (!function_exists('openphone_entry_meta')) :
 
 		// Hide author, post date, category and tag text for pages.
 		if ('post' === get_post_type()) {
+			do_shortcode('[rt_reading_time post_id="' . get_the_ID() . '"]');
+
 			// Posted on.
 			openphone_posted_on();
 
+			echo '<span class="divider opacity-40">';
+			esc_html_e(' | ');
+			echo '</span>';
+
 			// Posted by.
 			openphone_posted_by();
-
-			/* translators: used between list items, there is a space after the comma. */
-			$tags_list = get_the_tag_list('', __(', ', 'openphone'));
-			if ($tags_list) {
-				printf(
-					/* translators: 1: tags label, only visible to screen readers. 2: list of tags. */
-					'<span class="sr-only">%1$s</span>%2$s',
-					esc_html__('Tags:', 'openphone'),
-					$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				);
-			}
 		}
 
 		// Comment count.
