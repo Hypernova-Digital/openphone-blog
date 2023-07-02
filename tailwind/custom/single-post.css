@@ -3,13 +3,26 @@
 /* .post-template-default.single-post.signle .post.type-post  */
 
 .post-template-default.single.single-post header {
-    @apply bg-purple-50;
+	@apply bg-purple-50;
 }
 
 a[rel="category tag"] {
-    @apply text-purple-900 text-sm sm:text-base lg:text-xl font-semibold leading-5 mb-2;
+	@apply mb-2 text-sm font-semibold leading-5 text-purple-900 sm:text-base lg:text-xl;
 }
 
 a[rel="tag"] {
-    @apply rounded-md bg-black bg-opacity-5 inline max-w-max text-xs lg:text-sm px-2 py-1 font-semibold;
+	@apply inline max-w-max rounded-md bg-black bg-opacity-5 px-2 py-1 text-xs font-semibold lg:text-sm;
+}
+
+.post-template-default.single.single-post .entry-content p:first-of-type {
+	@apply text-xl font-normal leading-7;
+}
+
+.post-template-default.single.single-post .entry-content p {
+	@apply text-sm font-normal leading-6;
+}
+
+.post-template-default.single.single-post .entry-content h3 {
+	@apply text-3xl font-semibold leading-10;
+	letter-spacing: -0.6px;
 }
