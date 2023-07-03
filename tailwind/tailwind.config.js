@@ -39,6 +39,9 @@ module.exports = {
 					50: '#F4EEFF',
 				},
 			},
+			maxWidth: {
+				'7xl': '1200px',
+			},
 		},
 	},
 	corePlugins: {

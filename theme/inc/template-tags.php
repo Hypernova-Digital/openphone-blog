@@ -149,9 +149,10 @@ if (!function_exists('openphone_entry_footer')) :
 	function openphone_entry_footer()
 	{
 ?>
-		<div class="related-posts-after-content">
-			<h3>Keep Reading</h3>
-			<a href="openphone.com/blog">all posts</a>
+		<div class="related-posts-after-content grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 px-8">
+			<div class="flex flex-row justify-between items-center mb-8 w-full col-start-1 col-end-2 lg:col-end-3">
+				<h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.2] tracking-[-0.46px]">Keep Reading</h3><a href="openphone.com/blog" class="text-sm font-medium sm:text-base lg:text-lg">All posts -></a>
+			</div>
 
 			<?php
 			global $post;
@@ -172,16 +173,24 @@ if (!function_exists('openphone_entry_footer')) :
 					$my_query->the_post();
 			?>
 
-					<div class="related-thumb">
+					<div class="related-thumb grid-cols-1 lg:row-start-2 rounded-md border-[1px] border-black border-opacity-10 overflow-hidden">
 						<a rel="external" href="<? the_permalink() ?>">
-							<?php the_post_thumbnail(array(150, 100)); ?><br />
-							<?php
-							openphone_entry_meta_categories();
-							openphone_posted_on();
-							the_title();
-							?>
+							<?php the_post_thumbnail('full'); ?>
 						</a>
 
+						<div class="p-4 bg-white">
+							<a rel="external" href="<? the_permalink() ?>">
+								<?php openphone_entry_meta_categories(); ?>
+								<span class="divider opacity-10"> | </span>
+								<span class="opacity-70 font-normal text-sm"><?php openphone_posted_on(); ?></span>
+							</a>
+
+							<a rel="external" href="<? the_permalink() ?>">
+								<span class="related-post-title block text-base font-semibold md:text-xl lg:text-2xl mt-2">
+									<?php the_title(); ?>
+								</span>
+							</a>
+						</div>
 					</div>
 			<?php }
 			}

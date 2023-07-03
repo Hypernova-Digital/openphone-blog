@@ -10,6 +10,14 @@ a[rel="category tag"] {
 	@apply mb-2 text-sm font-semibold leading-5 text-purple-900 sm:text-base lg:text-xl;
 }
 
+.entry-footer a[rel="category tag"] {
+	@apply text-sm;
+}
+
+.entry-footer time {
+	@apply text-sm;
+}
+
 a[rel="tag"] {
 	@apply inline max-w-max rounded-md bg-black bg-opacity-5 px-2 py-1 text-xs font-semibold lg:text-sm;
 }
@@ -25,4 +33,12 @@ a[rel="tag"] {
 .post-template-default.single.single-post .entry-content h3 {
 	@apply text-3xl font-semibold leading-10;
 	letter-spacing: -0.6px;
+}
+
+.post-navigation {
+	display: none;
+}
+
+.post-template-default.single.single-post .entry-content {
+	@apply py-12 md:py-16 lg:py-32;
 }

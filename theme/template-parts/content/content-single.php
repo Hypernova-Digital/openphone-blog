@@ -13,7 +13,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<header class="entry-header bg-purple-50">
-		<div class="header-content md:py-16 lg:max-w-[1200px] md:mx-auto py-16 flex flex-col-reverse md:flex-row lg:gap-16">
+		<div class="header-content md:py-16 lg:max-w-7xl md:mx-auto py-16 flex flex-col-reverse md:flex-row lg:gap-16">
 			<div class="header-left md:w-1/2 p-6 sm:p-8 lg:p-0 flex flex-col justify-center">
 				<?php openphone_entry_meta_categories(); ?>
 
@@ -62,8 +62,10 @@
 		?>
 	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
-		<?php openphone_entry_footer(); ?>
+	<footer class="entry-footer w-full bg-[#F7F5F2]">
+		<div class="lg:max-w-7xl py-12 sm:py-14 md:py-24 lg:py-28 mx-auto">
+			<?php openphone_entry_footer(); ?>
+		</div>
 	</footer><!-- .entry-footer -->
 
 </article><!-- #post-${ID} -->
