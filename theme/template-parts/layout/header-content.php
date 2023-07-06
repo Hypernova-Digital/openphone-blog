@@ -45,7 +45,7 @@
 		</div>
 
 		<nav id="site-navigation" aria-label="<?php esc_attr_e('Main Navigation', 'openphone'); ?>">
-			<div class="desktop-nav">
+			<div class="desktop-nav flex items-center">
 				<?php
 				wp_nav_menu(
 					array(
@@ -56,8 +56,14 @@
 				);
 				?>
 
+				<?php if (is_active_sidebar('header-search')) : ?>
+					<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-[26px] header-search">
+						<?php dynamic_sidebar('header-search'); ?>
+					</aside>
+				<?php endif; ?>
+
 				<?php if (is_active_sidebar('header-ctas')) : ?>
-					<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6">
+					<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6 header-ctas">
 						<?php dynamic_sidebar('header-ctas'); ?>
 					</aside>
 				<?php endif; ?>
@@ -75,8 +81,14 @@
 				);
 				?>
 
+				<?php if (is_active_sidebar('header-search')) : ?>
+					<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6 header-search">
+						<?php dynamic_sidebar('header-search'); ?>
+					</aside>
+				<?php endif; ?>
+
 				<?php if (is_active_sidebar('header-ctas')) : ?>
-					<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6">
+					<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6 header-ctas">
 						<?php dynamic_sidebar('header-ctas'); ?>
 					</aside>
 				<?php endif; ?>

@@ -128,6 +128,18 @@ add_action( 'after_setup_theme', 'openphone_setup' );
 function openphone_widgets_init() {
 	register_sidebar(
 		array(
+			'name'          => __( 'Header Search', 'openphone' ),
+			'id'            => 'header-search',
+			'description'   => __( 'Add widgets here to appear in your header.', 'openphone' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	register_sidebar(
+		array(
 			'name'          => __( 'Header CTAs', 'openphone' ),
 			'id'            => 'header-ctas',
 			'description'   => __( 'Add widgets here to appear in your header.', 'openphone' ),
