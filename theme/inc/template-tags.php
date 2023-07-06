@@ -84,7 +84,7 @@ if (!function_exists('openphone_entry_meta_tags')) :
 
 	function openphone_entry_meta_tags()
 	{
-		$tags_list = get_the_tag_list('', __(', ', 'openphone'));
+		$tags_list = get_the_tag_list('', __(' ', 'openphone'));
 		if ($tags_list) {
 			/* translators: 1: tags label, only visible to screen readers. 2: list of tags. */
 			printf(
@@ -118,27 +118,6 @@ if (!function_exists('openphone_entry_meta')) :
 			// Posted by.
 			openphone_posted_by();
 		}
-
-		// Comment count.
-		if (!is_singular()) {
-			openphone_comment_count();
-		}
-
-		// Edit post link.
-		edit_post_link(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers. */
-					__('Edit <span class="sr-only">%s</span>', 'openphone'),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
-			)
-		);
 	}
 endif;
 
@@ -151,7 +130,14 @@ if (!function_exists('openphone_entry_footer')) :
 ?>
 		<div class="related-posts-after-content grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 px-8">
 			<div class="flex flex-row justify-between items-center mb-8 w-full col-start-1 col-end-2 lg:col-end-3">
-				<h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.2] tracking-[-0.46px]">Keep Reading</h3><a href="openphone.com/blog" class="text-sm font-medium sm:text-base lg:text-lg">All posts -></a>
+				<h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.2] tracking-[-0.46px]">Keep Reading</h3>
+				<a href="openphone.com/blog" class="text-sm font-medium sm:text-base lg:text-lg flex flex-row items-center gap-2">
+					All posts
+					<svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M9.27273 16.6307L7.51705 14.892L12.7756 9.63352H0V7.09375H12.7756L7.51705 1.84375L9.27273 0.0965905L17.5398 8.36364L9.27273 16.6307Z" fill="black" />
+					</svg>
+
+				</a>
 			</div>
 
 			<?php
@@ -173,12 +159,12 @@ if (!function_exists('openphone_entry_footer')) :
 					$my_query->the_post();
 			?>
 
-					<div class="related-thumb grid-cols-1 lg:row-start-2 rounded-md border-[1px] border-black border-opacity-10 overflow-hidden">
+					<div class="related-thumb grid-cols-1 lg:row-start-2 rounded-md border-[1px] border-black border-opacity-10 overflow-hidden bg-white">
 						<a rel="external" href="<? the_permalink() ?>">
 							<?php the_post_thumbnail('full'); ?>
 						</a>
 
-						<div class="p-4 bg-white">
+						<div class="p-4">
 							<a rel="external" href="<? the_permalink() ?>">
 								<?php openphone_entry_meta_categories(); ?>
 								<span class="divider opacity-10"> | </span>
@@ -284,8 +270,8 @@ if (!function_exists('openphone_the_posts_navigation')) :
 		the_posts_pagination(
 			array(
 				'mid_size'  => 2,
-				'prev_text' => __('Newer posts', 'openphone'),
-				'next_text' => __('Older posts', 'openphone'),
+				'prev_text' => __('Previous', 'openphone'),
+				'next_text' => __('Next', 'openphone'),
 			)
 		);
 	}

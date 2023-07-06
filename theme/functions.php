@@ -128,6 +128,18 @@ add_action( 'after_setup_theme', 'openphone_setup' );
 function openphone_widgets_init() {
 	register_sidebar(
 		array(
+			'name'          => __( 'Header CTAs', 'openphone' ),
+			'id'            => 'header-ctas',
+			'description'   => __( 'Add widgets here to appear in your header.', 'openphone' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	register_sidebar(
+		array(
 			'name'          => __( 'Footer CTAs', 'openphone' ),
 			'id'            => 'footer-ctas',
 			'description'   => __( 'Add widgets here to appear in your footer.', 'openphone' ),
@@ -216,6 +228,7 @@ function openphone_widgets_init() {
 			'after_title'   => '</h2>',
 		)
 	);
+
 	register_sidebar(
 		array(
 			'name'          => __( 'Footer 2', 'openphone' ),
@@ -296,3 +309,17 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
+
+
+function themename_custom_logo_setup() {
+	$defaults = array(
+		'height'               => 100,
+		'width'                => 400,
+		'flex-height'          => true,
+		'flex-width'           => true,
+		'header-text'          => array( 'site-title', 'site-description' ),
+		'unlink-homepage-logo' => true, 
+	);
+	add_theme_support( 'custom-logo', $defaults );
+}
+add_action( 'after_setup_theme', 'themename_custom_logo_setup' );

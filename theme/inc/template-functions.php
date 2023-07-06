@@ -37,7 +37,7 @@ add_filter( 'comment_form_defaults', 'openphone_comment_form_defaults' );
  */
 function openphone_get_the_archive_title() {
 	if ( is_category() ) {
-		$title = __( 'Category Archives: ', 'openphone' ) . '<span>' . single_term_title( '', false ) . '</span>';
+		$title = __( '', 'openphone' ) . '' . single_term_title( '', false ) . '';
 	} elseif ( is_tag() ) {
 		$title = __( 'Tag Archives: ', 'openphone' ) . '<span>' . single_term_title( '', false ) . '</span>';
 	} elseif ( is_author() ) {

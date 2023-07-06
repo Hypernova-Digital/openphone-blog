@@ -36,4 +36,5 @@ document.addEventListener("DOMContentLoaded", () => {
             if (aside) aside.classList.toggle('active');
         });
     });
+
 });

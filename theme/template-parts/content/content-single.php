@@ -20,12 +20,14 @@
 				<?php the_title('<h1 class="entry-title m-0 font-semibold text-3xl sm:text-4xl md:text-6xl">', '</h1>'); ?>
 
 				<?php if (!is_page()) : ?>
-					<div class="entry-meta [&_a]:text-xs [&_time]:text-xs lg:[&_a]:text-sm lg:[&_time]:text-smtext-black-600 opacity-70 font-normal mt-4">
+					<div class="entry-meta [&_span]:text-xs lg:[&_span]:text-sm [&_a]:text-xs [&_time]:text-xs lg:[&_time]:text-sm lg:[&_a]:text-sm lg:[&_time]:text-smtext-black-600 opacity-70 font-normal mt-4">
+						<?php echo do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read"]'); ?>
+						<span class="divider opacity-40"> | </span>
 						<?php openphone_entry_meta(); ?>
 					</div><!-- .entry-meta -->
 				<?php endif; ?>
 
-				<div class="tags mt-4">
+				<div class="tags mt-4 flex flex-row gap-3">
 					<?php openphone_entry_meta_tags(); ?>
 				</div>
 			</div>
@@ -67,5 +69,4 @@
 			<?php openphone_entry_footer(); ?>
 		</div>
 	</footer><!-- .entry-footer -->
-
 </article><!-- #post-${ID} -->

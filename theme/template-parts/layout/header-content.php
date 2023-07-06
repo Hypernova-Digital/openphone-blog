@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part for displaying the header content
  *
@@ -9,39 +10,77 @@
 
 ?>
 
-<header id="masthead">
-
-	<div>
-		<?php
-		if ( is_front_page() ) :
-			?>
-			<h1><?php bloginfo( 'name' ); ?></h1>
+<header id="masthead" class="bg-white">
+	<div class="header-content lg:max-w-7xl px-6 py-4 md:py-8 ">
+		<div>
 			<?php
-		else :
-			?>
-			<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-		endif;
+			if (is_front_page()) :
 
-		$openphone_description = get_bloginfo( 'description', 'display' );
-		if ( $openphone_description || is_customize_preview() ) :
+
+			?><a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+					<h1 class="logo-and-title">
+						<?php if (function_exists('the_custom_logo')) {
+							the_custom_logo();
+						}
+						bloginfo('name'); ?></h1>
+				</a>
+			<?php
+			else :
+			?><a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+					<p class="logo-and-title">
+						<?php if (function_exists('the_custom_logo')) {
+							the_custom_logo();
+						}
+						bloginfo('name'); ?></p>
+				</a>
+			<?php
+			endif;
+
+			$openphone_description = get_bloginfo('description', 'display');
+			if ($openphone_description || is_customize_preview()) :
 			?>
-			<p><?php echo $openphone_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-		<?php endif; ?>
+				<p><?php echo $openphone_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+					?></p>
+			<?php endif; ?>
+		</div>
+
+		<nav id="site-navigation" aria-label="<?php esc_attr_e('Main Navigation', 'openphone'); ?>">
+			<div class="desktop-nav">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-1',
+						'menu_id'        => 'primary-menu',
+						'items_wrap'     => '<ul id="%1$s" class="%2$s" aria-label="submenu">%3$s</ul>',
+					)
+				);
+				?>
+
+				<?php if (is_active_sidebar('header-ctas')) : ?>
+					<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6">
+						<?php dynamic_sidebar('header-ctas'); ?>
+					</aside>
+				<?php endif; ?>
+			</div>
+			<div class="mobile-nav">
+				<button aria-controls="primary-menu" id="myButton" aria-expanded="false"><?php esc_html_e('', 'openphone'); ?></button>
+
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-1',
+						'menu_id'        => 'primary-menu',
+						'items_wrap'     => '<ul id="%1$s" class="%2$s" aria-label="submenu">%3$s</ul>',
+					)
+				);
+				?>
+
+				<?php if (is_active_sidebar('header-ctas')) : ?>
+					<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6">
+						<?php dynamic_sidebar('header-ctas'); ?>
+					</aside>
+				<?php endif; ?>
+			</div>
+		</nav><!-- #site-navigation -->
 	</div>
-
-	<nav id="site-navigation" aria-label="<?php esc_attr_e( 'Main Navigation', 'openphone' ); ?>">
-		<button aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'openphone' ); ?></button>
-
-		<?php
-		wp_nav_menu(
-			array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-				'items_wrap'     => '<ul id="%1$s" class="%2$s" aria-label="submenu">%3$s</ul>',
-			)
-		);
-		?>
-	</nav><!-- #site-navigation -->
-
 </header><!-- #masthead -->
