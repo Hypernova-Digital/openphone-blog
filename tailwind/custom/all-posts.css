@@ -45,7 +45,7 @@
 
 .blog .pagination .nav-links,
 .archive .pagination .nav-links {
-    @apply flex flex-row justify-center items-center gap-4;
+    @apply flex flex-row justify-center items-center gap-4 flex-wrap;
 }
 
 .blog .pagination .next.page-numbers::after,

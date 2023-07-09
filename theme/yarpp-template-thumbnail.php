@@ -24,34 +24,27 @@ Notes:
 
 */
 ?>
-
-<?php
-/* Pick Thumbnail */
-global $_wp_additional_image_sizes;
-if ( isset( $_wp_additional_image_sizes['yarpp-thumbnail'] ) ) {
-	$dimensions['size'] = 'yarpp-thumbnail';
-} else {
-	$dimensions['size'] = 'medium'; // default
-}
-?>
-<?php if ( have_posts() ) : ?>
-<ul>
-	<?php
-	while ( have_posts() ) :
-		the_post();
+<?php if (have_posts()) : ?>
+		<?php
+		while (have_posts()) :
+			the_post();
 		?>
-		<?php if ( has_post_thumbnail() ) : ?>
-		<li>
-			<a href="<?php the_permalink(); ?>" rel="bookmark norewrite" title="<?php the_title_attribute(); ?>">
-				<?php the_post_thumbnail( $dimensions['size'], array( 'data-pin-nopin' => 'true' ) ); ?>
-				<?php the_title(); ?>
-				<?php openphone_posted_on(); ?>
-			</a>
-		</li>
-		<?php endif; ?>
-	<?php endwhile; ?>
-</ul>
+			<?php if (has_post_thumbnail()) : ?>
+				<div class="related-thumb grid-cols-1 lg:row-start-2 rounded-md border-[1px] border-black border-opacity-10 overflow-hidden bg-white">
+					<a href="<?php the_permalink(); ?>" rel="bookmark norewrite" title="<?php the_title_attribute(); ?>">
+						<div class="[&_img]:w-full"><?php openphone_post_thumbnail(); ?></div>
+
+						<div class="p-4">
+							<?php openphone_entry_meta_categories(); ?>
+							<span class="divider opacity-10"> | </span>
+							<span class="opacity-70 [&_a]:font-light text-sm"><?php openphone_posted_on(); ?></span>
+							<span class="related-post-title block text-base font-semibold md:text-xl lg:text-[23px] mt-2"> <?php the_title(); ?></span>
+						</div>
+					</a>
+				</div>
+			<?php endif; ?>
+		<?php endwhile; ?>
 
 <?php else : ?>
-<p>No related photos.</p>
+	<p>No related photos.</p>
 <?php endif; ?>

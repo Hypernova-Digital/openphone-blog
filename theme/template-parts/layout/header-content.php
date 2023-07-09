@@ -11,7 +11,7 @@
 ?>
 
 <header id="masthead" class="bg-white">
-	<div class="header-content lg:max-w-7xl px-6 py-4 md:py-8 flex flex-row items-center justify-between">
+	<div class="header-content lg:max-w-7xl px-6 py-4  md:px-0 md:py-8 flex flex-row items-center justify-between">
 		<div>
 			<?php
 			if (is_front_page()) :

@@ -28,6 +28,10 @@ a[rel="tag"] {
 	@apply px-8 pb-12 md:pb-16 lg:pb-32;
 }
 
+article.post {
+	margin-bottom: 0 !important;
+}
+
 /* Headings */
 .wp-block-heading {
 	@apply mt-12 mb-8;
@@ -284,4 +288,21 @@ div#open-phone-toc a.active::before {
 div#open-phone-toc a .lwptoc_item_label {
 	@apply max-w-[17rem];
 	content: "";
+}
+
+/* Related Posts */
+
+.yarpp.yarpp-related.yarpp-related-shortcode.yarpp-template-yarpp-template-thumbnail {
+	@apply grid grid-cols-1 lg:grid-cols-2 lg:gap-12 row-start-2 col-start-1 col-end-2 lg:col-end-3 p-0 m-0;
+	column-gap: 3rem;
+	row-gap: 0;
+
+}
+
+.yarpp.yarpp-related.yarpp-related-shortcode.yarpp-template-yarpp-template-thumbnail a {
+	font-weight: 700;
+}
+
+.yarpp.yarpp-related.yarpp-related-shortcode.yarpp-template-yarpp-template-thumbnail span a {
+	font-weight: 300;
 }
