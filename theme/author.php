@@ -40,7 +40,7 @@ $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : g
             endwhile;
 
             // Previous/next page navigation.
-            openphone_the_posts_navigation();
+            openphone_the_posts_navigation(); 
 
         else :
 
