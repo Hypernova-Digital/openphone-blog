@@ -56,11 +56,17 @@
 }
 
 /* Social Media */
-.wp-block-social-links .wp-block-social-link.wp-social-link  .wp-block-social-link-anchor {
-	fill: black;
-	color: black;
+.wp-block-social-links
+	.wp-block-social-link.wp-social-link
+	.wp-block-social-link-anchor {
+	@apply text-black fill-black;
 }
 
 .wp-block-social-links .wp-block-social-link.wp-social-link {
-	background-color: transparent;
+	@apply bg-transparent;
+}
+
+.wp-element-button {
+	font-family: Inter, sans-serif !important;
+	@apply text-center text-base font-medium leading-[1.5] flex h-[2.25rem] px-4 justify-center items-center border-[1.5px] border-black rounded-md;
 }

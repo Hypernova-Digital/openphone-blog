@@ -35,3 +35,10 @@
  */
 @import "tailwindcss/utilities";
 @import "./custom/utilities.css";
+
+
+/* Partials */
+@import "./custom/single-post.css";
+@import "./custom/all-posts.css";
+@import "./custom/header.css";
+@import "./custom/author-archive.css";

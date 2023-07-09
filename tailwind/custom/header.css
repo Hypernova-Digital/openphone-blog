@@ -1,0 +1,143 @@
+.logo-and-title {
+	@apply flex flex-row items-center justify-start;
+}
+
+.desktop-nav {
+    @apply hidden;
+}   
+
+@media (min-width: 1200px) {
+    .desktop-nav {
+        @apply flex visible w-max;
+    }    
+}
+
+/* change to 880px later */
+@media (min-width: 880px) { 
+    .mobile-nav {
+        @apply hidden;
+    }    
+}
+
+.desktop-nav .header-search {
+    @apply w-6 h-6;
+}
+
+.menu-openphone-menu-container #primary-menu {
+	@apply flex flex-row gap-4;
+}
+
+#primary-menu > .menu-item {
+    @apply h-8 flex flex-col items-center justify-center;
+}
+
+.menu-item > .sub-menu {
+	@apply hidden;
+}
+
+.menu-item > a + .sub-menu:hover {
+	@apply fixed left-auto top-24 z-[1000] block p-4 ;
+    box-shadow: 4px 4px 0px 0px #000;
+}
+
+.menu-item:hover > a + .sub-menu {
+	@apply fixed left-auto top-24 z-[1000] block bg-white p-4 rounded-lg border-[1px] border-black;
+    box-shadow: 4px 4px 0px 0px #000;
+}
+
+.sub-menu > .menu-item {
+    @apply px-[10px] py-[6px] rounded-md text-base;
+}
+
+.sub-menu > .menu-item:hover {
+    @apply bg-purple-25 cursor-pointer transition-all duration-200;
+}
+
+.menu-item-has-children > a::after {
+    background-image: url('images/cheveron-down.svg');
+    content: '';
+    top: 2px;
+
+    @apply relative ml-1 inline-block w-4 h-4 bg-contain bg-no-repeat bg-center;
+}
+
+.menu-item-has-children:hover > a::after {
+    transform: rotate(180deg);
+    @apply transition-transform duration-200;
+}
+
+.header-content {
+	@apply mx-auto;
+}
+
+#masthead {
+	/* @apply sticky top-0; */
+}
+
+.admin-bar #masthead {
+	/* @apply sticky top-8; */
+}
+
+.custom-logo {
+	@apply mr-3 h-[1.4rem] w-auto;
+}
+
+.logo-and-title {
+	@apply text-xl font-medium leading-[1] tracking-[-0.6px];
+}
+
+.logo-and-title:hover {
+    @apply text-purple-900 transition-colors duration-200;
+}
+
+#masthead .wp-block-button:first-child a.wp-element-button {
+    @apply bg-white text-black border-[1px] border-black;
+}
+
+.mobile-nav {
+    @apply flex flex-row-reverse items-center justify-start;
+}
+
+.mobile-nav .header-ctas {
+    @apply hidden;
+}
+
+.mobile-nav .header-search {
+    @apply w-6 h-6 mr-4;
+}
+
+@media (min-width: 880px) {
+    .mobile-nav .header-search {
+        @apply hidden;
+    }    
+}
+
+.mobile-nav button[aria-controls="primary-menu"] {
+    @apply w-6 h-1 bg-black rounded-lg;
+}
+
+.mobile-nav button[aria-controls="primary-menu"]::before,
+.mobile-nav button[aria-controls="primary-menu"]::after {
+    @apply w-6 h-1 bg-black rounded-lg block relative; 
+    content: '';
+}
+
+.mobile-nav button[aria-controls="primary-menu"]::before {
+    top: -8px;
+}
+
+.mobile-nav button[aria-controls="primary-menu"]::after {
+    bottom: -4px;
+}
+
+.mobile-nav .menu-openphone-menu-container {
+    @apply hidden;
+}
+
+@media (min-width: 880px) {
+    .mobile-nav button[aria-controls="primary-menu"]::before,
+    .mobile-nav button[aria-controls="primary-menu"]::after,
+    .mobile-nav button[aria-controls="primary-menu"] {
+        @apply hidden;
+    } 
+}

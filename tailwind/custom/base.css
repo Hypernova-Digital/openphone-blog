@@ -15,9 +15,55 @@ body {
 	@apply bg-background text-foreground font-sans;
 }
 
+/* Typography */
 * {
 	font-family: 'Inter', sans-serif;
 	font-size: 16px;
+}
+
+a,
+strong,
+p,
+li,
+span {
+	@apply text-sm;
+}
+
+strong {
+	@apply font-semibold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h1 span,
+h2 span,
+h3 span,
+h4 span,
+h5 span,
+h6 span,
+h1 span strong,
+h2 span strong,
+h3 span strong,
+h4 span strong,
+h5 span strong,
+h6 span strong {
+	@apply leading-[1.2];
+}
+
+ul li::marker {
+	@apply text-black;
+}
+
+.prose :where(ul > li):not(:where([class~="not-prose"] *))::marker {
+	@apply text-black;
+}
+
+a:hover {
+	transition: all 0.3s ease !important;
 }
 
 /* Buttons */
@@ -52,15 +98,13 @@ body {
 
 /* Footer Widgets */
 footer h2 {
-	font-size: 0.875rem;
-	font-weight: 500;
-	line-height: 1.5;
-	@apply mb-2 md:mb-2;
+	@apply mb-2 md:mb-2 text-sm font-medium leading-[1.5] text-black;
+	font-family: 'Inter', sans-serif;
 }
 
 footer li a {
 	font-size: 0.875rem;
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.5;
 	color: rgba(0, 0, 0, 0.80);
 }

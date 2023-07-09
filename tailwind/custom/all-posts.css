@@ -1,0 +1,67 @@
+.blog #main,
+.archive #main {
+    @apply gap-8
+}
+
+.blog #main > article.post.type-post,
+.archive #main > article.post.type-post {
+    @apply w-full flex flex-col rounded-lg overflow-hidden border-[1px] border-black border-opacity-10 bg-white col-span-1; 
+}
+
+.blog #main > article.post.type-post img.attachment-post-thumbnail,
+.archive #main > article.post.type-post img.attachment-post-thumbnail {
+    @apply w-full;
+}
+
+.blog #main .navigation.pagination,
+.archive #main .navigation.pagination {
+    @apply col-span-1 md:col-span-2 lg:col-span-3;
+}
+
+.category-list {
+    @apply flex flex-wrap gap-4;
+}
+
+.category-list li a {
+    @apply inline-block px-4 py-2 rounded-md bg-black bg-opacity-5 text-black text-sm;
+}
+
+.category-list li a:hover {
+    @apply bg-opacity-100 text-white;
+}
+
+.category-list li a.active {
+    @apply bg-opacity-100 text-white;
+}
+
+.blog .category-list li a.all-posts {
+    @apply bg-opacity-100 text-white;
+}
+
+.blog .pagination,
+.archive .pagination {
+    @apply text-center mt-12 mb-14 md:my-24;
+}
+
+.blog .pagination .nav-links,
+.archive .pagination .nav-links {
+    @apply flex flex-row justify-center items-center gap-4 flex-wrap;
+}
+
+.blog .pagination .next.page-numbers::after,
+.archive .pagination .next.page-numbers::after {
+    content: '';
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    background: url('images/cheveron-down.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    transform: rotate(-90deg);
+}
+
+.blog .pagination .page-numbers,
+.archive .pagination .page-numbers {
+    @apply inline-flex items-center px-4 py-2 rounded-sm border-[1px] border-opacity-5 text-black text-base font-normal;
+}
