@@ -141,47 +141,9 @@ if (!function_exists('openphone_entry_footer')) :
 			</div>
 
 			<?php
-			global $post;
-			$orig_post = $post;
-			$tags = wp_get_post_tags($post->ID);
-			if ($tags) {
-				$tag_ids = array();
-				foreach ($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
-				$args = array(
-					'tag__in' => $tag_ids,
-					'post__not_in' => array($post->ID),
-					'posts_per_page' => 2, // Number of related posts to display.
-					'caller_get_posts' => 1
-				);
+			
+			echo do_shortcode('[yarpp template="yarpp-template-thumbnail"]');
 
-				$my_query = new wp_query($args);
-				while ($my_query->have_posts()) {
-					$my_query->the_post();
-			?>
-
-					<div class="related-thumb grid-cols-1 lg:row-start-2 rounded-md border-[1px] border-black border-opacity-10 overflow-hidden bg-white">
-						<a rel="external" href="<? the_permalink() ?>">
-							<?php the_post_thumbnail('full'); ?>
-						</a>
-
-						<div class="p-4">
-							<a rel="external" href="<? the_permalink() ?>">
-								<?php openphone_entry_meta_categories(); ?>
-								<span class="divider opacity-10"> | </span>
-								<span class="opacity-70 font-normal text-sm"><?php openphone_posted_on(); ?></span>
-							</a>
-
-							<a rel="external" href="<? the_permalink() ?>">
-								<span class="related-post-title block text-base font-semibold md:text-xl lg:text-2xl mt-2">
-									<?php the_title(); ?>
-								</span>
-							</a>
-						</div>
-					</div>
-			<?php }
-			}
-			$post = $orig_post;
-			wp_reset_query();
 			?>
 		</div>
 		<?php

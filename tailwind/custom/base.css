@@ -98,15 +98,13 @@ a:hover {
 
 /* Footer Widgets */
 footer h2 {
-	font-size: 0.875rem;
-	font-weight: 500;
-	line-height: 1.5;
-	@apply mb-2 md:mb-2;
+	@apply mb-2 md:mb-2 text-sm font-medium leading-[1.5] text-black;
+	font-family: 'Inter', sans-serif;
 }
 
 footer li a {
 	font-size: 0.875rem;
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.5;
 	color: rgba(0, 0, 0, 0.80);
 }
