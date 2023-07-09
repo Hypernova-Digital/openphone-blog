@@ -134,10 +134,9 @@
     @apply hidden;
 }
 
-@media (min-width: 880px) {
-    .mobile-nav button[aria-controls="primary-menu"]::before,
-    .mobile-nav button[aria-controls="primary-menu"]::after,
-    .mobile-nav button[aria-controls="primary-menu"] {
-        @apply hidden;
-    } 
-}
+
+.mobile-nav button[aria-controls="primary-menu"]::before,
+.mobile-nav button[aria-controls="primary-menu"]::after,
+.mobile-nav button[aria-controls="primary-menu"] {
+    @apply md:hidden;
+} 
