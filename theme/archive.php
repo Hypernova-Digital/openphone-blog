@@ -12,7 +12,7 @@ get_header();
 ?>
 
 <section id="primary">
-	<main id="main" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-auto">
+	<main id="main" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-auto mb-10">
 
 		<?php if (have_posts()) : ?>
 

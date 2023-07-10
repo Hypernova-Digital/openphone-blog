@@ -39,17 +39,24 @@
 }
 
 .blog .pagination,
-.archive .pagination {
+.archive .pagination,
+.search .pagination {
     @apply text-center mt-12 mb-14 md:my-24;
 }
 
 .blog .pagination .nav-links,
-.archive .pagination .nav-links {
-    @apply flex flex-row justify-center items-center gap-4 flex-wrap;
+.archive .pagination .nav-links,
+.search .pagination .nav-links {
+    @apply flex flex-row justify-center items-center gap-4 flex-wrap w-full;
+}
+
+.search .pagination {
+    @apply col-span-1 md:col-span-2 lg:col-span-3;
 }
 
 .blog .pagination .next.page-numbers::after,
-.archive .pagination .next.page-numbers::after {
+.archive .pagination .next.page-numbers::after,
+.search .pagination .next.page-numbers::after {
     content: '';
     display: inline-block;
     height: 1rem;
@@ -61,7 +68,16 @@
     transform: rotate(-90deg);
 }
 
+.blog .pagination .current,
+.archive .pagination .current,
+.search .pagination .current {
+    @apply bg-black ;
+    color: white !important;
+}
+
+
 .blog .pagination .page-numbers,
-.archive .pagination .page-numbers {
+.archive .pagination .page-numbers,
+.search .pagination .page-numbers {
     @apply inline-flex items-center px-4 py-2 rounded-sm border-[1px] border-opacity-5 text-black text-base font-normal;
 }

@@ -10,10 +10,9 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" class="related-thumb grid-cols-1 rounded-md border-[1px] border-black border-opacity-10 overflow-hidden bg-white">
+<article id="post-<?php the_ID(); ?>" class="related-thumb w-full md:w-[48%] rounded-md border-[1px] border-black border-opacity-10 overflow-hidden bg-white">
 	<a href="<?php the_permalink(); ?>" rel="bookmark norewrite" title="<?php the_title_attribute(); ?>">
 		<div class="[&_img]:w-full"><?php openphone_post_thumbnail(); ?></div>
-
 		<div class="p-4">
 			<span class="[&_a]:text-sm"><?php openphone_entry_meta_categories(); ?></span>
 
