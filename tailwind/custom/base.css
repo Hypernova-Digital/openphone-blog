@@ -30,7 +30,7 @@ span {
 }
 
 strong {
-	@apply font-semibold;
+	font-size: inherit;
 }
 
 h1,

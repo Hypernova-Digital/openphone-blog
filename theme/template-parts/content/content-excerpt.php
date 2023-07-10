@@ -10,18 +10,18 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php openphone_post_thumbnail(); ?>
-	<header class="entry-header p-6 ">
-		<span class="[&_a]:text-sm"><?php openphone_entry_meta_categories(); ?></span>
-		<span class="divider opacity-40"> | </span>
-		<span class="[&_time]:text-sm [&_time]:opacity-70"><?php openphone_posted_on(); ?></span>
+<article id="post-<?php the_ID(); ?>" class="related-thumb grid-cols-1 rounded-md border-[1px] border-black border-opacity-10 overflow-hidden bg-white">
+	<a href="<?php the_permalink(); ?>" rel="bookmark norewrite" title="<?php the_title_attribute(); ?>">
+		<div class="[&_img]:w-full"><?php openphone_post_thumbnail(); ?></div>
 
-		<?php
-		if (is_sticky() && is_home() && !is_paged()) {
-			printf('%s', esc_html_x('Featured', 'post', 'openphone'));
-		}
-		the_title(sprintf('<h2 class="entry-title leading-3 mb-0"><a href="%s" rel="bookmark" class="text-xl">', esc_url(get_permalink())), '</a></h2>');
-		?>
-	</header><!-- .entry-header -->
+		<div class="p-4">
+			<span class="[&_a]:text-sm"><?php openphone_entry_meta_categories(); ?></span>
+
+			<span class="divider opacity-10"> | </span>
+
+			<span class="posted-on opacity-70 [&_a]:font-light text-sm [&_time]:text-sm"><?php openphone_posted_on(); ?></span>
+
+			<?php the_title( '<span class="related-post-title block text-sm font-semibold md:text-xl lg:text-[23px] mt-2"> ', '</span>' );?>
+		</div>
+	</a>
 </article><!-- #post-${ID} -->
