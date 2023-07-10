@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	const pageHeader = document.getElementById('masthead');
 	const entryHeader = document.querySelector('.entry-header') || document.querySelector('.bg-purple-50');
 
-
 	// Adjust the page header's top position to account for the admin bar
 	if (wpAdminBar) {
 		pageHeader.style.top = wpAdminBar.offsetHeight + 'px';
@@ -35,6 +34,22 @@ document.addEventListener('DOMContentLoaded', function() {
 			pageHeader.classList.remove('sticky-nav', 'is-sticky');
 		}
 	}, { passive: true });
+
+
+	/* Mobile nav button */
+	const mobileNavButton = document.getElementById('mobile-nav-menu-button');
+	mobileNavButton.addEventListener('click', function() {
+		const wasExpanded = mobileNavButton.getAttribute('aria-expanded') === 'true';
+		const isExpanded = !wasExpanded;
+		const menuContainer = document.querySelector('.mobile-nav .menu-openphone-menu-container');
+		menuContainer.style.display = isExpanded ? 'block' : 'none';
+
+		if (isExpanded) {
+			mobileNavButton.setAttribute('aria-expanded', 'true');
+		} else {
+			mobileNavButton.setAttribute('aria-expanded', 'false');
+		}
+	});
 });
 
 // Config

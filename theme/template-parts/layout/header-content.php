@@ -68,32 +68,33 @@
 					</aside>
 				<?php endif; ?>
 			</div>
-			<div class="mobile-nav">
-				<button aria-controls="primary-menu" id="myButton" aria-expanded="false"><?php esc_html_e('', 'openphone'); ?></button>
-
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'menu-1',
-						'menu_id'        => 'primary-menu',
-						'items_wrap'     => '<ul id="%1$s" class="%2$s" aria-label="submenu">%3$s</ul>',
-					)
-				);
-				?>
-
-				<?php if (is_active_sidebar('header-search')) : ?>
-					<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6 header-search">
-						<?php dynamic_sidebar('header-search'); ?>
-					</aside>
-				<?php endif; ?>
-
-				<?php if (is_active_sidebar('header-ctas')) : ?>
-					<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6 header-ctas">
-						<?php dynamic_sidebar('header-ctas'); ?>
-					</aside>
-				<?php endif; ?>
-			</div>
 		</nav><!-- #site-navigation -->
+	</div>
+
+	<div class="mobile-nav">
+		<button aria-controls="primary-menu" id="mobile-nav-menu-button" aria-expanded="false"><?php esc_html_e('', 'openphone'); ?></button>
+
+		<?php
+		wp_nav_menu(
+			array(
+				'theme_location' => 'menu-1',
+				'menu_id'        => 'mobile-menu',
+				'items_wrap'     => '<ul id="%1$s" class="%2$s" aria-label="submenu">%3$s</ul>',
+			)
+		);
+		?>
+
+		<?php if (is_active_sidebar('header-search')) : ?>
+			<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6 header-search">
+				<?php dynamic_sidebar('header-search'); ?>
+			</aside>
+		<?php endif; ?>
+
+		<?php if (is_active_sidebar('header-ctas')) : ?>
+			<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6 header-ctas">
+				<?php dynamic_sidebar('header-ctas'); ?>
+			</aside>
+		<?php endif; ?>
 	</div>
 
 	<div class="scroll-progress-bar hidden">
