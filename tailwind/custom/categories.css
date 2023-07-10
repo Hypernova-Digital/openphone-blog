@@ -1,0 +1,7 @@
+.archive.category #masthead {
+    @apply bg-purple-50;
+}
+
+.archive.category #main .navigation.pagination {
+    @apply mx-auto;
+}
