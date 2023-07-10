@@ -39,7 +39,7 @@
 			$openphone_description = get_bloginfo('description', 'display');
 			if ($openphone_description || is_customize_preview()) :
 			?>
-				<p><?php echo $openphone_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+				<p><?php echo $openphone_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					?></p>
 			<?php endif; ?>
 		</div>
@@ -94,5 +94,9 @@
 				<?php endif; ?>
 			</div>
 		</nav><!-- #site-navigation -->
+	</div>
+
+	<div class="scroll-progress-bar hidden">
+		<div class="scroll-progress-value"></div>
 	</div>
 </header><!-- #masthead -->
