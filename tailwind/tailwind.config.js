@@ -42,6 +42,19 @@ module.exports = {
 			maxWidth: {
 				'7xl': '1200px',
 			},
+			keyframes: {
+				slideDown: {
+					'0%': {
+						transform: 'translateY(-100%)',
+					},
+					'100%': {
+						transform: 'translateY(0)',
+					}
+				}
+			},
+			animation: {
+				slideDown: 'slideDown 0.35s',
+			}
 		},
 	},
 	corePlugins: {
