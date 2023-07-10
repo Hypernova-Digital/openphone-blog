@@ -36,7 +36,7 @@
     @apply w-6 h-6;
 }
 
-.menu-openphone-menu-container #primary-menu {
+.desktop-nav .menu-openphone-menu-container #primary-menu {
 	@apply flex flex-row gap-4;
 }
 
@@ -44,29 +44,29 @@
     @apply h-8 flex flex-col items-center justify-center;
 }
 
-.menu-item > .sub-menu {
+.desktop-nav .menu-item > .sub-menu {
 	@apply hidden;
 }
 
-.menu-item > a + .sub-menu:hover {
+.desktop-nav .menu-item > a + .sub-menu:hover {
 	@apply fixed left-auto top-24 z-[1000] block p-4 ;
     box-shadow: 4px 4px 0px 0px #000;
 }
 
-.menu-item:hover > a + .sub-menu {
+.desktop-nav .menu-item:hover > a + .sub-menu {
 	@apply fixed left-auto top-24 z-[1000] block bg-white p-4 rounded-lg border-[1px] border-black;
     box-shadow: 4px 4px 0px 0px #000;
 }
 
-.sub-menu > .menu-item {
+.desktop-nav .sub-menu > .menu-item {
     @apply px-[10px] py-[6px] rounded-md text-base;
 }
 
-.sub-menu > .menu-item:hover {
+.desktop-nav .sub-menu > .menu-item:hover {
     @apply bg-purple-25 cursor-pointer transition-all duration-200;
 }
 
-.menu-item-has-children > a::after {
+.desktop-nav .menu-item-has-children > a::after {
     background-image: url('images/cheveron-down.svg');
     content: '';
     top: 2px;
@@ -74,7 +74,7 @@
     @apply relative ml-1 inline-block w-4 h-4 bg-contain bg-no-repeat bg-center;
 }
 
-.menu-item-has-children:hover > a::after {
+.desktop-nav .menu-item-has-children:hover > a::after {
     transform: rotate(180deg);
     @apply transition-transform duration-200;
 }
@@ -108,7 +108,7 @@
 }
 
 .mobile-nav {
-    @apply flex flex-row-reverse items-center justify-start;
+    @apply flex flex-row-reverse justify-start;
 }
 
 .mobile-nav .header-ctas {
@@ -117,6 +117,10 @@
 
 .mobile-nav .header-search {
     @apply w-6 h-6 mr-4;
+}
+
+.mobile-nav .menu-openphone-menu-container[style="display: block;"] {
+    @apply  w-full h-[100vh];
 }
 
 @media (min-width: 880px) {
