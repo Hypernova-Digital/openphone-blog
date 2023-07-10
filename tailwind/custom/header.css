@@ -4,19 +4,32 @@
 
 .desktop-nav {
     @apply hidden;
-}   
+}
 
 @media (min-width: 1200px) {
     .desktop-nav {
         @apply flex visible w-max;
-    }    
+    }
 }
 
 /* change to 880px later */
-@media (min-width: 880px) { 
+@media (min-width: 880px) {
     .mobile-nav {
         @apply hidden;
-    }    
+    }
+
+	.sticky-nav {
+		@apply sticky top-0 z-50 animate-slideDown;
+	}
+
+	/* this is hidden by default in the markup */
+	.scroll-progress-bar {
+		@apply align-bottom w-full h-[4px] bg-transparent;
+	}
+
+	.scroll-progress-value {
+		@apply w-0 h-full bg-purple-900;
+	}
 }
 
 .desktop-nav .header-search {
@@ -109,7 +122,7 @@
 @media (min-width: 880px) {
     .mobile-nav .header-search {
         @apply hidden;
-    }    
+    }
 }
 
 .mobile-nav button[aria-controls="primary-menu"] {
@@ -118,7 +131,7 @@
 
 .mobile-nav button[aria-controls="primary-menu"]::before,
 .mobile-nav button[aria-controls="primary-menu"]::after {
-    @apply w-6 h-1 bg-black rounded-lg block relative; 
+    @apply w-6 h-1 bg-black rounded-lg block relative;
     content: '';
 }
 
@@ -134,9 +147,8 @@
     @apply hidden;
 }
 
-
 .mobile-nav button[aria-controls="primary-menu"]::before,
 .mobile-nav button[aria-controls="primary-menu"]::after,
 .mobile-nav button[aria-controls="primary-menu"] {
     @apply md:hidden;
-} 
+}

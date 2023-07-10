@@ -7,10 +7,40 @@
  * https://esbuild.github.io/
  */
 
+document.addEventListener('DOMContentLoaded', function() {
+	const wpAdminBar = document.getElementById('wpadminbar');
+	const pageHeader = document.getElementById('masthead');
+	const entryHeader = document.querySelector('.entry-header') || document.querySelector('.bg-purple-50');
+
+
+	// Adjust the page header's top position to account for the admin bar
+	if (wpAdminBar) {
+		pageHeader.style.top = wpAdminBar.offsetHeight + 'px';
+	}
+
+	window.addEventListener('scroll', function() {
+		const entryHeight = entryHeader.offsetHeight;
+		const headerHeight = pageHeader.offsetHeight;
+		const scrollY = window.pageYOffset;
+
+		console.log({
+			entryHeight,
+			scrollY,
+			shouldSticky: (entryHeight + headerHeight) / 2
+		})
+
+		if (scrollY >= (entryHeight + headerHeight) / 2) {
+			pageHeader.classList.add('sticky-nav', 'is-sticky');
+		} else {
+			pageHeader.classList.remove('sticky-nav', 'is-sticky');
+		}
+	}, { passive: true });
+});
+
 // Config
 
 // Set this to false before shipping
-const DEBUG = true;
+const DEBUG = false;
 
 const mobileMediaQuery = '(max-width: 767px)';
 // The media query used to determine if the page is mobile, if this matches, the `mobileClass` will be applied to the `mobileClassTargetSelector`
@@ -189,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}, { root: null, threshold: 1, rootMargin: '0px 0px -50% 0px' });
 
 		document.querySelectorAll(headerSelector).forEach((header) => {
-			const id = header.children[0].id;
+			const id = header?.children?.[0]?.id;
 			const tocEntry = toc.querySelector(`a[href="#${id}"]`);
 			const text = header.textContent.trim().toLowerCase();
 			if (removeRelatedPosts && text.includes('related posts:')) return; // Exclude the related posts section
