@@ -68,6 +68,14 @@
     transform: rotate(-90deg);
 }
 
+.blog .pagination .current,
+.archive .pagination .current,
+.search .pagination .current {
+    @apply bg-black ;
+    color: white !important;
+}
+
+
 .blog .pagination .page-numbers,
 .archive .pagination .page-numbers,
 .search .pagination .page-numbers {
