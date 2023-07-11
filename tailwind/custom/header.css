@@ -156,3 +156,11 @@
 .mobile-nav button[aria-controls="primary-menu"] {
     @apply md:hidden;
 }
+
+.mobile-nav .sub-menu {
+	@apply hidden;
+}
+
+.mobile-nav .sub-menu.active {
+	@apply block;
+}

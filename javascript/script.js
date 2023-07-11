@@ -262,9 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		appendTocToHeader(toc);
 		// Append the toc before/after the header
 
-		// Toggle `mobileClass` on document.body whenever the media query matches
-		toggleClasses(document.body, isMobile(), ...mobileClass)
-
 		if (isMobile()) {
 			toggleToc(mobileTocHiddenByDefault);
 			// Use the `mobileTocHiddenByDefault` config to determine if the toc should be hidden by default
@@ -276,30 +273,58 @@ document.addEventListener("DOMContentLoaded", () => {
 			observeHeaders();
 			// Observe the headers on desktop
 		}
+	}
 
+	const footerClickHandler = (e) => {
+		const aside = e.target.closest('aside');
+		if (aside) aside.classList.toggle('active');
+	}
+
+	const mobileNavClickHandler = (e) => {
+		const ul = e.target.nextElementSibling;
+		if (ul) {
+			ul.classList.toggle('active');
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	const applyMobile = () => {
+		// Runs on transition between (mobile <-> desktop)
+
+		// Toggle `mobileClass` on document.body
+		toggleClasses(document.body, isMobile(), ...mobileClass)
+
+		// If you need to toggle mobile on another element, you can use `mobileClassTargetSelector`
 		if (mobileClassTargetSelector) {
 			// Toggle `mobileClass` on `mobileClassTargetSelector` whenever the media query matches
 			const mobileClassTargetElement = document.querySelector(mobileTocTargetSelector);
 			toggleClasses(mobileClassTargetElement, isMobile(), ...mobileClass)
 		}
+
+		const mobileNavCategories = document.querySelectorAll('#mobile-menu > li.menu-item-has-children');
+		const footers = document.querySelectorAll('.mobile footer h2');
+
+		if (isMobile()) {
+			if (hasTableOfContents) {
+				/* Uncomment to enable TOC
+				initializeToc();
+
+				// Toggle toc visibility on mobile when the user clicks the toc expand button (`tocExpandSelector`)
+				document.querySelector(tocExpandSelector).addEventListener('click', toggleToc); */
+			}
+			mobileNavCategories.forEach(header => header.addEventListener('click', mobileNavClickHandler));
+			footers?.forEach(footer => footer.addEventListener('click', footerClickHandler));
+		} else {
+			footers?.forEach(footer => footer.removeListener('click', footerClickHandler));
+			mobileNavCategories?.foreach(header => header.removeListener('click', mobileNavClickHandler));
+		}
 	}
 
-	if (hasTableOfContents) {
-		// Update the body class and move the toc on resize (mobile <-> desktop)
-		mobileMediaQueryList.addEventListener('change', initializeToc);
+	// Toggle `mobileClass` on document.body whenever the media query matches
+	mobileMediaQueryList.addEventListener('change', applyMobile);
 
-		// Call initially on page load
-		initializeToc();
-
-		// Toggle toc visibility on mobile when the user clicks the toc expand button (`tocExpandSelector`)
-		document.querySelector(tocExpandSelector).addEventListener('click', toggleToc);
-	}
-
-	const footers = document.querySelectorAll('.mobile footer h2');
-	footers.forEach(footer => {
-		footer.addEventListener('click', (e) => {
-			const aside = e.target.closest('aside');
-			if (aside) aside.classList.toggle('active');
-		});
-	});
+	// Call initially on page load
+	applyMobile();
 });

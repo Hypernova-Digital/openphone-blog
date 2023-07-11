@@ -29,25 +29,25 @@
 		<?php endif; ?>
 
 		<?php if (is_active_sidebar('footer-categories-2')) : ?>
-			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 md:mb-0 ">
+			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 md:mb-0">
 				<?php dynamic_sidebar('footer-categories-2'); ?>
 			</aside>
 		<?php endif; ?>
 
 		<?php if (is_active_sidebar('footer-categories-3')) : ?>
-			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 md:mb-0 ">
+			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 md:mb-0">
 				<?php dynamic_sidebar('footer-categories-3'); ?>
 			</aside>
 		<?php endif; ?>
 
 		<?php if (is_active_sidebar('footer-categories-4')) : ?>
-			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 md:mb-0 ">
+			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 md:mb-0">
 				<?php dynamic_sidebar('footer-categories-4'); ?>
 			</aside>
 		<?php endif; ?>
 
 		<?php if (is_active_sidebar('footer-categories-5')) : ?>
-			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 md:mb-0 ">
+			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 md:mb-0">
 				<?php dynamic_sidebar('footer-categories-5'); ?>
 			</aside>
 		<?php endif; ?>

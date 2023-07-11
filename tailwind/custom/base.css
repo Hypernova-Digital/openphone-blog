@@ -97,8 +97,8 @@ a:hover {
 }
 
 /* Footer Widgets */
-footer h2 {
-	@apply mb-2 md:mb-2 text-sm font-medium leading-[1.5] text-black;
+footer h2.wp-block-heading {
+	@apply mb-2 md:mb-0 mt-0 text-sm font-medium leading-[1.5] text-black;
 	font-family: 'Inter', sans-serif;
 }
 
@@ -160,5 +160,4 @@ footer .footer-categories aside {
 
 .mobile footer .footer-categories aside.active h2:after {
 	transform: rotate(180deg);
-	
 }
