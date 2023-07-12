@@ -1,0 +1,8 @@
+.featured-post.wp-block-query {
+    @apply max-w-7xl;
+} 
+
+.featured-post.wp-block-query li::marker {
+display: none;
+content: '';
+}
