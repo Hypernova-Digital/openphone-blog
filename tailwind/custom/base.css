@@ -29,6 +29,11 @@ span {
 	@apply text-sm;
 }
 
+p {
+	@apply text-[19px] font-normal leading-[1.4];
+	color: rgba(0, 0, 0, 0.70);
+}
+
 strong {
 	font-size: inherit;
 }
@@ -52,6 +57,7 @@ h4 span strong,
 h5 span strong,
 h6 span strong {
 	@apply leading-[1.2];
+	font-family: 'Roobert', sans-serif;
 }
 
 ul li::marker {

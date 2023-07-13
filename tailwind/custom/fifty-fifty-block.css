@@ -1,0 +1,19 @@
+.entry-content .wp-block-media-text .wp-block-media-text__content {
+    @apply md:w-[600px] md:ml-auto md:pl-0;
+}
+
+.entry-content .wp-block-media-text .wp-block-media-text__content .wp-block-heading {
+    @apply text-7xl my-4;
+}
+
+.entry-content .wp-block-media-text .eyebrows {
+    @apply text-xl font-semibold leading-[1.2] tracking-[-0.2px] m-0;
+}
+
+.entry-content .wp-block-media-text .wp-block-heading + p {
+    @apply mb-12;
+}
+
+.entry-content .wp-block-media-text a {
+    @apply font-semibold text-black no-underline;
+}
