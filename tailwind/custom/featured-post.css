@@ -3,6 +3,24 @@
 } 
 
 .featured-post.wp-block-query li::marker {
-display: none;
-content: '';
+    display: none;
+    content: '';
+}
+
+
+.featured-post.wp-block-query .wp-block-post-title {
+    @apply text-3xl m-0;
+}
+
+.featured-post.wp-block-query .wp-block-post-excerpt__excerpt {
+    @apply m-0;
+}
+
+.featured-post.wp-block-query .attachment-post-thumbnail,
+.featured-post.wp-block-query .wp-block-post-featured-image {
+    @apply m-0;
+}
+
+.featured-post.wp-block-query .wp-block-columns {
+    @apply lg:w-7xl;
 }

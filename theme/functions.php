@@ -337,3 +337,26 @@ function themename_custom_logo_setup() {
 	add_theme_support( 'custom-logo', $defaults );
 }
 add_action( 'after_setup_theme', 'themename_custom_logo_setup' );
+
+function mytheme_add_theme_support() {
+    add_theme_support('block-templates');
+}
+add_action('after_setup_theme', 'mytheme_add_theme_support');
+
+function add_custom_post_variation( $variations ) {
+    $variations['custom_post_variation'] = array(
+        'name' => 'Custom Post Variation',
+        'template_lock' => 'all',
+        'template' => array(
+            array( 'core/paragraph', array(
+                'placeholder' => 'Add custom content here...',
+            ) ),
+            array( 'core/image', array(
+                'align' => 'center',
+            ) ),
+        ),
+    );
+
+    return $variations;
+}
+add_filter( 'block_editor_settings_all', 'add_custom_post_variation' );
