@@ -1,0 +1,70 @@
+{
+  "apiVersion": 2,
+  "name": "lattice/hero-sub-product",
+  "title": "Hero for SUB product pages & sub product pages",
+  "icon": "superhero-alt",
+  "category": "common",
+  "editorScript": "file:./index.js",
+  "attributes": {
+    "eyebrowsIcon": {
+      "type": "string",
+      "source": "attribute",
+      "attribute": "src",
+      "selector": ".hero-eyebrows-icon",
+
+      "default": ""
+    },
+    "eyebrows": {
+      "type": "string",
+      "source": "html",
+      "selector": ".hero-eyebrows-text",
+      "default": "Your Eyebrows Here"
+    },
+    "eyebrows2": {
+      "type": "string",
+      "source": "html",
+      "selector": ".hero-eyebrows-text2",
+      "default": "Your Eyebrows 2 Here"
+    },
+    "title": {
+      "type": "string",
+      "source": "html",
+      "selector": ".hero-title",
+      "default": "Your Title Here"
+    },
+    "subtitle": {
+      "type": "string",
+      "source": "html",
+      "selector": ".hero-subtitle",
+      "default": "Your Subtitle Here"
+    },
+    "imageUrl": {
+      "type": "string",
+      "source": "attribute",
+      "attribute": "style",
+      "selector": ".hero-container",
+      "default": "url(https://picsum.photos/1600/900)"
+    },
+    "linkUrl": {
+      "type": "string",
+      "source": "attribute",
+      "attribute": "href",
+      "selector": ".hero-link",
+      "default": ""
+    },
+    "linkText": {
+      "type": "string",
+      "source": "html",
+      "selector": ".hero-link",
+      "default": "Read More"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "gradient": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}

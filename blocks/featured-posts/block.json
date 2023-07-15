@@ -1,0 +1,17 @@
+{
+	"apiVersion": 2,
+	"name": "openphone/post-selector",
+	"title": "Post Selector",
+	"description": "A Gutenberg block to select a single post",
+	"category": "common",
+	"attributes": {
+		"selectedPostId": {
+			"type": "number"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"save": false
+}

@@ -360,3 +360,53 @@ function add_custom_post_variation( $variations ) {
     return $variations;
 }
 add_filter( 'block_editor_settings_all', 'add_custom_post_variation' );
+
+// Enque Blocks
+//function openphone_require_blocks() {
+//	$build_dir = get_template_directory() . '/build';
+//	$directories = glob($build_dir . '/*', GLOB_ONLYDIR);
+//
+//	foreach ($directories as $dir) {
+//		$index_file_path = $dir . '/index.php';
+//		if (file_exists($index_file_path)) {
+//			require_once $index_file_path;
+//		}
+//	}
+//}
+//// Usage: Call this function in your functions.php file
+//openphone_require_blocks();
+
+function openphone_register_blocks() {
+	$path = get_template_directory() . '/build';
+	$directories = glob($path . '/*', GLOB_ONLYDIR);
+
+	foreach ($directories as $dir) {
+		openphone_register_block($dir);
+	}
+}
+add_action( 'init', 'openphone_register_blocks' );
+
+/**
+ * Registers a single block.
+ *
+ * @param string $path The full path to the block's directory.
+ */
+function openphone_register_block( $path ) {
+	$directory_name = basename( $path );
+	$uri = get_template_directory_uri() . "/build/{$directory_name}";
+
+	$index_js_uri = "{$uri}/index.js";
+	$version = file_exists("{$path}/index.js") ? filemtime("{$path}/index.js") : false;
+
+	wp_enqueue_script(
+		$directory_name,
+		$index_js_uri,
+		array( 'wp-blocks', 'wp-element', 'wp-editor' ),
+		$version,
+		true
+	);
+
+	register_block_type_from_metadata( $path, [
+		'editor_script' => $directory_name,
+	] );
+}

@@ -7,6 +7,12 @@
 		"@tailwindcss/container-queries": "^0.1.1",
 		"@tailwindcss/forms": "^0.5.3",
 		"@tailwindcss/typography": "^0.5.9",
+		"@wordpress/block-editor": "^12.0.0",
+		"@wordpress/blocks": "^12.9.0",
+		"@wordpress/components": "^23.9.0",
+		"@wordpress/data": "^9.7.0",
+		"@wordpress/element": "^5.14.0",
+		"@wordpress/i18n": "^4.32.0",
 		"@wordpress/prettier-config": "^2.13.0",
 		"adm-zip": "^0.5.10",
 		"archiver": "^5.3.1",
@@ -27,11 +33,13 @@
 		"development:tailwind:frontend": "npx tailwindcss --postcss -i ./tailwind/tailwind.css -c ./tailwind/tailwind.config.js -o ./theme/style.css",
 		"development:tailwind:editor": "cross-env _TW_TARGET=editor npx tailwindcss --postcss -i ./tailwind/tailwind.css -c ./tailwind/tailwind.config.js -o ./theme/style-editor.css",
 		"development:esbuild": "npx esbuild ./javascript/script.js ./javascript/block-editor.js ./javascript/blog-post.js --target=esnext --bundle --outdir=./theme/js --out-extension:.js=.min.js",
+		"development:blocks": "wp-scripts start --webpack-copy-php --webpack-src-dir=blocks --output-path=./theme/build",
 		"development": "run-p development:**",
 		"dev": "npm run development",
 		"watch:tailwind:frontend": "npm run development:tailwind:frontend -- --watch",
 		"watch:tailwind:editor": "npm run development:tailwind:editor -- --watch",
 		"watch:esbuild": "npm run development:esbuild -- --watch",
+		"watch:blocks": "wp-scripts start --webpack-copy-php --webpack-src-dir=blocks --output-path=./theme/build",
 		"watch": "run-p watch:**",
 		"lint:eslint": "npx eslint theme/",
 		"lint:prettier": "npx prettier --check .",
@@ -42,10 +50,17 @@
 		"production:tailwind:frontend": "cross-env NODE_ENV=production npm run development:tailwind:frontend -- --minify",
 		"production:tailwind:editor": "cross-env NODE_ENV=production npm run development:tailwind:editor -- --minify",
 		"production:esbuild": "npm run development:esbuild -- --minify",
+		"producton:blocks": "wp-scripts start --webpack-copy-php --webpack-src-dir=blocks --output-path=./theme/build",
 		"production": "run-p production:**",
 		"prod": "npm run production",
 		"zip": "node node_scripts/zip.js openphone",
 		"bundle": "run-s production zip"
 	},
-	"prettier": "@wordpress/prettier-config"
+	"prettier": "@wordpress/prettier-config",
+	"dependencies": {
+		"@wordpress/api-fetch": "^6.34.0",
+		"@wordpress/block-editor": "^12.5.0",
+		"@wordpress/scripts": "^26.8.0",
+		"@wordpress/server-side-render": "^4.14.0"
+	}
 }
