@@ -30,6 +30,7 @@ Notes:
 			the_post();
 		?>
 			<?php if (has_post_thumbnail()) : ?>
+				
 				<div class="related-thumb grid-cols-1 lg:row-start-2 rounded-md border-[1px] border-black border-opacity-10 overflow-hidden bg-white">
 					<a href="<?php the_permalink(); ?>" rel="bookmark norewrite" title="<?php the_title_attribute(); ?>">
 						<div class="[&_img]:w-full"><?php openphone_post_thumbnail(); ?></div>
