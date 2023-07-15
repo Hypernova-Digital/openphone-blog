@@ -424,6 +424,14 @@ function openphone_render_next_posts_block($attributes, $content) {
 	?>
 	<h2>The Latest</h2>
 	<?php
+
+	// add link to page_for_posts with anchor "see all"
+	$blog_page = get_option('page_for_posts');
+	$blog_page_link = get_permalink($blog_page);
+	?>
+	<a href="<?php echo $blog_page_link; ?>">See All</a>
+	<?php
+	
     
     foreach ($recent_posts as $post) {
         ?>
@@ -467,6 +475,12 @@ function openphone_render_latest_category_posts_block($attributes, $content) {
 	$cat_name = $cat->name;
 	?>
 	<h2><?php echo $cat_name; ?></h2>
+	<?php
+
+	//get the category link with the anchor "see all"
+	$cat_link = get_category_link( $attributes['selectedCategory'] );
+	?>
+	<a href="<?php echo $cat_link; ?>">See All</a>
 	<?php
     
     foreach ($recent_posts as $post) {
