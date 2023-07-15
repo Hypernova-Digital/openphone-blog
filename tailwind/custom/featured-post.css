@@ -22,5 +22,4 @@
 }
 
 .featured-post.wp-block-query .wp-block-columns {
-    @apply lg:w-7xl;
-}
+} 

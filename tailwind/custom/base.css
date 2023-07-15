@@ -94,6 +94,10 @@ a:hover {
 	@apply text-4xl md:text-5xl lg:text-6xl font-normal;
 }
 
+.above-footer aside p {
+	@apply text-white;
+}
+
 .above-footer .wp-block-buttons.is-layout-flex {
 	@apply justify-center gap-4 items-center mt-8;
 }
@@ -104,7 +108,7 @@ a:hover {
 
 /* Footer Widgets */
 footer h2.wp-block-heading {
-	@apply mb-2 md:mb-0 mt-0 text-sm font-medium leading-[1.5] text-black;
+	@apply mb-2 md:mb-2 mt-0 text-sm font-medium leading-[1.5] text-black;
 	font-family: 'Inter', sans-serif;
 }
 
