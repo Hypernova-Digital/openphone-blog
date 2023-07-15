@@ -1,0 +1,18 @@
+{
+    "apiVersion": 2,
+    "name": "openphone/latest-category-posts",
+    "title": "Latest Category Posts",
+    "icon": "megaphone",
+    "category": "common",
+    "editorScript": "file:./index.js",
+    "attributes": {
+        "selectedCategory": {
+            "type": "string",
+            "default": ""
+        },
+        "postsToShow": {
+            "type": "number",
+            "default": 10
+        }
+    }
+}

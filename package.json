@@ -50,7 +50,7 @@
 		"production:tailwind:frontend": "cross-env NODE_ENV=production npm run development:tailwind:frontend -- --minify",
 		"production:tailwind:editor": "cross-env NODE_ENV=production npm run development:tailwind:editor -- --minify",
 		"production:esbuild": "npm run development:esbuild -- --minify",
-		"producton:blocks": "wp-scripts start --webpack-copy-php --webpack-src-dir=blocks --output-path=./theme/build",
+		"production:blocks": "wp-scripts build --webpack-copy-php --webpack-src-dir=blocks --output-path=./theme/build",
 		"production": "run-p production:**",
 		"prod": "npm run production",
 		"zip": "node node_scripts/zip.js openphone",

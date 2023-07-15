@@ -1,0 +1,9 @@
+{
+  "apiVersion": 2,
+  "name": "openphone/latest-post",
+  "title": "Latest Post",
+  "category": "common",
+  "icon": "megaphone",
+  "editorScript": "file:./index.js",
+  "attributes": {}
+}

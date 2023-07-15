@@ -361,52 +361,141 @@ function add_custom_post_variation( $variations ) {
 }
 add_filter( 'block_editor_settings_all', 'add_custom_post_variation' );
 
-// Enque Blocks
-//function openphone_require_blocks() {
-//	$build_dir = get_template_directory() . '/build';
-//	$directories = glob($build_dir . '/*', GLOB_ONLYDIR);
-//
-//	foreach ($directories as $dir) {
-//		$index_file_path = $dir . '/index.php';
-//		if (file_exists($index_file_path)) {
-//			require_once $index_file_path;
-//		}
-//	}
-//}
-//// Usage: Call this function in your functions.php file
-//openphone_require_blocks();
 
-function openphone_register_blocks() {
-	$path = get_template_directory() . '/build';
-	$directories = glob($path . '/*', GLOB_ONLYDIR);
+function openphone_enqueue_block_assets() {
+    wp_enqueue_script(
+        'openphone-latest-post-block',
+        get_template_directory_uri() . '/build/openphone-latest-post/index.js',
+        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
+    );
+	 wp_enqueue_script(
+        'openphone-next-posts',
+        get_template_directory_uri() . '/build/openphone-next-posts/index.js',
+        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
+    );
 
-	foreach ($directories as $dir) {
-		openphone_register_block($dir);
-	}
+	  wp_enqueue_script(
+        'openphone-latest-category-posts',
+        get_template_directory_uri() . '/build/openphone-latest-posts-by-category/index.js',
+        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
+    );
 }
-add_action( 'init', 'openphone_register_blocks' );
 
-/**
- * Registers a single block.
- *
- * @param string $path The full path to the block's directory.
- */
-function openphone_register_block( $path ) {
-	$directory_name = basename( $path );
-	$uri = get_template_directory_uri() . "/build/{$directory_name}";
+add_action('enqueue_block_editor_assets', 'openphone_enqueue_block_assets');
 
-	$index_js_uri = "{$uri}/index.js";
-	$version = file_exists("{$path}/index.js") ? filemtime("{$path}/index.js") : false;
+function openphone_render_latest_post_block($attributes, $content) {
+    $recent_posts = wp_get_recent_posts(array(
+        'numberposts' => 1,
+        'post_status' => 'publish',
+    ));
+    if (empty($recent_posts)) {
+        return '';
+    }
+    
+    $post = $recent_posts[0];
+    ob_start();
+    ?>
+    <h2><?php echo get_the_title($post['ID']); ?></h2>
+    <p><?php echo get_the_excerpt($post['ID']); ?></p>
+	<?php echo(do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); ?>
 
-	wp_enqueue_script(
-		$directory_name,
-		$index_js_uri,
-		array( 'wp-blocks', 'wp-element', 'wp-editor' ),
-		$version,
-		true
-	);
-
-	register_block_type_from_metadata( $path, [
-		'editor_script' => $directory_name,
-	] );
+    <?php
+    return ob_get_clean();
 }
+
+register_block_type('openphone/latest-post', array(
+    'render_callback' => 'openphone_render_latest_post_block',
+));
+
+
+function openphone_render_next_posts_block($attributes, $content) {
+    $recent_posts = wp_get_recent_posts(array(
+        'numberposts' => $attributes['postsToShow'],
+        'offset' => 1,
+        'post_status' => 'publish',
+    ));
+    
+    if (empty($recent_posts)) {
+        return '';
+    }
+    
+    ob_start();
+
+	?>
+	<h2>The Latest</h2>
+	<?php
+    
+    foreach ($recent_posts as $post) {
+        ?>
+        <h2><?php echo get_the_title($post['ID']); ?></h2>
+        <p><?php echo get_the_excerpt($post['ID']); ?></p>
+		<?php echo $post['ID']; ?>
+			<?php echo(do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); ?>
+
+        <?php
+    }
+    
+    return ob_get_clean();
+}
+
+register_block_type('openphone/next-posts', array(
+    'attributes' => array(
+        'postsToShow' => array(
+            'type' => 'number',
+            'default' => 3
+        )
+    ),
+    'render_callback' => 'openphone_render_next_posts_block',
+));
+
+
+function openphone_render_latest_category_posts_block($attributes, $content) {
+    $recent_posts = get_posts(array(
+        'numberposts' => $attributes['postsToShow'],
+        'category'    => $attributes['selectedCategory'],
+        'post_status' => 'publish',
+    ));
+    
+    if (empty($recent_posts)) {
+        return '';
+    }
+    
+    ob_start();
+
+	//print the catgory name base on attributes['selectedCategory']
+	$cat = get_category( $attributes['selectedCategory'] );
+	$cat_name = $cat->name;
+	?>
+	<h2><?php echo $cat_name; ?></h2>
+	<?php
+    
+    foreach ($recent_posts as $post) {
+        setup_postdata($post);
+        ?>
+
+        <h2><?php echo get_the_title($post); ?></h2>
+        <p><?php echo get_the_excerpt($post); ?></p>
+        <?php
+        wp_reset_postdata();
+    }
+    
+    return ob_get_clean();
+}
+
+
+register_block_type('openphone/latest-category-posts', array(
+    'attributes' => array(
+        'selectedCategory' => array(
+            'type' => 'string',
+            'default' => ''
+        ),
+        'postsToShow' => array(
+            'type' => 'number',
+            'default' => 10
+        )
+    ),
+    'render_callback' => 'openphone_render_latest_category_posts_block',
+));
+
+
+
