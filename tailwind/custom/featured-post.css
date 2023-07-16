@@ -7,7 +7,6 @@
     content: '';
 }
 
-
 .featured-post.wp-block-query .wp-block-post-title {
     @apply text-3xl m-0;
 }
@@ -21,5 +20,6 @@
     @apply m-0;
 }
 
-.featured-post.wp-block-query .wp-block-columns {
-} 
+.latest-post img{
+    @apply m-0;
+}
