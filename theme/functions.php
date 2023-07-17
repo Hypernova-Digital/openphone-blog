@@ -450,7 +450,7 @@ function openphone_render_next_posts_block($attributes, $content)
 
 ?>
 	<div class="next-posts title-and-link flex flex-row justify-between items-center lg:mt-12">
-		<div class="mx-6 mb-6 mt-12 text-[23px] font-semibold">The Latest</div>
+		<div class="mx-6 lg:mx-0 mb-6 mt-12 text-[23px] font-semibold">The Latest</div>
 		<?php
 		$blog_page = get_option('page_for_posts');
 		$blog_page_link = get_permalink($blog_page);
@@ -459,32 +459,34 @@ function openphone_render_next_posts_block($attributes, $content)
 	</div>
 
 	<div class="next-posts flex flex-col lg:mb-12">
-		<div class="next-posts-list flex flex-row overflow-scroll snap-x px-6 pb-6 gap-6">
+		<div class="next-posts-list flex flex-row overflow-scroll snap-x px-6 lg:px-0 pb-6 gap-6">
 			<?php
 
 			foreach ($recent_posts as $post) {
 			?>
 
-				<div class="nexrt-posts-post snap-center rounded-md border border-[1px] border-opacity-10 border-black lg:w-1/3">
-					<div class="image w-72 lg:w-full">
-						<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
-					</div>
-
-					<div class="content p-4">
-						<div class="meta">
-							<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline text-purple-900"><?php echo get_the_category_list(', ', '', $post['ID']); ?></span><span class="opacity-10"> | </span>
-							<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
-							<?php //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
-							?>
+				<div class="next-posts-post snap-center rounded-md border border-[1px] border-opacity-10 border-black w-72 lg:w-1/3">
+					<div class="overflow-hidden rounded-md">
+						<div class="image w-72 lg:w-full">
+							<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
 						</div>
 
-						<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold"><?php echo get_the_title($post['ID']); ?></span>
-						<p><?php // echo get_the_excerpt($post['ID']); 
-							?></p>
-						<?php // echo $post['ID']; 
-						?>
-						<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
-						?>
+						<div class="content p-4">
+							<div class="meta">
+								<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline text-purple-900"><?php echo get_the_category_list(', ', '', $post['ID']); ?></span><span class="opacity-10"> | </span>
+								<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
+								<?php //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
+								?>
+							</div>
+
+							<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold"><?php echo get_the_title($post['ID']); ?></span>
+							<p><?php // echo get_the_excerpt($post['ID']); 
+								?></p>
+							<?php // echo $post['ID']; 
+							?>
+							<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
+							?>
+						</div>
 					</div>
 				</div>
 			<?php
@@ -525,25 +527,55 @@ function openphone_render_next_posts_block($attributes, $content)
 			//print the catgory name base on attributes['selectedCategory']
 			$cat = get_category($attributes['selectedCategory']);
 			$cat_name = $cat->name;
+			$cat_description = $cat->description;
 			?>
-	<h2><?php echo $cat_name; ?></h2>
-	<?php
 
+	<div class="category-posts title-and-link flex flex-row justify-between items-end lg:mt-12">
+		<div class="mx-6 lg:mx-0 mb-6 mt-12">
+			<div class="text-[40px] font-semibold leading-[1]"><?php echo $cat_name; ?></div>
+			<div class="text-sm opacity-70 mt-4"><?php echo $cat_description; ?></div>
+		</div>
+		<?php
 			//get the category link with the anchor "see all"
 			$cat_link = get_category_link($attributes['selectedCategory']);
-	?>
-	<a href="<?php echo $cat_link; ?>">See All</a>
-	<?php
+		?>
+		<a href="<?php echo $cat_link; ?>" class="mt-0 mb-6 mr-6 no-underline text-sm font-medium text-black w-24  ">See all -></a>
+	</div>
+	<div class="category-posts post-wrapper flex flex-col lg:mb-12 mr-0">
+		<div class="category-posts-list flex flex-row overflow-scroll snap-x px-6 pb-6 gap-6 w-full">
+
+			<?php
 
 			foreach ($recent_posts as $post) {
 				setup_postdata($post);
-	?>
+			?>
 
-		<h2><?php echo get_the_title($post); ?></h2>
-		<p><?php echo get_the_excerpt($post); ?></p>
-<?php
+				<div class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[120rem]">
+					<div class="rounded-md overflow-hidden">
+						<div class="image w-64 md:w-96 lg:w-[36rem]">
+							<img src="<?php echo get_the_post_thumbnail_url($post); ?>" class="m-0 w-full" />
+						</div>
+
+						<div class="content p-4">
+							<div class="meta">
+								<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline text-purple-900"><?php echo get_the_category_list(', ', '', $post);
+																																		?></span><span class="opacity-10"> | </span>
+								<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post); ?></span>
+							</div>
+
+							<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold"><?php echo get_the_title($post); ?></span>
+							<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
+							?>
+						</div>
+					</div>
+				</div>
+			<?php
 				wp_reset_postdata();
 			}
+			?>
+		</div>
+	</div>
+<?php
 
 			return ob_get_clean();
 		}

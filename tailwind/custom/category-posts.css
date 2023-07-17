@@ -1,0 +1,37 @@
+.prose .category-posts :where(h2):not(:where([class~="not-prose"] *)) {
+	line-height: 1 !important;
+}
+
+.prose-a\:text-primary
+	.category-posts.title-and-link
+	:is(:where(a):not(:where([class~="not-prose"] *))) {
+	color: black !important;
+}
+
+.category-posts img.webpexpress-processed {
+    @apply w-full;
+}
+
+.category-posts .image {
+	@apply h-36 lg:h-72 overflow-hidden;
+}
+
+.prose .category-posts  :where(img):not(:where([class~="not-prose"] *)) {
+    @apply w-full;
+}
+
+.category-posts.post-wrapper {
+	max-width: 1320px !important;
+}
+
+.wp-block-heading.eyebrows {
+	@apply mx-auto mt-12 mb-0 text-xl font-semibold tracking-[-0.16px] leading-[1.2];
+}
+
+.wp-block-heading.eyebrows + .category-posts {
+	@apply mt-0;
+}
+
+.wp-block-heading.eyebrows + .category-posts div {
+	@apply mt-1;
+}
