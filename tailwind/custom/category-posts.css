@@ -25,7 +25,7 @@
 }
 
 .wp-block-heading.eyebrows {
-	@apply mx-auto mt-12 mb-0 text-xl font-semibold tracking-[-0.16px] leading-[1.2];
+	@apply mx-6 lg:mx-auto mt-12 mb-0 text-xl font-semibold tracking-[-0.16px] leading-[1.2];
 }
 
 .wp-block-heading.eyebrows + .category-posts {
@@ -34,4 +34,9 @@
 
 .wp-block-heading.eyebrows + .category-posts div {
 	@apply mt-1;
+}
+
+.category-posts-post:hover {
+	@apply border-opacity-100;
+	box-shadow: 4px 4px 0px 0px #000;
 }

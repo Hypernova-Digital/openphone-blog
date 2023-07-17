@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		const menuContainer = document.querySelector('.mobile-nav .menu-openphone-menu-container');
 		menuContainer.style.display = isExpanded ? 'block' : 'none';
 
+		const headerCTAs = document.querySelector('.mobile-nav .header-ctas');
+		headerCTAs.style.display = isExpanded ? 'block' : 'none';
+
 		if (isExpanded) {
 			mobileNavButton.setAttribute('aria-expanded', 'true');
 		} else {

@@ -11,3 +11,12 @@
 .next-posts img.webpexpress-processed {
     @apply w-full;
 }
+
+.next-posts-post:hover {
+	@apply border-opacity-100;
+	box-shadow: 4px 4px 0px 0px #000;
+}
+
+.prose-a\:text-primary .next-posts :is(:where(a):not(:where([class~="not-prose"] *))).title {
+	color: black !important;
+}

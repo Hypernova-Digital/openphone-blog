@@ -371,6 +371,21 @@ function add_custom_post_variation($variations)
 }
 add_filter('block_editor_settings_all', 'add_custom_post_variation');
 
+// function register_my_block()
+// {
+// 	wp_register_script(
+// 		'more-resources-cta-script',
+// 		get_template_directory_uri() . '/build/openphone-more-resources-cta/index.js',
+// 		array('wp-blocks', 'wp-element', 'wp-editor'),
+// 		filemtime(get_template_directory() . '/build/openphone-more-resources-cta/index.js') // Optional: Add the file modified time as a version for cache busting
+// 	);
+
+// 	register_block_type('openphone/more-resources-cta', array(
+// 		'editor_script' => 'more-resources-cta-script',
+// 	));
+// }
+// add_action('init', 'register_my_block');
+
 
 function openphone_enqueue_block_assets()
 {
@@ -380,9 +395,16 @@ function openphone_enqueue_block_assets()
 		include get_template_directory_uri() . '/build/openphone-latest-post/block.php',
 		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
 	);
+
 	wp_enqueue_script(
 		'openphone-next-posts',
 		get_template_directory_uri() . '/build/openphone-next-posts/index.js',
+		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
+	);
+
+	wp_enqueue_script(
+		'openphone-more-resources-cta',
+		get_template_directory_uri() . '/build/openphone-more-resources-cta/index.js',
 		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
 	);
 
@@ -395,32 +417,42 @@ function openphone_enqueue_block_assets()
 
 add_action('enqueue_block_editor_assets', 'openphone_enqueue_block_assets');
 
+
 function openphone_render_latest_post_block($attributes, $content)
 {
-	$recent_posts = wp_get_recent_posts(array(
+	$latest_posts = wp_get_recent_posts(array(
 		'numberposts' => 1,
 		'post_status' => 'publish',
 	));
-	if (empty($recent_posts)) {
+	if (empty($latest_posts)) {
 		return '';
 	}
 
-	$post = $recent_posts[0];
+	$post = $latest_posts[0];
 	ob_start();
 ?>
-	<div class="latest-post flex flex-col-reverse md:flex-row gap-16 lg:my-12">
+	<div class="latest-post flex flex-col-reverse md:flex-row gap-16 lg:my-12 group cursor-pointer">
+		<?php
+		// get link to post
+		$link = get_permalink($post['ID']);
+		?>
+
 		<div class="content mx-6 mt-4 sm:mt-6 sm:mx-8 md:mx-10 lg:mx-0 lg:mt-0">
 			<div class="meta">
-				<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline"><?php echo get_the_category_list(', ', '', $post['ID']); ?></span><span class="opacity-10"> | </span>
+				<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline no-underline"><?php echo get_the_category_list(', ', '', $post['ID']); ?></span><span class="opacity-10"> | </span>
 				<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
 				<?php //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
 				?>
 			</div>
-			<h2 class="mt-3 sm:mt-[14px] md:mt-4 text-3xl sm:text-[40px] md:text-[56px] lg:text-6xl tracking-[-0.6px] leading-[1] mb-0 lg:mb-6"><?php echo get_the_title($post['ID']); ?></h2>
-			<p class="hidden md:block opacity-70 text-base"><?php echo get_the_excerpt($post['ID']); ?></p>
+			<a href="<?php echo $link; ?>" class="no-underline">
+				<h2 class="mt-3 sm:mt-[14px] md:mt-4 text-3xl sm:text-[40px] md:text-[56px] lg:text-6xl tracking-[-0.6px] leading-[1] mb-0 lg:mb-6 group-hover:text-purple-900"><?php echo get_the_title($post['ID']); ?></h2>
+				<p class="hidden md:block opacity-70 text-base"><?php echo get_the_excerpt($post['ID']); ?></p>
+			</a>
 		</div>
 		<div class="image max-w-2xl">
-			<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
+			<a href="<?php echo $link; ?>">
+				<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
+			</a>
 		</div>
 	</div>
 <?php
@@ -431,18 +463,15 @@ register_block_type('openphone/latest-post', array(
 	'render_callback' => 'openphone_render_latest_post_block',
 ));
 
-// Add this to your functions.php file.
-
-
 function openphone_render_next_posts_block($attributes, $content)
 {
-	$recent_posts = wp_get_recent_posts(array(
+	$next_posts = wp_get_recent_posts(array(
 		'numberposts' => $attributes['postsToShow'],
 		'offset' => 1,
 		'post_status' => 'publish',
 	));
 
-	if (empty($recent_posts)) {
+	if (empty($next_posts)) {
 		return '';
 	}
 
@@ -462,13 +491,15 @@ function openphone_render_next_posts_block($attributes, $content)
 		<div class="next-posts-list flex flex-row overflow-scroll snap-x px-6 lg:px-0 pb-6 gap-6">
 			<?php
 
-			foreach ($recent_posts as $post) {
+			foreach ($next_posts as $post) {
 			?>
 
-				<div class="next-posts-post snap-center rounded-md border border-[1px] border-opacity-10 border-black w-72 lg:w-1/3">
+				<div class="next-posts-post cursor-pointer snap-center rounded-md border border-[1px] border-opacity-10 border-black w-72 lg:w-1/3 hover:border-opacity-100">
 					<div class="overflow-hidden rounded-md">
 						<div class="image w-72 lg:w-full">
-							<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
+							<a heref="<?php echo get_the_permalink($post['ID']); ?>">
+								<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
+							</a>
 						</div>
 
 						<div class="content p-4">
@@ -479,7 +510,7 @@ function openphone_render_next_posts_block($attributes, $content)
 								?>
 							</div>
 
-							<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold"><?php echo get_the_title($post['ID']); ?></span>
+							<span><a heref="<?php echo get_the_permalink($post['ID']); ?>" class="title m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold no-underline text-black"><?php echo get_the_title($post['ID']); ?></a></span>
 							<p><?php // echo get_the_excerpt($post['ID']); 
 								?></p>
 							<?php // echo $post['ID']; 
@@ -512,13 +543,13 @@ function openphone_render_next_posts_block($attributes, $content)
 
 		function openphone_render_latest_category_posts_block($attributes, $content)
 		{
-			$recent_posts = get_posts(array(
+			$next_posts = get_posts(array(
 				'numberposts' => $attributes['postsToShow'],
 				'category'    => $attributes['selectedCategory'],
 				'post_status' => 'publish',
 			));
 
-			if (empty($recent_posts)) {
+			if (empty($next_posts)) {
 				return '';
 			}
 
@@ -531,22 +562,22 @@ function openphone_render_next_posts_block($attributes, $content)
 			?>
 
 	<div class="category-posts title-and-link flex flex-row justify-between items-end lg:mt-12">
-		<div class="mx-6 lg:mx-0 mb-6 mt-12">
-			<div class="text-[40px] font-semibold leading-[1]"><?php echo $cat_name; ?></div>
-			<div class="text-sm opacity-70 mt-4"><?php echo $cat_description; ?></div>
+		<div class="mx-6 lg:mx-0 mb-6 lg:mb-12 mt-12">
+			<div class="text-[40px] lg:text-7xl font-semibold leading-[1]"><?php echo $cat_name; ?></div>
+			<div class="text-sm lg:text-[19px] opacity-70 mt-4 lg:mt-3"><?php echo $cat_description; ?></div>
 		</div>
 		<?php
 			//get the category link with the anchor "see all"
 			$cat_link = get_category_link($attributes['selectedCategory']);
 		?>
-		<a href="<?php echo $cat_link; ?>" class="mt-0 mb-6 mr-6 no-underline text-sm font-medium text-black w-24  ">See all -></a>
+		<a href="<?php echo $cat_link; ?>" class="mt-0 mb-6 lg:mb-12 mr-6 no-underline text-sm font-medium text-black w-24  ">See all -></a>
 	</div>
 	<div class="category-posts post-wrapper flex flex-col lg:mb-12 mr-0">
 		<div class="category-posts-list flex flex-row overflow-scroll snap-x px-6 pb-6 gap-6 w-full">
 
 			<?php
 
-			foreach ($recent_posts as $post) {
+			foreach ($next_posts as $post) {
 				setup_postdata($post);
 			?>
 

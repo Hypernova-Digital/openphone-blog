@@ -108,19 +108,43 @@
 }
 
 .mobile-nav {
-    @apply flex flex-row-reverse justify-start;
+    @apply flex flex-col justify-start;
 }
 
 .mobile-nav .header-ctas {
-    @apply hidden;
+    @apply hidden w-full ml-0 p-6 border-t-[1.5px] border-black border-opacity-10;
+}
+
+.mobile-nav .header-ctas .wp-block-buttons {
+    @apply flex-col;
+}
+
+.mobile-nav .header-ctas .wp-block-buttons .wp-block-button {
+    @apply w-full;
 }
 
 .mobile-nav .header-search {
     @apply w-6 h-6 mr-4;
+
+    position: absolute;
+    top: 19px;
+    right: 40px;
+}
+
+.admin-bar .mobile-nav .header-search {
+    @apply w-6 h-6 mr-4;
+
+    position: absolute;
+    top: 60px;
+    right: 40px;
 }
 
 .mobile-nav .menu-openphone-menu-container[style="display: block;"] {
-    @apply  w-full h-[100vh];
+    @apply  w-full h-[76vh] border-t-[1.5px] border-black border-opacity-10 p-6;
+}
+
+.admin-bar .mobile-nav .menu-openphone-menu-container[style="display: block;"] {
+    @apply  h-[70vh];
 }
 
 @media (min-width: 880px) {
@@ -130,13 +154,37 @@
 }
 
 .mobile-nav button[aria-controls="primary-menu"] {
-    @apply w-6 h-1 bg-black rounded-lg;
+    @apply w-6 h-[2px] bg-black;
+    position: absolute;
+    top: 1.8rem;
+    right: 1rem;
+}
+
+.admin-bar .mobile-nav button[aria-controls="primary-menu"] {
+    @apply w-6 h-[2px] bg-black;
+    position: absolute;
+    top: 4.4rem;
+    right: 1rem;
+}
+
+.mobile-nav button[aria-controls="primary-menu"][aria-expanded="true"] {
+    @apply bg-transparent;
 }
 
 .mobile-nav button[aria-controls="primary-menu"]::before,
 .mobile-nav button[aria-controls="primary-menu"]::after {
-    @apply w-6 h-1 bg-black rounded-lg block relative;
+    @apply w-6 h-[2px] bg-black block relative;
     content: '';
+}
+
+.mobile-nav button[aria-controls="primary-menu"][aria-expanded="true"]::before {
+    top: 0px;
+    transform: rotate(45deg);
+}
+
+.mobile-nav button[aria-controls="primary-menu"][aria-expanded="true"]::after {
+    transform: rotate(-45deg);
+    top: -2px;
 }
 
 .mobile-nav button[aria-controls="primary-menu"]::before {
@@ -144,7 +192,7 @@
 }
 
 .mobile-nav button[aria-controls="primary-menu"]::after {
-    bottom: -4px;
+    bottom: -6px;
 }
 
 .mobile-nav .menu-openphone-menu-container {
@@ -155,6 +203,10 @@
 .mobile-nav button[aria-controls="primary-menu"]::after,
 .mobile-nav button[aria-controls="primary-menu"] {
     @apply md:hidden;
+}
+
+.mobile-nav .menu-item {
+    @apply text-base font-normal mb-5;
 }
 
 .mobile-nav .sub-menu {

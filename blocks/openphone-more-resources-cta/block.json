@@ -1,0 +1,15 @@
+{
+    "apiVersion": 2,
+    "name": "openphone/more-resources-cta",
+    "title": "More Resources CTA",
+    "icon": "megaphone",
+    "category": "common",
+    "editorScript": "file:./index.js",
+    "attributes": {
+        "textField": {
+            "type": "string",
+            "source": "html",
+            "selector": "h2"
+        }
+    }
+}
