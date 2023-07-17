@@ -413,7 +413,8 @@ function openphone_render_latest_post_block($attributes, $content)
 			<div class="meta">
 				<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline"><?php echo get_the_category_list(', ', '', $post['ID']); ?></span><span class="opacity-10"> | </span>
 				<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
-				<?php //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); ?>
+				<?php //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
+				?>
 			</div>
 			<h2 class="mt-3 sm:mt-[14px] md:mt-4 text-3xl sm:text-[40px] md:text-[56px] lg:text-6xl tracking-[-0.6px] leading-[1] mb-0 lg:mb-6"><?php echo get_the_title($post['ID']); ?></h2>
 			<p class="hidden md:block opacity-70 text-base"><?php echo get_the_excerpt($post['ID']); ?></p>
@@ -448,115 +449,141 @@ function openphone_render_next_posts_block($attributes, $content)
 	ob_start();
 
 ?>
-	<h2>The Latest</h2>
-	<?php
-	$blog_page = get_option('page_for_posts');
-	$blog_page_link = get_permalink($blog_page);
-	?>
-	<a href="<?php echo $blog_page_link; ?>">See All</a>
-	<?php
+	<div class="next-posts title-and-link flex flex-row justify-between items-center lg:mt-12">
+		<div class="mx-6 mb-6 mt-12 text-[23px] font-semibold">The Latest</div>
+		<?php
+		$blog_page = get_option('page_for_posts');
+		$blog_page_link = get_permalink($blog_page);
+		?>
+		<a href="<?php echo $blog_page_link; ?>" class="mt-4 mr-6 no-underline text-sm font-medium text-black">See all -></a>
+	</div>
+
+	<div class="next-posts flex flex-col lg:mb-12">
+		<div class="next-posts-list flex flex-row overflow-scroll snap-x px-6 pb-6 gap-6">
+			<?php
+
+			foreach ($recent_posts as $post) {
+			?>
+
+				<div class="nexrt-posts-post snap-center rounded-md border border-[1px] border-opacity-10 border-black lg:w-1/3">
+					<div class="image w-72 lg:w-full">
+						<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
+					</div>
+
+					<div class="content p-4">
+						<div class="meta">
+							<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline text-purple-900"><?php echo get_the_category_list(', ', '', $post['ID']); ?></span><span class="opacity-10"> | </span>
+							<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
+							<?php //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
+							?>
+						</div>
+
+						<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold"><?php echo get_the_title($post['ID']); ?></span>
+						<p><?php // echo get_the_excerpt($post['ID']); 
+							?></p>
+						<?php // echo $post['ID']; 
+						?>
+						<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
+						?>
+					</div>
+				</div>
+			<?php
+			}
+
+			?>
+		</div>
+	</div> <?php
+
+			return ob_get_clean();
+		}
+
+		register_block_type('openphone/next-posts', array(
+			'attributes' => array(
+				'postsToShow' => array(
+					'type' => 'number',
+					'default' => 3
+				)
+			),
+			'render_callback' => 'openphone_render_next_posts_block',
+		));
 
 
-	foreach ($recent_posts as $post) {
-	?>
-		<h2><?php echo get_the_title($post['ID']); ?></h2>
-		<p><?php echo get_the_excerpt($post['ID']); ?></p>
-		<?php echo $post['ID']; ?>
-		<?php echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); ?>
+		function openphone_render_latest_category_posts_block($attributes, $content)
+		{
+			$recent_posts = get_posts(array(
+				'numberposts' => $attributes['postsToShow'],
+				'category'    => $attributes['selectedCategory'],
+				'post_status' => 'publish',
+			));
 
-	<?php
-	}
+			if (empty($recent_posts)) {
+				return '';
+			}
 
-	return ob_get_clean();
-}
+			ob_start();
 
-register_block_type('openphone/next-posts', array(
-	'attributes' => array(
-		'postsToShow' => array(
-			'type' => 'number',
-			'default' => 3
-		)
-	),
-	'render_callback' => 'openphone_render_next_posts_block',
-));
-
-
-function openphone_render_latest_category_posts_block($attributes, $content)
-{
-	$recent_posts = get_posts(array(
-		'numberposts' => $attributes['postsToShow'],
-		'category'    => $attributes['selectedCategory'],
-		'post_status' => 'publish',
-	));
-
-	if (empty($recent_posts)) {
-		return '';
-	}
-
-	ob_start();
-
-	//print the catgory name base on attributes['selectedCategory']
-	$cat = get_category($attributes['selectedCategory']);
-	$cat_name = $cat->name;
-	?>
+			//print the catgory name base on attributes['selectedCategory']
+			$cat = get_category($attributes['selectedCategory']);
+			$cat_name = $cat->name;
+			?>
 	<h2><?php echo $cat_name; ?></h2>
 	<?php
 
-	//get the category link with the anchor "see all"
-	$cat_link = get_category_link($attributes['selectedCategory']);
+			//get the category link with the anchor "see all"
+			$cat_link = get_category_link($attributes['selectedCategory']);
 	?>
 	<a href="<?php echo $cat_link; ?>">See All</a>
 	<?php
 
-	foreach ($recent_posts as $post) {
-		setup_postdata($post);
+			foreach ($recent_posts as $post) {
+				setup_postdata($post);
 	?>
 
 		<h2><?php echo get_the_title($post); ?></h2>
 		<p><?php echo get_the_excerpt($post); ?></p>
 <?php
-		wp_reset_postdata();
-	}
+				wp_reset_postdata();
+			}
 
-	return ob_get_clean();
-}
-
-
-register_block_type('openphone/latest-category-posts', array(
-	'attributes' => array(
-		'selectedCategory' => array(
-			'type' => 'string',
-			'default' => ''
-		),
-		'postsToShow' => array(
-			'type' => 'number',
-			'default' => 10
-		)
-	),
-	'render_callback' => 'openphone_render_latest_category_posts_block',
-));
+			return ob_get_clean();
+		}
 
 
-add_action('rest_api_init', 'register_rest_images');
+		register_block_type('openphone/latest-category-posts', array(
+			'attributes' => array(
+				'selectedCategory' => array(
+					'type' => 'string',
+					'default' => ''
+				),
+				'postsToShow' => array(
+					'type' => 'number',
+					'default' => 10
+				)
+			),
+			'render_callback' => 'openphone_render_latest_category_posts_block',
+		));
 
-function register_rest_images()
-{
-	register_rest_field(
-		array('post'),
-		'featured_image_src', //Name of the new field to be added
-		array(
-			'get_callback'    => 'get_rest_featured_image',
-			'update_callback' => null,
-			'schema'          => null,
-		)
-	);
-}
 
-function get_rest_featured_image($object, $field_name, $request)
-{
-	if ($object['featured_media']) {
-		$img = wp_get_attachment_image_src($object['featured_media'], 'app-thumb');
-		return $img[0];
-	}
-	return false;
-}
+		add_action('rest_api_init', 'register_rest_images');
+
+		function register_rest_images()
+		{
+			register_rest_field(
+				array('post'),
+				'featured_image_src', //Name of the new field to be added
+				array(
+					'get_callback'    => 'get_rest_featured_image',
+					'update_callback' => null,
+					'schema'          => null,
+				)
+			);
+		}
+
+		function get_rest_featured_image($object, $field_name, $request)
+		{
+			if ($object['featured_media']) {
+				$img = wp_get_attachment_image_src($object['featured_media'], 'app-thumb');
+				return $img[0];
+			}
+			return false;
+		}
