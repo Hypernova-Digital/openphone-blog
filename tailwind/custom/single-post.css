@@ -7,8 +7,12 @@
 	@apply bg-purple-50;
 }
 
-.single .entry-content {
+.single .entry-content > * {
 	@apply lg:w-[784px] mx-auto;
+
+	@media (min-width: 880px) {
+		@apply ml-24;
+	}
 }
 
 a[rel="category tag"] {
@@ -228,74 +232,11 @@ img.avatar.avatar-100.photo {
 	@apply mt-0;
 }
 
-/* Temporary */
-
-.lwptoc.lwptoc-autoWidth.lwptoc-baseItems.lwptoc-light.lwptoc-notInherit {
-	/* display: none; */
-}
-
 iframe {
 	@apply w-full;
 }
 
-/* Jeff's custom styles */
-/* Hide OG toc */
-.lwptoc {
-	display: none;
-}
-
-/* Desktop styles */
-#open-phone-toc .mobile-header {
-	/* display: none; */
-}
-
-#open-phone-toc .lwptoc_item_label {
-	display: block;
-}
-
-/* Mobile styles */
-@media only screen and (max-width: 768px) {
-	#open-phone-toc .mobile-header {
-		display: block;
-	}
-	#open-phone-toc .lwptoc_item_label {
-		display: none;
-	}
-	#open-phone-toc .toc-expanded a > .lwptoc_item_label {
-		display: block;
-	}
-}
-
-div#open-phone-toc {
-	@apply sticky right-0 top-12 ml-auto mr-12 mt-32 -mb-32 h-0 overflow-visible w-72 flex flex-col gap-6 bottom-0;
-}
-
-div#open-phone-toc a {
-	@apply text-base font-normal leading-[1.3] text-black opacity-70 w-[20.5rem]  flex flex-row gap-4 ;
-}
-
-div#open-phone-toc a.active {
-	@apply font-semibold opacity-100 w-[20.5rem];
-}
-
-div#open-phone-toc a:link::before {
-	@apply block w-10 h-[1px] bg-transparent mt-2 -ml-[2.5rem];
-	content: "";
-}
-
-
-div#open-phone-toc a.active::before {
-	@apply block w-10 h-[1px] bg-black mt-2 -ml-[2.5rem];
-	content: "";
-}
-
-div#open-phone-toc a .lwptoc_item_label {
-	@apply max-w-[17rem];
-	content: "";
-}
-
 /* Related Posts */
-
 .yarpp.yarpp-related.yarpp-related-shortcode.yarpp-template-yarpp-template-thumbnail {
 	@apply grid grid-cols-1 lg:grid-cols-2 lg:gap-12 row-start-2 col-start-1 col-end-2 lg:col-end-3 p-0 m-0;
 	column-gap: 3rem;

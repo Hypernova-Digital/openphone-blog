@@ -44,9 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		const menuContainer = document.querySelector('.mobile-nav .menu-openphone-menu-container');
 		menuContainer.style.display = isExpanded ? 'block' : 'none';
 
-		const headerCTAs = document.querySelector('.mobile-nav .header-ctas');
-		headerCTAs.style.display = isExpanded ? 'block' : 'none';
-
 		if (isExpanded) {
 			mobileNavButton.setAttribute('aria-expanded', 'true');
 		} else {
@@ -60,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Set this to false before shipping
 const DEBUG = false;
 
-const mobileMediaQuery = '(max-width: 767px)';
+const mobileMediaQuery = '(max-width: 880px)';
 // The media query used to determine if the page is mobile, if this matches, the `mobileClass` will be applied to the `mobileClassTargetSelector`
 
 const mobileClass = ['mobile'];
@@ -72,10 +69,10 @@ const mobileTocHiddenByDefault = true;
 // ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
 // @Mira: Here are the classes that will be toggled on the toc element (or `mobileTocVisibilityClassTarget`) to show/hide the toc entries
 // @Mira: You can change these if you want, but make sure they match the CSS
-const mobileTocVisibilityClass = ['toc-expanded', 'visible'];
+const mobileTocVisibilityClass = ['toc-expanded'];
 // Mobile: These classes will be toggled on the toc element (or `mobileTocVisibilityClassTarget`) to hide the toc entries
 
-const mobileTocHiddenClass = ['toc-hidden', 'hidden'];
+const mobileTocHiddenClass = ['toc-hidden'];
 // Mobile: These classes will the toggled on the toc element (or `mobileTocVisibilityClassTarget`) to hide the toc entries
 
 // Desktop: The classes to apply to the active toc entry (the anchor of the nearest header)
@@ -86,9 +83,9 @@ const tocExpandSelector = '#toc-expand'
 // Mobile: The classes to add to the toc element (and/or `mobileTocVisibilityClassTarget`) when the toc is visible
 
 // Mobile: The text for the button when the toc is visible
-const tocVisibleText = 'Hide -';
+const tocVisibleText = '—';
 // Mobile: The text for the button when the toc is hidden
-const tocHiddenText = 'Show +';
+const tocHiddenText = '+';
 
 // All: Whether to remove the related posts section from the toc
 const removeRelatedPosts = true;
@@ -103,7 +100,7 @@ const removeRelatedPosts = true;
 const tocHTMLTemplate = `
 <div class="mobile-header">
 	<h1>Table of contents</h1>
-	<span id="toc-expand">Show +</span>
+	<span id="toc-expand">Show + </span>
 </div>
 <!-- Safe to remove: TOC entries will be appended below -->
 `;
@@ -115,6 +112,9 @@ const tocHTMLTemplate = `
 const mobileTocTargetSelector = 'header.entry-header';
 // Desktop: The selector of the element to insert the toc after
 const desktopTocTargetSelector = 'div.entry-content';
+// Desktop: whether to insert the toc after the target element, or as the first child
+const desktopTocFirstChild = true;
+const desktopTocInsertAfter = false;
 
 // All: The selector of the toc anchors/entries we'll be cloning from the original toc
 const tocEntrySelector = '.lwptoc_item > a';
@@ -151,8 +151,13 @@ const appendTocToHeader = (toc) => {
 		// Append TOC to the header on mobile, it'll be the last child in the `mobileTocTargetSelector`
 		header && header.appendChild(toc);
 	} else { // Desktop
-		// Place the TOC after the `desktopTocTargetSelector`
-		header && header.after(toc);
+		if (desktopTocInsertAfter) {
+			// Place the TOC after the `desktopTocTargetSelector`
+			header && header.after(toc);
+		} else if (desktopTocFirstChild) {
+			// Place the TOC after the `desktopTocTargetSelector`
+			header && header.insertBefore(toc, header.firstChild);
+		}
 	}
 }
 
@@ -293,18 +298,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	// add active class to <a> elements in the mobile menu when they are clicked
-	const mobileNavClickHandler2 = (e) => {
-		const a = e.target.closest('a');
-		if (a) {
-			a.classList.toggle('active');
-		}
-		else {
-			return true;
-		}
-	}
-
-
 	const applyMobile = () => {
 		// Runs on transition between (mobile <-> desktop)
 
@@ -323,16 +316,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (isMobile()) {
 			if (hasTableOfContents) {
-				// /* Uncomment to enable TOC
 				initializeToc();
 
 				// Toggle toc visibility on mobile when the user clicks the toc expand button (`tocExpandSelector`)
-				document.querySelector(tocExpandSelector).addEventListener('click', toggleToc); 
+				document.querySelector(tocExpandSelector).addEventListener('click', toggleToc);
 			}
 			mobileNavCategories.forEach(header => header.addEventListener('click', mobileNavClickHandler));
-			mobileNavCategories.forEach(header => header.addEventListener('click', mobileNavClickHandler2));
 			footers?.forEach(footer => footer.addEventListener('click', footerClickHandler));
 		} else {
+			if (hasTableOfContents) {
+				initializeToc();
+			}
 			footers?.forEach(footer => footer.removeListener('click', footerClickHandler));
 			mobileNavCategories?.foreach(header => header.removeListener('click', mobileNavClickHandler));
 		}
