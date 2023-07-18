@@ -114,7 +114,7 @@ const tocHTMLTemplate = `
 // Mobile: The selector of the element to append the toc to
 const mobileTocTargetSelector = 'header.entry-header';
 // Desktop: The selector of the element to insert the toc after
-const desktopTocTargetSelector = 'header.entry-header';
+const desktopTocTargetSelector = 'div.entry-content';
 
 // All: The selector of the toc anchors/entries we'll be cloning from the original toc
 const tocEntrySelector = '.lwptoc_item > a';
@@ -293,6 +293,18 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
+	// add active class to <a> elements in the mobile menu when they are clicked
+	const mobileNavClickHandler2 = (e) => {
+		const a = e.target.closest('a');
+		if (a) {
+			a.classList.toggle('active');
+		}
+		else {
+			return true;
+		}
+	}
+
+
 	const applyMobile = () => {
 		// Runs on transition between (mobile <-> desktop)
 
@@ -311,13 +323,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (isMobile()) {
 			if (hasTableOfContents) {
-				/* Uncomment to enable TOC
+				// /* Uncomment to enable TOC
 				initializeToc();
 
 				// Toggle toc visibility on mobile when the user clicks the toc expand button (`tocExpandSelector`)
-				document.querySelector(tocExpandSelector).addEventListener('click', toggleToc); */
+				document.querySelector(tocExpandSelector).addEventListener('click', toggleToc); 
 			}
 			mobileNavCategories.forEach(header => header.addEventListener('click', mobileNavClickHandler));
+			mobileNavCategories.forEach(header => header.addEventListener('click', mobileNavClickHandler2));
 			footers?.forEach(footer => footer.addEventListener('click', footerClickHandler));
 		} else {
 			footers?.forEach(footer => footer.removeListener('click', footerClickHandler));

@@ -205,8 +205,16 @@
     @apply md:hidden;
 }
 
+.mobile-nav .menu-item a {
+    @apply block text-[19px] font-normal;
+}
+
 .mobile-nav .menu-item {
-    @apply text-base font-normal mb-5;
+    @apply mb-5;
+}
+
+.mobile-nav .menu-item a {
+    @apply  flex flex-row justify-between items-center;
 }
 
 .mobile-nav .sub-menu {
@@ -215,4 +223,33 @@
 
 .mobile-nav .sub-menu.active {
 	@apply block;
+}
+
+.mobile-nav .sub-menu.active .menu-item a {
+	@apply text-base px-4 opacity-80  mb-[10px];
+}
+
+.mobile-nav .sub-menu.active .menu-item a:first-child {
+    @apply mt-4;
+}
+
+.mobile-nav .sub-menu.active .menu-item a:last-child {
+    @apply mb-0;
+}
+
+.mobile-nav #mobile-menu > .menu-item.menu-item-has-children > a::after {
+    @apply inline-block h-6 w-6;
+    content: '';
+    background-image: url('images/cheveron-down.svg');
+}
+
+.mobile-nav #mobile-menu > .menu-item.menu-item-has-children > a.active::after {
+    @apply inline-block h-6 w-6;
+    content: '';
+    background-image: url('images/cheveron-down.svg');
+    transform: rotate(180deg);
+}
+
+.mobile-nav #mobile-menu > .menu-item.menu-item-has-children > a.active {
+    @apply text-purple-900;
 }

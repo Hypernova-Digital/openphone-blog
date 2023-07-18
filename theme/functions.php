@@ -266,7 +266,7 @@ function openphone_scripts()
 	wp_enqueue_style('openphone-style', get_stylesheet_uri(), array(), OPENPHONE_VERSION);
 	wp_enqueue_script('openphone-script', get_template_directory_uri() . '/js/script.min.js', ['jquery'], OPENPHONE_VERSION, true);
 
-	if (is_singular()) {
+	if (is_singular('post')) {
 		wp_enqueue_script('openphone-blog-script', get_template_directory_uri() . '/js/blog-post.min.js', array(), OPENPHONE_VERSION, true);
 	}
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -560,6 +560,9 @@ function openphone_render_next_posts_block($attributes, $content)
 			$cat_name = $cat->name;
 			$cat_description = $cat->description;
 			?>
+	<?php if ($attributes['preHeader']) : ?>
+		<h4 class="wp-block-heading eyebrows"><?php echo $attributes['preHeader']; ?></h4>
+	<?php endif; ?>
 
 	<div class="category-posts title-and-link flex flex-row justify-between items-end lg:mt-12">
 		<div class="mx-6 lg:mx-0 mb-6 lg:mb-12 mt-12">
@@ -580,14 +583,17 @@ function openphone_render_next_posts_block($attributes, $content)
 			foreach ($next_posts as $post) {
 				setup_postdata($post);
 			?>
-
+				<a  class="foolink" href="<?php echo get_permalink($post); ?>">
 				<div class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[120rem]">
 					<div class="rounded-md overflow-hidden">
 						<div class="image w-64 md:w-96 lg:w-[36rem]">
-							<img src="<?php echo get_the_post_thumbnail_url($post); ?>" class="m-0 w-full" />
+		
+								<img src="<?php echo get_the_post_thumbnail_url($post); ?>" class="m-0 w-full" />
+	
 						</div>
-
+			
 						<div class="content p-4">
+						
 							<div class="meta">
 								<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline text-purple-900"><?php echo get_the_category_list(', ', '', $post);
 																																		?></span><span class="opacity-10"> | </span>
@@ -598,13 +604,24 @@ function openphone_render_next_posts_block($attributes, $content)
 							<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
 							?>
 						</div>
+	
 					</div>
 				</div>
+				</a>
 			<?php
 				wp_reset_postdata();
 			}
 			?>
 		</div>
+
+		<?php if ($attributes['showBrowseResources']) : ?>
+			<div class="browse-resources bg-purple-25 w-[1200px] lg:rounded-[10px]">
+				<a href="<?php echo $attributes['browseResourcesLink']; ?>" class="flex flex-row items-center gap-4 px-8 lg:px-4 text-sm sm:text-base lg:text-[19px] text-black no-underline font-medium leading-[1.5]">
+					<img src="<?php echo $attributes['browseResourcesImage']; ?>" alt="" class="resource-image my-4" />
+					<?php echo $attributes['browseResourcesText']; ?>
+				</a>
+			</div>
+		<?php endif; ?>
 	</div>
 <?php
 
@@ -621,7 +638,11 @@ function openphone_render_next_posts_block($attributes, $content)
 				'postsToShow' => array(
 					'type' => 'number',
 					'default' => 10
-				)
+				),
+				'preHeader' => array(
+					'type' => 'string',
+					'default' => 'Featured Resource'
+				),
 			),
 			'render_callback' => 'openphone_render_latest_category_posts_block',
 		));

@@ -1,7 +1,9 @@
 import { useSelect } from '@wordpress/data';
 import { registerBlockType } from '@wordpress/blocks';
-import { SelectControl } from '@wordpress/components';
+import { SelectControl, TextControl, ToggleControl } from '@wordpress/components';
+import { MediaUpload, MediaUploadCheck, URLInput } from '@wordpress/block-editor';
 import metadata from './block.json';
+import { RichText } from '@wordpress/block-editor';
 
 const { name, ...settings } = metadata;
 
@@ -23,6 +25,14 @@ registerBlockType(name, {
         }, [attributes]);
 
         return (
+            <>
+            <RichText
+                tagName="h4"
+                value={attributes.preHeader}
+                placeholder='Pre Header(optional)'
+                onChange={(preHeader) => setAttributes({ preHeader })}
+            />
+            
             <div className={props.className}>
                 <SelectControl
                     label="Category"
@@ -40,7 +50,44 @@ registerBlockType(name, {
                         <div dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
                     </div>
                 ))}
+
+                <ToggleControl
+                    label="Show Browse Resources"
+                    checked={attributes.showBrowseResources}
+                    onChange={(showBrowseResources) => setAttributes({ showBrowseResources })}
+                />
+
+                {attributes.showBrowseResources && (
+                    <>
+                        <label>Browse Resources Link</label>
+                        <URLInput
+                            value={attributes.browseResourcesLink}
+                            onChange={(browseResourcesLink) => setAttributes({ browseResourcesLink })}
+                        />
+
+                        <MediaUploadCheck>
+                            <MediaUpload
+                                onSelect={(media) => setAttributes({ browseResourcesImage: media.url })}
+                                allowedTypes={['image']}
+                                value={attributes.browseResourcesImage}
+                                render={({ open }) => (
+                                    <button onClick={open}>
+                                        Upload Image
+                                    </button>
+                                )}
+                            />
+                        </MediaUploadCheck>
+
+                        <RichText
+                            tagName="p"
+                            value={attributes.browseResourcesText}
+                            placeholder='Browse Resources Text'
+                            onChange={(browseResourcesText) => setAttributes({ browseResourcesText })}
+                        />
+                    </>
+                )}
             </div>
+            </>
         );
     },
 

@@ -13,6 +13,26 @@
     "postsToShow": {
       "type": "number",
       "default": 10
+    },
+    "preHeader": {
+      "type": "string",
+      "default": "Featured resource"
+    },
+    "showBrowseResources": {
+      "type": "boolean",
+      "default": false
+    },
+    "browseResourcesText": {
+      "type": "string",
+      "default": ""
+    },
+    "browseResourcesLink": {
+      "type": "string",
+      "default": ""
+    },
+    "browseResourcesImage": {
+      "type": "string",
+      "default": ""
     }
   }
 }

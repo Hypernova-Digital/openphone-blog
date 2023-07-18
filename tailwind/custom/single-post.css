@@ -7,6 +7,10 @@
 	@apply bg-purple-50;
 }
 
+.single .entry-content {
+	@apply lg:w-[784px] mx-auto;
+}
+
 a[rel="category tag"] {
 	@apply mb-2 text-sm font-semibold leading-5 text-purple-900 sm:text-base lg:text-xl;
 }
@@ -227,7 +231,7 @@ img.avatar.avatar-100.photo {
 /* Temporary */
 
 .lwptoc.lwptoc-autoWidth.lwptoc-baseItems.lwptoc-light.lwptoc-notInherit {
-	display: none;
+	/* display: none; */
 }
 
 iframe {
@@ -242,7 +246,7 @@ iframe {
 
 /* Desktop styles */
 #open-phone-toc .mobile-header {
-	display: none;
+	/* display: none; */
 }
 
 #open-phone-toc .lwptoc_item_label {

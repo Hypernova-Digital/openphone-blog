@@ -40,3 +40,11 @@
 	@apply border-opacity-100;
 	box-shadow: 4px 4px 0px 0px #000;
 }
+
+.prose .category-posts :where(img):not(:where([class~="not-prose"] *)) {
+	@apply w-9 sm:w-14;
+}
+
+.prose-a\:text-primary .category-posts :is(:where(a):not(:where([class~="not-prose"] *))) {
+	@apply text-black;
+}
