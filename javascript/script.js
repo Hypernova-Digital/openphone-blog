@@ -69,10 +69,10 @@ const mobileTocHiddenByDefault = true;
 // ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
 // @Mira: Here are the classes that will be toggled on the toc element (or `mobileTocVisibilityClassTarget`) to show/hide the toc entries
 // @Mira: You can change these if you want, but make sure they match the CSS
-const mobileTocVisibilityClass = ['toc-expanded'];
+const mobileTocVisibilityClass = ['toc-hidden'];
 // Mobile: These classes will be toggled on the toc element (or `mobileTocVisibilityClassTarget`) to hide the toc entries
 
-const mobileTocHiddenClass = ['toc-hidden'];
+const mobileTocHiddenClass = ['toc-expanded'];
 // Mobile: These classes will the toggled on the toc element (or `mobileTocVisibilityClassTarget`) to hide the toc entries
 
 // Desktop: The classes to apply to the active toc entry (the anchor of the nearest header)

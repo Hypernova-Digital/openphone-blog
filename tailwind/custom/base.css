@@ -17,7 +17,7 @@ body {
 
 /* Typography */
 * {
-	font-family: 'Inter', sans-serif;
+	font-family: "Inter", sans-serif;
 	font-size: 16px;
 	transition: all 0.3s ease;
 }
@@ -32,7 +32,7 @@ span {
 
 p {
 	@apply text-[19px] font-normal leading-[1.4];
-	color: rgba(0, 0, 0, 0.70);
+	color: rgba(0, 0, 0, 0.7);
 }
 
 strong {
@@ -58,7 +58,7 @@ h4 span strong,
 h5 span strong,
 h6 span strong {
 	@apply leading-[1.2];
-	font-family: 'Roobert', sans-serif;
+	font-family: "Roobert", sans-serif;
 }
 
 ul li::marker {
@@ -74,8 +74,16 @@ a:hover {
 }
 
 /* Buttons */
-.wp-element-button, .wp-block-button__link {
-	@apply rounded-[10px] bg-black text-lg font-semibold px-8 block w-full md:w-auto;
+.wp-element-button,
+.wp-block-button__link {
+	@apply block w-full rounded-[10px] bg-black px-8 text-lg font-semibold md:w-auto;
+}
+
+.wp-element-button:hover,
+.wp-block-button__link:hover {
+	border: 1.5px solid #000;
+	background: var(--purple-900, #6439f5);
+	box-shadow: 4px 4px 0px 0px #000;
 }
 
 /* Above Footer Widget */
@@ -88,11 +96,11 @@ a:hover {
 }
 
 .above-footer .wp-block-button:nth-child(2) .wp-block-button__link {
-	@apply bg-transparent border border-white;
+	@apply border border-white bg-transparent;
 }
 
 .above-footer aside h2 {
-	@apply text-4xl md:text-5xl lg:text-6xl font-normal;
+	@apply text-4xl font-normal md:text-5xl lg:text-6xl;
 }
 
 .above-footer aside p {
@@ -100,24 +108,24 @@ a:hover {
 }
 
 .above-footer .wp-block-buttons.is-layout-flex {
-	@apply justify-center gap-4 items-center mt-8;
+	@apply mt-8 items-center justify-center gap-4;
 }
 
 .above-footer p {
-	@apply text-xl font-normal leading-7 mt-4 max-w-[632px] mx-auto;
+	@apply mx-auto mt-4 max-w-[632px] text-xl font-normal leading-7;
 }
 
 /* Footer Widgets */
 footer h2.wp-block-heading {
-	@apply mb-2 md:mb-2 mt-0 text-sm font-medium leading-[1.5] text-black;
-	font-family: 'Inter', sans-serif;
+	@apply mb-2 mt-0 text-sm font-medium leading-[1.5] text-black md:mb-2;
+	font-family: "Inter", sans-serif;
 }
 
 footer li a {
 	font-size: 0.875rem;
 	font-weight: 300;
 	line-height: 1.5;
-	color: rgba(0, 0, 0, 0.80);
+	color: rgba(0, 0, 0, 0.8);
 }
 
 footer li {
@@ -143,29 +151,29 @@ footer .footer-categories aside {
 
 /* Mobile Footer Functionality */
 .mobile footer h2 {
-	@apply flex flex-row justify-between items-center w-full text-lg font-normal;
+	@apply flex w-full flex-row items-center justify-between text-lg font-normal;
 }
 
-.mobile footer .footer-categories  aside {
+.mobile footer .footer-categories aside {
 	transition: max-height 0.3s ease-in-out;
 }
 
-.mobile footer .footer-categories  aside section:nth-child(2) {
+.mobile footer .footer-categories aside section:nth-child(2) {
 	max-height: 0;
 	overflow: hidden;
 	transition: max-height 0.3s ease-in-out;
 }
 
-.mobile footer .footer-categories  aside.active section:nth-child(2) {
+.mobile footer .footer-categories aside.active section:nth-child(2) {
 	max-height: 1000px; /* Adjust as needed */
 }
 
-.mobile footer .footer-categories  h2:after {
+.mobile footer .footer-categories h2:after {
 	height: 24px;
 	width: 24px;
-	content: '';
+	content: "";
 	display: block;
-	background: url('images/cheveron-down.svg');
+	background: url("images/cheveron-down.svg");
 	transition: transform 0.3s ease-in-out;
 }
 
