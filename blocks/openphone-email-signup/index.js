@@ -15,7 +15,7 @@ registerBlockType(name, {
 
         return (
            <div {...blockProps}>
-            <h2>Hiiiii</h2>
+            <h2>Hiiiii</h2>EMAIL
            </div>
         );
     },
@@ -23,9 +23,10 @@ registerBlockType(name, {
     save: ({ attributes }) => {
         return (
             <div>
-                <h2>{attributes.textField}</h2>
+                <h2>{attributes.textField}</h2>I'm a block!!EMAIL
             </div>
         );
     },
 });
 
+ 

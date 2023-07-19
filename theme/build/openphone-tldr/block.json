@@ -1,7 +1,7 @@
 {
   "apiVersion": 2,
-  "name": "openphone/more-resources-cta",
-  "title": "More Resources CTA",
+  "name": "openphone/tldr",
+  "title": "TLDR: Too Long Didnt Read",
   "icon": "megaphone",
   "category": "common",
   "editorScript": "file:./index.js",

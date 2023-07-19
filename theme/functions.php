@@ -389,10 +389,35 @@ add_filter('block_editor_settings_all', 'add_custom_post_variation');
 
 function openphone_enqueue_block_assets()
 {
+
+	wp_enqueue_script(
+		'openphone-cta',
+		get_template_directory_uri() . '/build/openphone-cta/index.js',
+		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
+	);
+
+	wp_enqueue_script(
+		'openphone-email-signup',
+		get_template_directory_uri() . '/build/openphone-email-signup/index.js',
+		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
+	);
+
+	wp_enqueue_script(
+		'openphone-featured-resource',
+		get_template_directory_uri() . '/build/openphone-featured-resource/index.js',
+		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
+	);
+
 	wp_enqueue_script(
 		'openphone-latest-post',
 		get_template_directory_uri() . '/build/openphone-latest-post/index.js',
 		include get_template_directory_uri() . '/build/openphone-latest-post/block.php',
+		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
+	);
+
+	wp_enqueue_script(
+		'openphone-faqs',
+		get_template_directory_uri() . '/build/openphone-faqs/index.js',
 		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
 	);
 
@@ -403,8 +428,14 @@ function openphone_enqueue_block_assets()
 	);
 
 	wp_enqueue_script(
-		'openphone-more-resources-cta',
-		get_template_directory_uri() . '/build/openphone-more-resources-cta/index.js',
+		'openphone-trending',
+		get_template_directory_uri() . '/build/openphone-trending/index.js',
+		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
+	);
+
+	wp_enqueue_script(
+		'openphone-tldr',
+		get_template_directory_uri() . '/build/openphone-tldr/index.js',
 		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
 	);
 

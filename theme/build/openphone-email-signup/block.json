@@ -1,0 +1,15 @@
+{
+  "apiVersion": 2,
+  "name": "openphone/email-signup",
+  "title": "Email Signup",
+  "icon": "megaphone",
+  "category": "common",
+  "editorScript": "file:./index.js",
+  "attributes": {
+    "textField": {
+      "type": "string",
+      "source": "html",
+      "selector": "h2"
+    }
+  }
+}

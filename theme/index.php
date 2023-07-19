@@ -30,7 +30,6 @@ get_header();
 						<li><a href="https://openphone.local/blog-listing/" class="all-posts">All posts</a></li>
 						<?php
 						$categories = get_categories(); // Retrieve all categories
-						echo do_shortcode('[searchandfilter fields="category" types="radio"]'); // Display the view
 						foreach ($categories as $category) {
 							$active_class = (is_category($category->term_id)) ? 'active' : ''; // Check if the current category matches the looped category
 							echo '<li><a href="' . get_category_link($category->term_id) . '" class="' . $active_class . '">' . $category->name . '</a></li>';
