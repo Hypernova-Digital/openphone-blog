@@ -28,7 +28,7 @@ get_header();
 				printf(
 					/* translators: 1: search result title. 2: search term. */
 					'<h1 class="page-title m-0">' . $wp_query->found_posts . ' ' . $result . ' %1$s <span>%2$s</span></h1>',
-					esc_html__( ' for: ', 'openphone' ),
+					esc_html__( ' for ', 'openphone' ),
 					get_search_query()
 				);
 				?>

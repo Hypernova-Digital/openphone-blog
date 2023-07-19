@@ -1,6 +1,6 @@
 .search .page-title,
 .search .page-title span {
-    @apply text-3xl font-semibold leading-[1] tracking-[-0.6px] leading-[1.2] text-left;
+    @apply text-3xl font-semibold leading-[1] tracking-[-0.6px] lg:leading-[1.2] text-center lg:text-left;
 }
 
 form.is-search-form.is-form-style.is-form-style-3.is-form-id-20303 {

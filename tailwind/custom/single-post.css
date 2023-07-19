@@ -16,7 +16,7 @@
 }
 
 a[rel="category tag"] {
-	@apply mb-2 text-sm font-semibold leading-5 text-purple-900 sm:text-base lg:text-xl;
+	@apply mb-2 text-sm font-semibold leading-5 text-purple-900 sm:text-base lg:text-xl no-underline;
 }
 
 .entry-footer a[rel="category tag"] {

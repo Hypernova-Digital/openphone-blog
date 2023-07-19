@@ -13,6 +13,12 @@
     @apply w-full;
 }
 
+.blog #main > article:hover
+.archive #main > article:hover {
+    @apply border-opacity-100;
+	box-shadow: 4px 4px 0px 0px #000;
+}
+
 .blog #main .navigation.pagination,
 .archive #main .navigation.pagination {
     @apply col-span-1 md:col-span-2 lg:col-span-3;

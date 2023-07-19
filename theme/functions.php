@@ -575,7 +575,7 @@ function openphone_render_next_posts_block($attributes, $content)
 		?>
 		<a href="<?php echo $cat_link; ?>" class="mt-0 mb-6 lg:mb-12 mr-6 no-underline text-sm font-medium text-black w-24  ">See all -></a>
 	</div>
-	<div class="category-posts post-wrapper flex flex-col lg:mb-12 mr-0">
+	<div class="category-posts post-wrapper flex flex-col lg:mb-28 mr-0">
 		<div class="category-posts-list flex flex-row overflow-scroll snap-x px-6 pb-6 gap-6 w-full">
 
 			<?php
@@ -583,30 +583,36 @@ function openphone_render_next_posts_block($attributes, $content)
 			foreach ($next_posts as $post) {
 				setup_postdata($post);
 			?>
-				<a  class="foolink" href="<?php echo get_permalink($post); ?>">
-				<div class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[120rem]">
-					<div class="rounded-md overflow-hidden">
-						<div class="image w-64 md:w-96 lg:w-[36rem]">
-		
+				<a class="no-underline" href="<?php echo get_permalink($post); ?>">
+					<div class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[35rem]">
+						<div class="rounded-md overflow-hidden">
+							<div class="image w-64 md:w-96 lg:w-[36rem]">
+
 								<img src="<?php echo get_the_post_thumbnail_url($post); ?>" class="m-0 w-full" />
-	
-						</div>
-			
-						<div class="content p-4">
-						
-							<div class="meta">
-								<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline text-purple-900"><?php echo get_the_category_list(', ', '', $post);
-																																		?></span><span class="opacity-10"> | </span>
-								<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post); ?></span>
+
 							</div>
 
-							<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold"><?php echo get_the_title($post); ?></span>
-							<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
-							?>
+							<div class="content p-4 lg:p-6">
+								<div class="meta">
+									<span class="font-semibold text-[11px] sm:text-xs md:text-sm no-underline text-purple-900">
+										<?php
+										$categories = get_the_category($post);
+										if (!empty($categories)) {
+											echo esc_html($categories[0]->name);
+										}
+										?>
+									</span>
+									<span class="opacity-10"> | </span>
+									<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post); ?></span>
+								</div>
+
+								<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold mt-2"><?php echo get_the_title($post); ?></span>
+								<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
+								?>
+							</div>
+
 						</div>
-	
 					</div>
-				</div>
 				</a>
 			<?php
 				wp_reset_postdata();
@@ -614,7 +620,12 @@ function openphone_render_next_posts_block($attributes, $content)
 			?>
 		</div>
 
-		<?php if ($attributes['showBrowseResources']) : ?>
+		<?php
+			// var dump attributes
+			// var_dump($attributes);
+		?>
+
+		<?php if (isset($attributes['showBrowseResources']) && $attributes['showBrowseResources']) : ?>
 			<div class="browse-resources bg-purple-25 w-[1200px] lg:rounded-[10px]">
 				<a href="<?php echo $attributes['browseResourcesLink']; ?>" class="flex flex-row items-center gap-4 px-8 lg:px-4 text-sm sm:text-base lg:text-[19px] text-black no-underline font-medium leading-[1.5]">
 					<img src="<?php echo $attributes['browseResourcesImage']; ?>" alt="" class="resource-image my-4" />

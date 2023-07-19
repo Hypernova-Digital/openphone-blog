@@ -42,6 +42,9 @@ module.exports = {
 			maxWidth: {
 				'7xl': '1200px',
 			},
+			boxShadow: {
+				'default': '4px 4px 0px 0px #000',
+			  },
 			keyframes: {
 				slideDown: {
 					'0%': {
