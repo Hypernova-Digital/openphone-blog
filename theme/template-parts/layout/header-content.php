@@ -10,7 +10,7 @@
 
 ?>
 
-<header id="masthead" class="bg-white">
+<header id="masthead" class="">
 	<div class="header-content lg:max-w-7xl px-6 py-4  lg:px-0 md:py-8 flex flex-row items-center justify-between">
 		<div>
 			<?php

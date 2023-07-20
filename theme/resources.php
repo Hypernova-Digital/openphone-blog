@@ -14,10 +14,14 @@
  * @package OpenPhone
  */
 
+
+ ?>
+<div class="bg-purple-50">
+ <?php
 get_header();
 ?>
 
-<section id="primary">
+<section id="primary" class="bg-white">
     <header class="entry-header bg-purple-50 flex flex-col py-16 mb-16 text-center">
         <div class="header-left p-6 sm:p-8 lg:p-0 flex flex-col justify-center mx-auto max-w-7xl">
             <?php the_title('<h1 class="page-title mx-0 text-5xl lg:text-[90px] font-semibold leading-[1] tracking-[-1.8px] text-center block w-full">', '</h1>'); ?>
@@ -25,7 +29,7 @@ get_header();
         </div>
     </header>
 
-    <main id="main" class="container lg:w-[922px] mx-auto py-12 sm:py-14 md:py-16 lg:py-24">
+    <main id="main" class="container lg:w-[922px] mx-auto py-12 sm:py-14 md:py-16 lg:py-24 flex flex-col gap-6">
         <?php
         if (have_posts()) :
             while (have_posts()) : the_post();
@@ -45,3 +49,5 @@ get_header();
 </section><!-- #primary -->
 
 <?php get_footer(); ?>
+
+</div>

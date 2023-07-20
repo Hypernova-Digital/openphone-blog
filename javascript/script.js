@@ -8,6 +8,44 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+	// Add an event listener to the document to handle clicks on the FAQ questions
+	document.addEventListener('click', function (event) {
+		const target = event.target;
+
+		// Check if the clicked element or its parent is an FAQ question element
+		const isFaqQuestion =
+			target.classList.contains('schema-faq-question') ||
+			target.closest('.schema-faq-question');
+
+		console.log('isFaqQuestion', isFaqQuestion);
+
+		if (isFaqQuestion) {
+			// Toggle the "active" class on the clicked element or its parent
+			const faqQuestion = isFaqQuestion
+				? target.classList.contains('schema-faq-question')
+					? target
+					: target.closest('.schema-faq-question')
+				: null;
+
+			if (faqQuestion) {
+				faqQuestion.classList.toggle('active');
+				console.log('faqQuestion', faqQuestion);
+			}
+		}
+	});
+
+	document.addEventListener("DOMContentLoaded", function() {
+		// Get all FAQ questions
+		let faqQuestions = document.getElementsByClassName("schema-faq-question");
+		
+		// Iterate over each question
+		for(let i=0; i < faqQuestions.length; i++){
+			// Click each question to close it
+			faqQuestions[i].click();
+		}
+	});
+	
+
 	const wpAdminBar = document.getElementById('wpadminbar');
 	const pageHeader = document.getElementById('masthead');
 	const entryHeader =
@@ -33,9 +71,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			});
 
 			if (scrollY >= (entryHeight + headerHeight) / 2) {
-				pageHeader.classList.add('sticky-nav', 'is-sticky');
+				pageHeader.classList.add('sticky-nav', 'is-sticky', 'bg-white');
 			} else {
-				pageHeader.classList.remove('sticky-nav', 'is-sticky');
+				pageHeader.classList.remove(
+					'sticky-nav',
+					'is-sticky',
+					'bg-white'
+				);
 			}
 		},
 		{ passive: true }
