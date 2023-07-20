@@ -2,7 +2,7 @@
 /* Layout */
 /* Content */
 .entry-content .wp-block-media-text .wp-block-media-text__content {
-    @apply md:w-[600px] md:ml-auto md:pl-0 py-12;
+    @apply lg:w-[600px] md:ml-auto md:pl-0 py-12;
 }
 
 /* Image */

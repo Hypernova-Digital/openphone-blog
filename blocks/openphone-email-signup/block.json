@@ -8,8 +8,28 @@
     "attributes": {
         "textField": {
             "type": "string",
+            "source": "attribute",
+            "selector": "placeholder",
+            "default": "Your email"
+        },
+        "subscribeText": {
+            "type": "string",
             "source": "html",
-            "selector": "h2"
+            "selector": "span",
+            "default": "Subscribe to our newsletter to keep in touch with monthly updates"
+        },
+        "headingText": {
+            "type": "string",
+            "source": "html",
+            "selector": "h2",
+            "default": "Keep hanging on the line"
+        },
+        "buttonText": {
+            "type": "string",
+            "source": "attribute",
+            "selector": "button",
+            "attribute": "value",
+            "default": "Subscribe"
         }
     }
 }

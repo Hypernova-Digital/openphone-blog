@@ -1,0 +1,12 @@
+.openphone-email-signup > div{
+    @apply lg:gap-32;
+}
+
+.openphone-email-signup h2 {
+    @apply flex flex-row items-center gap-10 lg:text-6xl;
+}
+
+.openphone-email-signup h2::before {
+    @apply inline-block bg-cover bg-no-repeat w-28;
+    content: url("images/mail-icon.svg");
+}
