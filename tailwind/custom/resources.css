@@ -1,0 +1,19 @@
+.page-tagline {
+	@apply text-center text-[19px] font-normal leading-7 text-black opacity-70;
+}
+
+.featured-resource-block a {
+	@apply flex w-full flex-row items-center justify-center gap-10;
+}
+
+.featured-resource-block h2 {
+	@apply mb-2  text-4xl;
+}
+
+.featured-resource-block span {
+	@apply mt-8;
+}
+
+.featured-resource-block {
+	@apply rounded-[10px] border-[1.5px] border-[rgba(0,0,0,0.10)] bg-white;
+}

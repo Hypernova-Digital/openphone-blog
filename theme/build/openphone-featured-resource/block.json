@@ -10,6 +10,22 @@
       "type": "string",
       "source": "html",
       "selector": "h2"
+    },
+    "image": {
+      "type": "string",
+      "default": ""
+    },
+    "link": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "tagline": {
+      "type": "string",
+      "default": ""
     }
   }
 }

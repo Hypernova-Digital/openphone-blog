@@ -21,29 +21,27 @@ get_header();
     <header class="entry-header bg-purple-50 flex flex-col py-16 mb-16 text-center">
         <div class="header-left p-6 sm:p-8 lg:p-0 flex flex-col justify-center mx-auto max-w-7xl">
             <?php the_title('<h1 class="page-title mx-0 text-5xl lg:text-[90px] font-semibold leading-[1] tracking-[-1.8px] text-center block w-full">', '</h1>'); ?>
+            <?php echo '<p class="page-tagline">' . get_post_meta(get_the_ID(), 'tagline', true) . '</p>'; ?>
         </div>
     </header>
-    <main id="main">
 
+    <main id="main" class="container lg:w-[922px] mx-auto py-12 sm:py-14 md:py-16 lg:py-24">
         <?php
+        if (have_posts()) :
+            while (have_posts()) : the_post();
+                // Display the tagline
 
-        /* Start the Loop */
-        while (have_posts()) :
-            the_post();
+                // Display the page content
+                the_content();
 
-            get_template_part('template-parts/content/content', 'home');
-
-            // If comments are open, or we have at least one comment, load
-            // the comment template.
-            if (comments_open() || get_comments_number()) {
-                comments_template();
-            }
-
-        endwhile; // End of the loop.
+                // If comments are open, or we have at least one comment, load the comment template.
+                if (comments_open() || get_comments_number()) {
+                    comments_template();
+                }
+            endwhile;
+        endif;
         ?>
-
-    </main><!-- #main -->
+    </main>
 </section><!-- #primary -->
 
-<?php
-get_footer();
+<?php get_footer(); ?>

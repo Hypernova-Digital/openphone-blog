@@ -48,7 +48,7 @@ module.exports = window["wp"]["element"];
   \*******************************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"openphone/featured-resource","title":"Featured Resource","icon":"megaphone","category":"common","editorScript":"file:./index.js","attributes":{"textField":{"type":"string","source":"html","selector":"h2"}}}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"openphone/featured-resource","title":"Featured Resource","icon":"megaphone","category":"common","editorScript":"file:./index.js","attributes":{"textField":{"type":"string","source":"html","selector":"h2"},"image":{"type":"string","default":""},"link":{"type":"string","default":""},"title":{"type":"string","default":""},"tagline":{"type":"string","default":""}}}');
 
 /***/ })
 
@@ -153,14 +153,96 @@ const {
       setAttributes
     } = props;
     const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)();
+
+    // Set attributes functions
+    const setImage = value => {
+      setAttributes({
+        image: value
+      });
+    };
+    const setLink = value => {
+      setAttributes({
+        link: value
+      });
+    };
+    const setTitle = value => {
+      setAttributes({
+        title: value
+      });
+    };
+    const setTagline = value => {
+      setAttributes({
+        tagline: value
+      });
+    };
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      ...blockProps
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Hiiiii"), "FEATURED RESOURCE");
+      ...blockProps,
+      className: "flex flex-col justify-center gap-4"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      clqssName: "flex flex-row w-full"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "text",
+      value: attributes.link,
+      placeholder: "Link URL",
+      onChange: event => setLink(event.target.value),
+      className: "mb-4 w-full"
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "flex w-full flex-row items-center justify-between"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.MediaUpload, {
+      onSelect: media => setImage(media.url),
+      value: attributes.image,
+      render: ({
+        open
+      }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+        onClick: open,
+        className: "w-1/3"
+      }, attributes.image ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+        src: attributes.image,
+        alt: "Featured Resource Image",
+        style: {
+          maxWidth: '100%'
+        }
+      }) : 'Upload Image')
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "text",
+      value: attributes.title,
+      placeholder: "Title",
+      onChange: event => setTitle(event.target.value),
+      className: "w-1/3"
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "text",
+      value: attributes.tagline,
+      placeholder: "Tagline",
+      className: "w-1/3",
+      onChange: event => setTagline(event.target.value)
+    })));
   },
   save: ({
     attributes
   }) => {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, attributes.textField), "I'm a block!!FEATURED RESOURCE");
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "featured-resource-block"
+    }, attributes.image && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      href: attributes.link,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "flex flex-row items-center justify-between w-full"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: attributes.image,
+      alt: "Featured Resource Image",
+      style: {
+        maxWidth: '100%'
+      },
+      className: "flex-none"
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "flex flex-col justify-between grow w-full"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
+      className: "font-semibold leading-[1.2] tracking-[-0.8px]"
+    }, attributes.title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+      className: "text-sm opacity-70"
+    }, attributes.tagline), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "text-base font-medium"
+    }, "Browse posts -> "))));
   }
 });
 })();
