@@ -371,25 +371,8 @@ function add_custom_post_variation($variations)
 }
 add_filter('block_editor_settings_all', 'add_custom_post_variation');
 
-// function register_my_block()
-// {
-// 	wp_register_script(
-// 		'more-resources-cta-script',
-// 		get_template_directory_uri() . '/build/openphone-more-resources-cta/index.js',
-// 		array('wp-blocks', 'wp-element', 'wp-editor'),
-// 		filemtime(get_template_directory() . '/build/openphone-more-resources-cta/index.js') // Optional: Add the file modified time as a version for cache busting
-// 	);
-
-// 	register_block_type('openphone/more-resources-cta', array(
-// 		'editor_script' => 'more-resources-cta-script',
-// 	));
-// }
-// add_action('init', 'register_my_block');
-
-
 function openphone_enqueue_block_assets()
 {
-
 	wp_enqueue_script(
 		'openphone-cta',
 		get_template_directory_uri() . '/build/openphone-cta/index.js',

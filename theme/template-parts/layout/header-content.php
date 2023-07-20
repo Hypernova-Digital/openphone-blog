@@ -11,7 +11,7 @@
 ?>
 
 <header id="masthead" class="bg-white">
-	<div class="header-content lg:max-w-7xl px-6 py-4  md:px-0 md:py-8 flex flex-row items-center justify-between">
+	<div class="header-content lg:max-w-7xl px-6 py-4  lg:px-0 md:py-8 flex flex-row items-center justify-between">
 		<div>
 			<?php
 			if (is_front_page()) :
@@ -43,6 +43,12 @@
 					?></p>
 			<?php endif; ?>
 		</div>
+
+		<?php if (is_active_sidebar('header-ctas')) : ?>
+			<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-6 header-ctas hidden md:block lg:hidden">
+				<?php dynamic_sidebar('header-ctas'); ?>
+			</aside>
+		<?php endif; ?>
 
 		<nav id="site-navigation" aria-label="<?php esc_attr_e('Main Navigation', 'openphone'); ?>">
 			<div class="desktop-nav flex items-center">

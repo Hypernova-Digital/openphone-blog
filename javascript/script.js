@@ -7,46 +7,57 @@
  * https://esbuild.github.io/
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 	const wpAdminBar = document.getElementById('wpadminbar');
 	const pageHeader = document.getElementById('masthead');
-	const entryHeader = document.querySelector('.entry-header') || document.querySelector('.bg-purple-50');
+	const entryHeader =
+		document.querySelector('.entry-header') ||
+		document.querySelector('.bg-purple-50');
 
 	// Adjust the page header's top position to account for the admin bar
 	if (wpAdminBar) {
 		pageHeader.style.top = wpAdminBar.offsetHeight + 'px';
 	}
 
-	window.addEventListener('scroll', function() {
-		const entryHeight = entryHeader.offsetHeight;
-		const headerHeight = pageHeader.offsetHeight;
-		const scrollY = window.pageYOffset;
+	window.addEventListener(
+		'scroll',
+		function () {
+			const entryHeight = entryHeader.offsetHeight;
+			const headerHeight = pageHeader.offsetHeight;
+			const scrollY = window.pageYOffset;
 
-		console.log({
-			entryHeight,
-			scrollY,
-			shouldSticky: (entryHeight + headerHeight) / 2
-		})
+			console.log({
+				entryHeight,
+				scrollY,
+				shouldSticky: (entryHeight + headerHeight) / 2,
+			});
 
-		if (scrollY >= (entryHeight + headerHeight) / 2) {
-			pageHeader.classList.add('sticky-nav', 'is-sticky');
-		} else {
-			pageHeader.classList.remove('sticky-nav', 'is-sticky');
-		}
-	}, { passive: true });
-
+			if (scrollY >= (entryHeight + headerHeight) / 2) {
+				pageHeader.classList.add('sticky-nav', 'is-sticky');
+			} else {
+				pageHeader.classList.remove('sticky-nav', 'is-sticky');
+			}
+		},
+		{ passive: true }
+	);
 
 	/* Mobile nav button */
 	const mobileNavButton = document.getElementById('mobile-nav-menu-button');
-	mobileNavButton.addEventListener('click', function() {
-		const wasExpanded = mobileNavButton.getAttribute('aria-expanded') === 'true';
+	mobileNavButton.addEventListener('click', function () {
+		const wasExpanded =
+			mobileNavButton.getAttribute('aria-expanded') === 'true';
 		const isExpanded = !wasExpanded;
-		const menuContainer = document.querySelector('.mobile-nav .menu-openphone-menu-container');
+		const menuContainer = document.querySelector(
+			'.mobile-nav .menu-openphone-menu-container'
+		);
 		menuContainer.style.display = isExpanded ? 'block' : 'none';
 
+		const mobileNav = document.querySelector('.mobile-nav');
 		if (isExpanded) {
+			mobileNav.classList.add('visible');
 			mobileNavButton.setAttribute('aria-expanded', 'true');
 		} else {
+			mobileNav.classList.remove('visible');
 			mobileNavButton.setAttribute('aria-expanded', 'false');
 		}
 	});
@@ -79,7 +90,7 @@ const mobileTocHiddenClass = ['toc-expanded'];
 const desktopActiveTocEntryClass = ['active']; // the class applied to the anchor of the current toc entry
 
 // Mobile: The selector of the element the user clicks to show/hide the toc
-const tocExpandSelector = '#toc-expand'
+const tocExpandSelector = '#toc-expand';
 // Mobile: The classes to add to the toc element (and/or `mobileTocVisibilityClassTarget`) when the toc is visible
 
 // Mobile: The text for the button when the toc is visible
@@ -123,7 +134,7 @@ const tocEntrySelector = '.lwptoc_item > a';
 const headerSelector = '.wp-block-heading';
 
 // @Mira: If you need to toggle the classes on a different element, you can use these options:
-const mobileTocVisibilityClassTarget  = null;
+const mobileTocVisibilityClassTarget = null;
 // Optional Override: A selector of an additional element to toggle `mobileTocVisibilityClass` on (in addition to the toc element)
 
 const mobileClassTargetSelector = null;
@@ -137,20 +148,23 @@ const createToc = (anchors) => {
 	toc.id = 'open-phone-toc';
 	toc.innerHTML = tocHTMLTemplate;
 
-	anchors.forEach(item => {
+	anchors.forEach((item) => {
 		const text = item.textContent.trim().toLowerCase();
 		if (removeRelatedPosts && text.includes('related posts:')) return; // Exclude the related posts section
 		toc.appendChild(item.cloneNode(true));
 	});
 
 	return toc;
-}
+};
 const appendTocToHeader = (toc) => {
-	const header = document.querySelector(isMobile() ? mobileTocTargetSelector : desktopTocTargetSelector);
+	const header = document.querySelector(
+		isMobile() ? mobileTocTargetSelector : desktopTocTargetSelector
+	);
 	if (isMobile()) {
 		// Append TOC to the header on mobile, it'll be the last child in the `mobileTocTargetSelector`
 		header && header.appendChild(toc);
-	} else { // Desktop
+	} else {
+		// Desktop
 		if (desktopTocInsertAfter) {
 			// Place the TOC after the `desktopTocTargetSelector`
 			header && header.after(toc);
@@ -159,20 +173,27 @@ const appendTocToHeader = (toc) => {
 			header && header.insertBefore(toc, header.firstChild);
 		}
 	}
-}
+};
 
 // Toggle multiple classes on an element, if `force` is true, the classes will be added, if false, they'll be removed
 const toggleClasses = (el, force, ...args) => {
-	if (!el) return
+	if (!el) return;
 	DEBUG && console.log('toggleClasses: start ', { el, force, args });
 	if (typeof force !== 'boolean') {
 		args.unshift(force);
 		force = undefined;
 	}
-	const result = args.map(e => el.classList.toggle(e, force))
-	DEBUG && console.log('toggleClasses: end ', { el, force, args, result, classList: el.classList });
-}
-document.addEventListener("DOMContentLoaded", () => {
+	const result = args.map((e) => el.classList.toggle(e, force));
+	DEBUG &&
+		console.log('toggleClasses: end ', {
+			el,
+			force,
+			args,
+			result,
+			classList: el.classList,
+		});
+};
+document.addEventListener('DOMContentLoaded', () => {
 	let toc; // The table of contents element
 	let intersectionObserver; // Used on desktop to observe the headers and update the active toc entry
 
@@ -182,7 +203,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// This function toggles the visibility of the toc on mobile, to set the visibility pass a boolean whether it should be visible or not
 	const toggleToc = (force) => {
-		const isVisible = mobileTocVisibilityClass.some(e => toc.classList.contains(e));
+		const isVisible = mobileTocVisibilityClass.some((e) =>
+			toc.classList.contains(e)
+		);
 
 		// Toggle the visibility of the toc, allowing the force to be passed in, if not passed, it'll toggle the visibility
 		if (typeof force !== 'boolean') {
@@ -190,56 +213,90 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 
 		// Add or remove classes based on the 'force' variable
-		if (force) { // visible
-			mobileTocVisibilityClass.forEach(cls => toc.classList.add(cls));
-			mobileTocHiddenClass.forEach(cls => toc.classList.remove(cls));
+		if (force) {
+			// visible
+			mobileTocVisibilityClass.forEach((cls) => toc.classList.add(cls));
+			mobileTocHiddenClass.forEach((cls) => toc.classList.remove(cls));
 			// If we don't use `mobileTocVisibilityClassTarget` we can remove this block
 			if (mobileTocVisibilityClassTarget) {
-				const target = document.querySelector(mobileTocVisibilityClassTarget);
+				const target = document.querySelector(
+					mobileTocVisibilityClassTarget
+				);
 				if (target) {
-					mobileTocVisibilityClass.forEach(cls => target.classList.add(cls));
-					mobileTocHiddenClass.forEach(cls => target.classList.remove(cls));
+					mobileTocVisibilityClass.forEach((cls) =>
+						target.classList.add(cls)
+					);
+					mobileTocHiddenClass.forEach((cls) =>
+						target.classList.remove(cls)
+					);
 				}
 			}
-		} else { // hidden
-			mobileTocVisibilityClass.forEach(cls => toc.classList.remove(cls));
-			mobileTocHiddenClass.forEach(cls => toc.classList.add(cls));
+		} else {
+			// hidden
+			mobileTocVisibilityClass.forEach((cls) =>
+				toc.classList.remove(cls)
+			);
+			mobileTocHiddenClass.forEach((cls) => toc.classList.add(cls));
 			// If we don't use `mobileTocVisibilityClassTarget` we can remove this block
 			if (mobileTocVisibilityClassTarget) {
-				const target = document.querySelector(mobileTocVisibilityClassTarget);
+				const target = document.querySelector(
+					mobileTocVisibilityClassTarget
+				);
 				if (target) {
-					mobileTocVisibilityClass.forEach(cls => toc.classList.remove(cls));
-					mobileTocHiddenClass.forEach(cls => toc.classList.add(cls));
+					mobileTocVisibilityClass.forEach((cls) =>
+						toc.classList.remove(cls)
+					);
+					mobileTocHiddenClass.forEach((cls) =>
+						toc.classList.add(cls)
+					);
 				}
 			}
 		}
 
 		const buttonElement = document.querySelector(tocExpandSelector);
-		buttonElement && (buttonElement.textContent = force ? tocHiddenText : tocVisibleText);
-	}
+		buttonElement &&
+			(buttonElement.textContent = force
+				? tocHiddenText
+				: tocVisibleText);
+	};
 
 	// Observe the headers on desktop, and update the active toc entry
 	const observeHeaders = () => {
-		intersectionObserver = intersectionObserver || new IntersectionObserver((entries) => {
-			// Filter the entries for those that are intersecting.
-			const intersectingEntries = entries.filter(entry => entry.isIntersecting);
+		intersectionObserver =
+			intersectionObserver ||
+			new IntersectionObserver(
+				(entries) => {
+					// Filter the entries for those that are intersecting.
+					const intersectingEntries = entries.filter(
+						(entry) => entry.isIntersecting
+					);
 
-			if (intersectingEntries.length === 0) {
-				return;
-			}
+					if (intersectingEntries.length === 0) {
+						return;
+					}
 
-			// Sort the entries by their distance from the top of the viewport and select the closest one.
-			intersectingEntries.sort((a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
-			const closestEntry = intersectingEntries[0];
+					// Sort the entries by their distance from the top of the viewport and select the closest one.
+					intersectingEntries.sort(
+						(a, b) =>
+							a.target.getBoundingClientRect().top -
+							b.target.getBoundingClientRect().top
+					);
+					const closestEntry = intersectingEntries[0];
 
-			// Remove the active class from all TOC entries.
-			toc.querySelectorAll(`.${desktopActiveTocEntryClass.join(' ')}`).forEach(el => el.classList.remove(...desktopActiveTocEntryClass));
+					// Remove the active class from all TOC entries.
+					toc.querySelectorAll(
+						`.${desktopActiveTocEntryClass.join(' ')}`
+					).forEach((el) =>
+						el.classList.remove(...desktopActiveTocEntryClass)
+					);
 
-			// Set the active class on the TOC entry corresponding to the closest header.
-			const id = closestEntry.target.children[0].id;
-			const tocEntry = toc.querySelector(`a[href="#${id}"]`);
-			tocEntry.classList.add(...desktopActiveTocEntryClass);
-		}, { root: null, threshold: 1, rootMargin: '0px 0px -50% 0px' });
+					// Set the active class on the TOC entry corresponding to the closest header.
+					const id = closestEntry.target.children[0].id;
+					const tocEntry = toc.querySelector(`a[href="#${id}"]`);
+					tocEntry.classList.add(...desktopActiveTocEntryClass);
+				},
+				{ root: null, threshold: 1, rootMargin: '0px 0px -50% 0px' }
+			);
 
 		document.querySelectorAll(headerSelector).forEach((header) => {
 			const id = header?.children?.[0]?.id;
@@ -248,20 +305,22 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (removeRelatedPosts && text.includes('related posts:')) return; // Exclude the related posts section
 			if (!tocEntry) return; // Don't observe headers that aren't in the toc
 			tocEntry.addEventListener('click', () => {
-				toc.querySelector(`.${desktopActiveTocEntryClass.join(' ')}`).classList.remove(...desktopActiveTocEntryClass);
+				toc.querySelector(
+					`.${desktopActiveTocEntryClass.join(' ')}`
+				).classList.remove(...desktopActiveTocEntryClass);
 				tocEntry.classList.add(...desktopActiveTocEntryClass);
 			});
 			intersectionObserver.observe(header);
 		});
-	}
+	};
 
 	// Unobserve the headers on mobile
 	const unobserveHeaders = () => {
-		if (!intersectionObserver) return
+		if (!intersectionObserver) return;
 		document.querySelectorAll(headerSelector).forEach((header) => {
 			intersectionObserver.unobserve(header);
 		});
-	}
+	};
 	// Called when the media query match changes and on page load
 	const initializeToc = () => {
 		toc = toc || createToc(anchors);
@@ -275,18 +334,19 @@ document.addEventListener("DOMContentLoaded", () => {
 			// Use the `mobileTocHiddenByDefault` config to determine if the toc should be hidden by default
 			unobserveHeaders();
 			// Unobserve the headers on mobile
-		} else { // Desktop
+		} else {
+			// Desktop
 			// Force the toc entries visible incase they were hidden on mobile
 			toggleToc(true);
 			observeHeaders();
 			// Observe the headers on desktop
 		}
-	}
+	};
 
 	const footerClickHandler = (e) => {
 		const aside = e.target.closest('aside');
 		if (aside) aside.classList.toggle('active');
-	}
+	};
 
 	const mobileNavClickHandler = (e) => {
 		const ul = e.target.nextElementSibling;
@@ -296,22 +356,26 @@ document.addEventListener("DOMContentLoaded", () => {
 		} else {
 			return true;
 		}
-	}
+	};
 
 	const applyMobile = () => {
 		// Runs on transition between (mobile <-> desktop)
 
 		// Toggle `mobileClass` on document.body
-		toggleClasses(document.body, isMobile(), ...mobileClass)
+		toggleClasses(document.body, isMobile(), ...mobileClass);
 
 		// If you need to toggle mobile on another element, you can use `mobileClassTargetSelector`
 		if (mobileClassTargetSelector) {
 			// Toggle `mobileClass` on `mobileClassTargetSelector` whenever the media query matches
-			const mobileClassTargetElement = document.querySelector(mobileTocTargetSelector);
-			toggleClasses(mobileClassTargetElement, isMobile(), ...mobileClass)
+			const mobileClassTargetElement = document.querySelector(
+				mobileTocTargetSelector
+			);
+			toggleClasses(mobileClassTargetElement, isMobile(), ...mobileClass);
 		}
 
-		const mobileNavCategories = document.querySelectorAll('#mobile-menu > li.menu-item-has-children');
+		const mobileNavCategories = document.querySelectorAll(
+			'#mobile-menu > li.menu-item-has-children'
+		);
 		const footers = document.querySelectorAll('.mobile footer h2');
 
 		if (isMobile()) {
@@ -319,18 +383,28 @@ document.addEventListener("DOMContentLoaded", () => {
 				initializeToc();
 
 				// Toggle toc visibility on mobile when the user clicks the toc expand button (`tocExpandSelector`)
-				document.querySelector(tocExpandSelector).addEventListener('click', toggleToc);
+				document
+					.querySelector(tocExpandSelector)
+					.addEventListener('click', toggleToc);
 			}
-			mobileNavCategories.forEach(header => header.addEventListener('click', mobileNavClickHandler));
-			footers?.forEach(footer => footer.addEventListener('click', footerClickHandler));
+			mobileNavCategories.forEach((header) =>
+				header.addEventListener('click', mobileNavClickHandler)
+			);
+			footers?.forEach((footer) =>
+				footer.addEventListener('click', footerClickHandler)
+			);
 		} else {
 			if (hasTableOfContents) {
 				initializeToc();
 			}
-			footers?.forEach(footer => footer.removeListener('click', footerClickHandler));
-			mobileNavCategories?.foreach(header => header.removeListener('click', mobileNavClickHandler));
+			footers?.forEach((footer) =>
+				footer.removeListener('click', footerClickHandler)
+			);
+			mobileNavCategories?.foreach((header) =>
+				header.removeListener('click', mobileNavClickHandler)
+			);
 		}
-	}
+	};
 
 	// Toggle `mobileClass` on document.body whenever the media query matches
 	mobileMediaQueryList.addEventListener('change', applyMobile);
