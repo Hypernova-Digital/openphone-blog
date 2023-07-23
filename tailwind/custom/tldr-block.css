@@ -1,27 +1,46 @@
+.tldr-block {
+    @apply p-8 bg-[#F7F5F2] rounded-[10px] cursor-pointer;
+}
+
 .tldr-block .active.content {
-    @apply block;
+    @apply block mt-8;
 }
 
 .tldr-block .content {
     @apply hidden;
 }
 
-.tldr-block .tldr-title {
-    @apply flex flex-row justify-between text-base leading-[1.5];
-	font-weight: 500 !important;
+.tldr-header-container {
+    @apply flex flex-row justify-start items-center gap-4;
 }
 
-.tldr-block .tldr-title::after {
-	@apply block h-6 w-6;
+.tldr-text {
+    @apply text-2xl font-[650] mr-4 border-r border-black border-opacity-10 pr-4 tracking-[-0.23px] leading-[1.2];
+}
+
+.tldr-block > .tldr-header-container > .tldr-title {
+    @apply flex flex-row justify-between grow m-0;
+}
+
+.tldr-block > .tldr-header-container > .tldr-title span {
+    @apply text-base leading-[1.5] font-normal;
+}
+
+.tldr-block > .tldr-header-container > .tldr-title {
+    @apply text-base leading-[1.5] font-normal m-0;
+}
+
+.tldr-title::after {
+	@apply block h-6 w-6 transition-transform;
 	content: "";
 	transform: rotate(180deg);
 	background: url("images/cheveron-down.svg") no-repeat center center;
 }
 
-.tldr-block .tldr-title.active::after {
+.active .tldr-title::after {
 	transform: rotate(0deg);
 }
 
-.tldr-text {
-    @apply text-2xl font-[650] mr-4 border-r border-black border-opacity-10 pr-4 tracking-[-0.23px] leading-[1.2];
+.tldr-header-container :where(h2):not(:where([class~="not-prose"] *)) {
+    margin: 0 !important;
 }

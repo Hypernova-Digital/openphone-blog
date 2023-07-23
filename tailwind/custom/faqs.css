@@ -11,7 +11,7 @@
 }
 
 .schema-faq-question::after {
-	@apply block h-6 w-6;
+	@apply block h-6 w-6 transition-transform;
 	content: "";
 	transform: rotate(180deg);
 	background: url("images/cheveron-down.svg") no-repeat center center;
@@ -29,4 +29,8 @@
 
 .active + p.schema-faq-answer.collapse[style="display: block;"] {
 	display: block !important;
+}
+
+.schema-faq-answer {
+	@apply transition-all;
 }

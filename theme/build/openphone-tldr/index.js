@@ -180,7 +180,7 @@ const {
       style: {
         cursor: 'pointer'
       },
-      className: isAccordionOpen ? 'active' : ''
+      className: isAccordionOpen ? 'active tldr-title' : 'tdlr-title'
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
       tagName: "h2",
       onChange: onChangeTitle,

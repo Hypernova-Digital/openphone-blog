@@ -9,22 +9,30 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 	// Add an event listener to handle accordion clicks on the frontend
-	document.addEventListener('click', function (event) {
-		const target = event.target;
-		const isAccordionTitle =
-		  target.tagName === 'DIV' && target.classList.contains('tldr-header-container');
-	  
-		// Check if the clicked element or its parent is the accordion title container
-		if (isAccordionTitle || target.closest('.tldr-header-container')) {
-		  const accordionTitleContainer = target.closest('.tldr-header-container');
-		  const accordionContent = accordionTitleContainer.nextElementSibling;
-		  accordionTitleContainer.classList.toggle('active');
-		  accordionContent.classList.toggle('active');
-		}
-	  });
-	  
+	const isAccordionTitle = (element) =>
+		element.tagName === 'DIV' &&
+		element.classList.contains('tldr-header-container');
 
-	document.addEventListener('click', function (event) {
+	// Function to handle TLDR block accordion clicks on the frontend
+	const handleAccordionClick = (event) => {
+		const target = event.target;
+		const accordionTitleContainer = target.closest(
+			'.tldr-header-container'
+		);
+
+		// Check if the clicked element or its parent is the accordion title container
+		if (accordionTitleContainer) {
+			const accordionContent = accordionTitleContainer.nextElementSibling;
+			accordionTitleContainer.classList.toggle('active');
+			accordionContent.classList.toggle('active');
+		}
+	};
+
+	// Add an event listener to handle TLDR block accordion clicks
+	document.addEventListener('click', handleAccordionClick);
+
+	// Function to handle FAQs clicks on the frontend
+	const handleFaqClick = (event) => {
 		const target = event.target;
 		const isFaqQuestion =
 			target.classList.contains('schema-faq-question') ||
@@ -42,46 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
 				faqQuestion.classList.toggle('active');
 			}
 		}
-	});
+	};
 
-	// Add an event listener to the document to handle clicks on the FAQ questions
-	document.addEventListener('click', function (event) {
-		const target = event.target;
-
-		// Check if the clicked element or its parent is an FAQ question element
-		const isFaqQuestion =
-			target.classList.contains('schema-faq-question') ||
-			target.closest('.schema-faq-question');
-
-		console.log('isFaqQuestion', isFaqQuestion);
-
-		if (isFaqQuestion) {
-			// Toggle the "active" class on the clicked element or its parent
-			const faqQuestion = isFaqQuestion
-				? target.classList.contains('schema-faq-question')
-					? target
-					: target.closest('.schema-faq-question')
-				: null;
-
-			if (faqQuestion) {
-				faqQuestion.classList.toggle('active');
-				console.log('faqQuestion', faqQuestion);
-			}
-		}
-	});
-
-	document.addEventListener('DOMContentLoaded', function () {
-		// Get all FAQ questions
-		let faqQuestions = document.getElementsByClassName(
-			'schema-faq-question'
-		);
-
-		// Iterate over each question
-		for (let i = 0; i < faqQuestions.length; i++) {
-			// Click each question to close it
-			faqQuestions[i].click();
-		}
-	});
+	// Add an event listener to handle FAQs clicks
+	document.addEventListener('click', handleFaqClick);
 
 	const wpAdminBar = document.getElementById('wpadminbar');
 	const pageHeader = document.getElementById('masthead');
