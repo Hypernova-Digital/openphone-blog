@@ -14,7 +14,8 @@
         "content": {
             "type": "string",
             "source": "html",
-            "selector": ".content"
+            "selector": ".content",
+            "default": "Add your content here!"
         }
     }
 }

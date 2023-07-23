@@ -20,7 +20,7 @@
 }
 
 .tldr-text {
-    @apply text-2xl font-[650] mr-4 border-r border-black border-opacity-10 pr-4 tracking-[-0.23px] leading-[1.2];
+    @apply text-2xl font-[650] border-r border-black border-opacity-10 pr-4 tracking-[-0.23px] leading-[1.2];
 }
 
 .tldr-block > .tldr-header-container > .tldr-title {

@@ -371,6 +371,25 @@ function add_custom_post_variation($variations)
 }
 add_filter('block_editor_settings_all', 'add_custom_post_variation');
 
+function enqueue_my_block_editor_assets() {
+    // Enqueue the block's script
+    wp_enqueue_script(
+        'my-block',
+        get_theme_file_uri( '/build/openphone-cta/index.js' ), // Replace with the correct path to your index.js file
+        array( 'wp-blocks', 'wp-element', 'wp-data' ),
+        filemtime( get_theme_file_path( '/build/openphone-cta/index.js' ) ) // Replace with the correct path to your index.js file
+    );
+
+    // Pass theme URL to the block
+    $theme = wp_get_theme();
+    $theme_data = array(
+        'themeURL' => $theme->get_stylesheet_directory_uri(),
+    );
+    wp_add_inline_script( 'my-block', 'window.themeData = ' . wp_json_encode( $theme_data ) . ';' );
+}
+add_action( 'enqueue_block_editor_assets', 'enqueue_my_block_editor_assets' );
+
+
 function openphone_enqueue_block_assets()
 {
 	wp_enqueue_script(

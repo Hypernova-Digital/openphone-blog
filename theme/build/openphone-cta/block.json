@@ -6,10 +6,27 @@
   "category": "common",
   "editorScript": "file:./index.js",
   "attributes": {
-    "textField": {
+    "title": {
+      "type": "string",
+      "default": "Port now, pay later"
+    },
+    "description": {
       "type": "string",
       "source": "html",
-      "selector": "h2"
+      "selector": "p",
+      "default": "Port your existing business number and join thousands of other businesses already using OpenPhone to communicate better with their customers."
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Learn More"
+    },
+    "buttonLink": {
+      "type": "string",
+      "default": "#"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "inherit"
     }
   }
 }

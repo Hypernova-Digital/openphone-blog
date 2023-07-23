@@ -48,7 +48,7 @@ module.exports = window["wp"]["element"];
   \******************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"openphone/tldr","title":"TLDR: Too Long Didnt Read","icon":"megaphone","category":"common","editorScript":"file:./index.js","attributes":{"title":{"type":"string","source":"html","selector":"h2"},"content":{"type":"string","source":"html","selector":".content"}}}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"openphone/tldr","title":"TLDR: Too Long Didnt Read","icon":"megaphone","category":"common","editorScript":"file:./index.js","attributes":{"title":{"type":"string","source":"html","selector":"h2"},"content":{"type":"string","source":"html","selector":".content","default":"Add your content here!"}}}');
 
 /***/ })
 
