@@ -11,9 +11,26 @@
 }
 
 .featured-resource-block span {
-	@apply mt-8;
+	@apply mt-8 hidden sm:block;
 }
 
 .featured-resource-block {
 	@apply rounded-[10px] border-[1.5px] border-[rgba(0,0,0,0.10)] bg-white;
+}
+
+.featured-resource-block img {
+	@apply w-2/5;
+}
+
+.featured-resource-block {
+	@apply mb-6;
+}
+
+.featured-resource-block:hover {
+	border: 1.5px solid var(--black-900, #000);
+	box-shadow: 4px 4px 0px 0px #000;
+}
+
+.featured-resource-block:hover span {
+	@apply text-purple-900;
 }

@@ -29,7 +29,7 @@ get_header();
         </div>
     </header>
 
-    <main id="main" class="container lg:w-[922px] mx-auto py-12 sm:py-14 md:py-16 lg:py-24 flex flex-col gap-6">
+    <main id="main" class="container lg:w-[922px] mx-auto pb-12 px-6 md:py-16 lg:py-24">
         <?php
         if (have_posts()) :
             while (have_posts()) : the_post();
