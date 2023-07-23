@@ -2,6 +2,11 @@
     @apply p-8 bg-[#F7F5F2] rounded-[10px] cursor-pointer;
 }
 
+.tldr-block:hover {
+    box-shadow: 4px 4px 0px 0px #000;
+    border: 1.5px solid #000;
+}
+
 .tldr-block .active.content {
     @apply block mt-8;
 }
