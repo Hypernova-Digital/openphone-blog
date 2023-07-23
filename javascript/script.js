@@ -8,6 +8,42 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+	// Add an event listener to handle accordion clicks on the frontend
+	document.addEventListener('click', function (event) {
+		const target = event.target;
+		const isAccordionTitle =
+		  target.tagName === 'DIV' && target.classList.contains('tldr-header-container');
+	  
+		// Check if the clicked element or its parent is the accordion title container
+		if (isAccordionTitle || target.closest('.tldr-header-container')) {
+		  const accordionTitleContainer = target.closest('.tldr-header-container');
+		  const accordionContent = accordionTitleContainer.nextElementSibling;
+		  accordionTitleContainer.classList.toggle('active');
+		  accordionContent.classList.toggle('active');
+		}
+	  });
+	  
+
+	document.addEventListener('click', function (event) {
+		const target = event.target;
+		const isFaqQuestion =
+			target.classList.contains('schema-faq-question') ||
+			target.closest('.schema-faq-question');
+
+		// Toggle the "active" class on the accordion question
+		if (isFaqQuestion) {
+			const faqQuestion = isFaqQuestion
+				? target.classList.contains('schema-faq-question')
+					? target
+					: target.closest('.schema-faq-question')
+				: null;
+
+			if (faqQuestion) {
+				faqQuestion.classList.toggle('active');
+			}
+		}
+	});
+
 	// Add an event listener to the document to handle clicks on the FAQ questions
 	document.addEventListener('click', function (event) {
 		const target = event.target;
@@ -34,17 +70,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	});
 
-	document.addEventListener("DOMContentLoaded", function() {
+	document.addEventListener('DOMContentLoaded', function () {
 		// Get all FAQ questions
-		let faqQuestions = document.getElementsByClassName("schema-faq-question");
-		
+		let faqQuestions = document.getElementsByClassName(
+			'schema-faq-question'
+		);
+
 		// Iterate over each question
-		for(let i=0; i < faqQuestions.length; i++){
+		for (let i = 0; i < faqQuestions.length; i++) {
 			// Click each question to close it
 			faqQuestions[i].click();
 		}
 	});
-	
 
 	const wpAdminBar = document.getElementById('wpadminbar');
 	const pageHeader = document.getElementById('masthead');

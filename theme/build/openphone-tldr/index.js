@@ -48,7 +48,7 @@ module.exports = window["wp"]["element"];
   \******************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"openphone/tldr","title":"TLDR: Too Long Didnt Read","icon":"megaphone","category":"common","editorScript":"file:./index.js","attributes":{"textField":{"type":"string","source":"html","selector":"h2"}}}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"openphone/tldr","title":"TLDR: Too Long Didnt Read","icon":"megaphone","category":"common","editorScript":"file:./index.js","attributes":{"title":{"type":"string","source":"html","selector":"h2"},"content":{"type":"string","source":"html","selector":".content"}}}');
 
 /***/ })
 
@@ -141,6 +141,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 const {
   name,
   ...settings
@@ -153,14 +155,62 @@ const {
       setAttributes
     } = props;
     const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)();
+    const [isAccordionOpen, setIsAccordionOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+    const onChangeTitle = title => {
+      setAttributes({
+        title
+      });
+    };
+    const onChangeContent = content => {
+      setAttributes({
+        content
+      });
+    };
+    const onAccordionToggle = () => {
+      setIsAccordionOpen(!isAccordionOpen);
+    };
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ...blockProps
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Hiiiii"), " TLDR");
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "tldr-header-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "tldr-text"
+    }, "TL;DR"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
+      onClick: onAccordionToggle,
+      style: {
+        cursor: 'pointer'
+      },
+      className: isAccordionOpen ? 'active' : ''
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
+      tagName: "h2",
+      onChange: onChangeTitle,
+      value: attributes.title
+    }))), isAccordionOpen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "content"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
+      tagName: "div",
+      onChange: onChangeContent,
+      value: attributes.content
+    })));
   },
   save: ({
     attributes
   }) => {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, attributes.textField), "I'm a block!! TLDR");
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "tldr-block"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "tldr-header-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "tldr-text"
+    }, "TL;DR"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
+      className: "tldr-title"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText.Content, {
+      value: attributes.title
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: `content ${attributes.isOpen ? 'active' : ''}`
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText.Content, {
+      value: attributes.content
+    })));
   }
 });
 })();

@@ -2,31 +2,74 @@ import { useSelect } from '@wordpress/data';
 import { registerBlockType } from '@wordpress/blocks';
 import metadata from './block.json';
 import { useBlockProps } from '@wordpress/block-editor';
-
+import { RichText } from '@wordpress/block-editor';
+import { useState } from '@wordpress/element';
 
 const { name, ...settings } = metadata;
 
 registerBlockType(name, {
-    ...settings,
+	...settings,
 
-    edit: (props) => {
-        const { attributes, setAttributes } = props;
-        const blockProps = useBlockProps();
+	edit: (props) => {
+		const { attributes, setAttributes } = props;
+		const blockProps = useBlockProps();
 
-        return (
-           <div {...blockProps}>
-            <h2>Hiiiii</h2> TLDR
-           </div>
-        );
-    },
+		const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
-    save: ({ attributes }) => {
-        return (
-            <div>
-                <h2>{attributes.textField}</h2>I'm a block!! TLDR
-            </div>
-        );
-    },
+		const onChangeTitle = (title) => {
+			setAttributes({ title });
+		};
+
+		const onChangeContent = (content) => {
+			setAttributes({ content });
+		};
+
+		const onAccordionToggle = () => {
+			setIsAccordionOpen(!isAccordionOpen);
+		};
+
+		return (
+			<div {...blockProps}>
+				<div className="tldr-header-container">
+					<span className="tldr-text">TL;DR</span>
+					<h2
+						onClick={onAccordionToggle}
+						style={{ cursor: 'pointer' }}
+						className={isAccordionOpen ? 'active' : ''}
+					>
+						<RichText
+							tagName="h2"
+							onChange={onChangeTitle}
+							value={attributes.title}
+						/>
+					</h2>
+				</div>
+				{isAccordionOpen && (
+					<div className="content">
+						<RichText
+							tagName="div"
+							onChange={onChangeContent}
+							value={attributes.content}
+						/>
+					</div>
+				)}
+			</div>
+		);
+	},
+
+	save: ({ attributes }) => {
+		return (
+			<div className="tldr-block">
+				<div className="tldr-header-container">
+					<span className="tldr-text">TL;DR</span>
+					<h2 className="tldr-title">
+						<RichText.Content value={attributes.title} />
+					</h2>
+				</div>
+				<div className={`content ${attributes.isOpen ? 'active' : ''}`}>
+					<RichText.Content value={attributes.content} />
+				</div>
+			</div>
+		);
+	},
 });
-
- 

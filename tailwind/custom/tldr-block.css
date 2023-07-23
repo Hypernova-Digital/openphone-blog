@@ -1,0 +1,27 @@
+.tldr-block .active.content {
+    @apply block;
+}
+
+.tldr-block .content {
+    @apply hidden;
+}
+
+.tldr-block .tldr-title {
+    @apply flex flex-row justify-between text-base leading-[1.5];
+	font-weight: 500 !important;
+}
+
+.tldr-block .tldr-title::after {
+	@apply block h-6 w-6;
+	content: "";
+	transform: rotate(180deg);
+	background: url("images/cheveron-down.svg") no-repeat center center;
+}
+
+.tldr-block .tldr-title.active::after {
+	transform: rotate(0deg);
+}
+
+.tldr-text {
+    @apply text-2xl font-[650] mr-4 border-r border-black border-opacity-10 pr-4 tracking-[-0.23px] leading-[1.2];
+}
