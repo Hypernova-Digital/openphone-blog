@@ -20,7 +20,13 @@
 }
 
 .cta-button {
-    @apply bg-purple-900 no-underline px-4 sm:px-8 py-1 sm:py-4 rounded-lg text-base sm:text-[19px] leading-[1.5] font-medium sm:font-semibold;
+    @apply bg-purple-900 no-underline px-4 sm:px-8 py-1 sm:py-4 rounded-lg text-base sm:text-[19px] leading-[1.5] font-medium sm:font-semibold transition-all;
 
+    color: white !important;
+}
+
+a.button.cta-button:hover {
+    border: 1.5px solid #000;
+    box-shadow: 4px 4px 0px 0px #000;
     color: white !important;
 }

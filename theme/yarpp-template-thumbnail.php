@@ -31,7 +31,7 @@ Notes:
 		?>
 			<?php if (has_post_thumbnail()) : ?>
 				
-				<div class="related-thumb grid-cols-1 lg:row-start-2 rounded-md border-[1px] border-black border-opacity-10 overflow-hidden bg-white cursor-pointer">
+				<div class="related-thumb grid-cols-1 lg:row-start-2 rounded-md border-[1px] border-black border-opacity-10 overflow-hidden bg-white cursor-pointer first:mb-4 sm:first:mb-8 md:first:mb-0">
 					<a href="<?php the_permalink(); ?>" rel="bookmark norewrite" title="<?php the_title_attribute(); ?>">
 						<div class="[&_img]:w-full"><?php openphone_post_thumbnail(); ?></div>
 
