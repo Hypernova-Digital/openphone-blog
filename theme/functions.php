@@ -371,23 +371,24 @@ function add_custom_post_variation($variations)
 }
 add_filter('block_editor_settings_all', 'add_custom_post_variation');
 
-function enqueue_my_block_editor_assets() {
-    // Enqueue the block's script
-    wp_enqueue_script(
-        'my-block',
-        get_theme_file_uri( '/build/openphone-cta/index.js' ), // Replace with the correct path to your index.js file
-        array( 'wp-blocks', 'wp-element', 'wp-data' ),
-        filemtime( get_theme_file_path( '/build/openphone-cta/index.js' ) ) // Replace with the correct path to your index.js file
-    );
+function enqueue_my_block_editor_assets()
+{
+	// Enqueue the block's script
+	wp_enqueue_script(
+		'my-block',
+		get_theme_file_uri('/build/openphone-cta/index.js'), // Replace with the correct path to your index.js file
+		array('wp-blocks', 'wp-element', 'wp-data'),
+		filemtime(get_theme_file_path('/build/openphone-cta/index.js')) // Replace with the correct path to your index.js file
+	);
 
-    // Pass theme URL to the block
-    $theme = wp_get_theme();
-    $theme_data = array(
-        'themeURL' => $theme->get_stylesheet_directory_uri(),
-    );
-    wp_add_inline_script( 'my-block', 'window.themeData = ' . wp_json_encode( $theme_data ) . ';' );
+	// Pass theme URL to the block
+	$theme = wp_get_theme();
+	$theme_data = array(
+		'themeURL' => $theme->get_stylesheet_directory_uri(),
+	);
+	wp_add_inline_script('my-block', 'window.themeData = ' . wp_json_encode($theme_data) . ';');
 }
-add_action( 'enqueue_block_editor_assets', 'enqueue_my_block_editor_assets' );
+add_action('enqueue_block_editor_assets', 'enqueue_my_block_editor_assets');
 
 
 function openphone_enqueue_block_assets()
@@ -526,33 +527,36 @@ function openphone_render_next_posts_block($attributes, $content)
 
 			foreach ($next_posts as $post) {
 			?>
-
-				<div class="next-posts-post cursor-pointer snap-center rounded-md border border-[1px] border-opacity-10 border-black w-72 lg:w-1/3 hover:border-opacity-100">
+				<a href="<?php echo get_the_permalink($post['ID']); ?>" class="next-posts-post cursor-pointer snap-center rounded-md border border-[1px] border-opacity-10 border-black w-72 lg:w-1/3 hover:border-opacity-100 no-underline">
 					<div class="overflow-hidden rounded-md">
 						<div class="image w-72 lg:w-full">
-							<a heref="<?php echo get_the_permalink($post['ID']); ?>">
-								<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
-							</a>
+							<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
 						</div>
 
 						<div class="content p-4">
 							<div class="meta">
-								<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline text-purple-900"><?php echo get_the_category_list(', ', '', $post['ID']); ?></span><span class="opacity-10"> | </span>
-								<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
+								<?php
+								$firstCategoryDisplayed = false;
+								foreach (get_categories() as $category) {
+									if ($firstCategoryDisplayed) {
+										break; // Exit the loop after the first category is displayed
+									}
+									echo '<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline text-purple-900">';
+									echo $category->name;
+									echo '</span>';
+									$firstCategoryDisplayed = true;
+								}
+								?>
+								</span><span class="opacity-10"> | </span>
+								<span class="text-[11px] sm:text-xs md:text-sm opacity-70 text-black"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
 								<?php //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
 								?>
 							</div>
 
-							<span><a heref="<?php echo get_the_permalink($post['ID']); ?>" class="title m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold no-underline text-black"><?php echo get_the_title($post['ID']); ?></a></span>
-							<p><?php // echo get_the_excerpt($post['ID']); 
-								?></p>
-							<?php // echo $post['ID']; 
-							?>
-							<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
-							?>
+							<span class="title m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold no-underline text-black"><?php echo get_the_title($post['ID']); ?></span>
 						</div>
 					</div>
-				</div>
+				</a>
 			<?php
 			}
 

@@ -35,3 +35,8 @@
 .entry-content .wp-block-media-text p {
     @apply m-0;
 }
+
+/* to override webP */
+img.wp-image-20341.size-full.webpexpress-processed {
+    margin: 0;
+}
