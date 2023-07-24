@@ -76,7 +76,8 @@ a:hover {
 /* Buttons */
 .wp-element-button,
 .wp-block-button__link {
-	@apply block w-full rounded-[10px] bg-black px-8 text-lg font-semibold md:w-auto;
+	@apply block w-full rounded-[10px] bg-black px-8 py-4 h-8 text-lg font-semibold md:w-auto;
+	height: 40px !important;
 }
 
 .wp-element-button:hover,

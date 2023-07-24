@@ -1,12 +1,12 @@
 .trending-block {
-	@apply m-0 w-full bg-[#190E3D] py-24 text-white;
+	@apply m-0 w-full bg-[#190E3D] py-12 lg:py-24 text-white;
 
 	max-width: 100% !important;
 	color: white !important;
 }
 
 .trending-block h2 {
-	@apply mt-0 text-7xl font-semibold leading-[1] tracking-[-1.44px];
+	@apply mt-0 mb-12 md:mb-16 text-[40px] sm:text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1] tracking-[-0.8px] lg:tracking-[-1.44px];
 	color: white !important;
 }
 
@@ -19,23 +19,23 @@
 }
 
 .trending-block-card img {
-	@apply m-0 rounded-lg;
+	@apply m-0 rounded-lg max-h-32 md:max-h-none object-cover w-full;
 }
 
 .trending-block-cards {
-	@apply grid grid-cols-1 gap-4 lg:grid-cols-3;
+	@apply grid grid-cols-1 gap-4 md:grid-cols-3;
 }
 
 .trending-block-link {
-	@apply text-center text-xl font-semibold leading-[1.2] tracking-[-0.2px] text-black no-underline;
+	@apply text-center text-xl font-semibold leading-[1.2] tracking-[-0.2px] text-black no-underline block w-full;
 }
 
 .trending-block-tags {
-	@apply mt-16 flex flex-row items-center justify-center gap-3;
+	@apply mt-12 lg:mt-16 flex flex-col md:flex-row gap-4 md:items-center justify-center md:gap-3;
 }
 
 .tag-title {
-	@apply text-2xl font-semibold leading-[1.2] tracking-[-0.2px] text-white;
+	@apply text-base lg:text-2xl font-semibold leading-[1.2] tracking-[-0.2px] text-white;
 }
 
 .tag {

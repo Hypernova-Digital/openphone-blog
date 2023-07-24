@@ -229,9 +229,9 @@ const {
       name: "email",
       placeholder: attributes.content,
       className: "rounded-lg border border-black bg-white placeholder:text-slate-400 w-ful",
-      style: "border-radius: 8px;padding-top: 0.5rem;padding-bottom: 0.5rem; padding-left: 1rem; padding-right: 1rem; margin-right: 1rem;"
+      style: "border-radius: 8px;padding-top: 0.5rem;padding-bottom: 0.5rem; padding-left: 1rem; padding-right: 1rem;"
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-      className: "bg-purple-900 px-4 py-2 text-white mt-4 lg:mt-0",
+      className: "bg-purple-900 px-8 py-4 text-white mt-4 lg:mt-0",
       style: "border-radius: 10px;padding-top: 0.5rem;padding-bottom: 0.5rem; padding-left: 1rem; padding-right: 1rem;"
     }, attributes.buttonText)))));
   }

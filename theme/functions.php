@@ -464,13 +464,13 @@ function openphone_render_latest_post_block($attributes, $content)
 	$post = $latest_posts[0];
 	ob_start();
 ?>
-	<div class="latest-post flex flex-col-reverse md:flex-row gap-16 lg:my-12 group cursor-pointer">
+	<div class="latest-post flex flex-col-reverse md:flex-row gap-4 lg:gap-16 lg:my-12 group cursor-pointer">
 		<?php
 		// get link to post
 		$link = get_permalink($post['ID']);
 		?>
 
-		<div class="content mx-6 mt-4 sm:mt-6 sm:mx-8 md:mx-10 lg:mx-0 lg:mt-0">
+		<div class="content mx-6 sm:mt-6 sm:mx-8 md:mx-10 lg:mx-0 lg:mt-0">
 			<div class="meta">
 				<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline no-underline"><?php echo get_the_category_list(', ', '', $post['ID']); ?></span><span class="opacity-10"> | </span>
 				<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
@@ -478,7 +478,7 @@ function openphone_render_latest_post_block($attributes, $content)
 				?>
 			</div>
 			<a href="<?php echo $link; ?>" class="no-underline">
-				<h2 class="mt-3 sm:mt-[14px] md:mt-4 text-3xl sm:text-[40px] md:text-[56px] lg:text-6xl tracking-[-0.6px] leading-[1] mb-0 lg:mb-6 group-hover:text-purple-900"><?php echo get_the_title($post['ID']); ?></h2>
+				<h2 class="mb mt-3 sm:mt-[14px] md:mt-4 text-3xl sm:text-[40px] md:text-[56px] lg:text-6xl tracking-[-0.6px] leading-[1] mb-0 lg:mb-6 group-hover:text-purple-900"><?php echo get_the_title($post['ID']); ?></h2>
 				<p class="hidden md:block opacity-70 text-base"><?php echo get_the_excerpt($post['ID']); ?></p>
 			</a>
 		</div>
@@ -521,7 +521,7 @@ function openphone_render_next_posts_block($attributes, $content)
 	</div>
 
 	<div class="next-posts flex flex-col lg:mb-12">
-		<div class="next-posts-list flex flex-row overflow-scroll snap-x px-6 lg:px-0 pb-6 gap-6">
+		<div class="next-posts-list flex flex-row overflow-scroll snap-x px-6 lg:px-0 pb-14 lg:pb-6 gap-6">
 			<?php
 
 			foreach ($next_posts as $post) {
@@ -661,7 +661,7 @@ function openphone_render_next_posts_block($attributes, $content)
 		<?php if (isset($attributes['showBrowseResources']) && $attributes['showBrowseResources']) : ?>
 			<div class="browse-resources bg-purple-25 lg:w-[1200px] lg:rounded-[10px]">
 				<a href="<?php echo $attributes['browseResourcesLink']; ?>" class="flex flex-row items-center gap-4 px-8 lg:px-4 text-sm sm:text-base lg:text-[19px] text-black no-underline font-medium leading-[1.5]">
-					<img src="<?php echo $attributes['browseResourcesImage']; ?>" alt="" class="resource-image my-4" />
+					<img src="<?php echo $attributes['browseResourcesImage']; ?>" alt="" class="resource-image lg:my-4 my-6" />
 					<?php echo $attributes['browseResourcesText']; ?>
 				</a>
 			</div>
