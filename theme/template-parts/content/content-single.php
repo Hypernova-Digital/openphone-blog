@@ -15,7 +15,28 @@
 	<header class="entry-header bg-purple-50">
 		<div class="header-content md:py-16 lg:max-w-7xl md:mx-auto flex flex-col-reverse md:flex-row lg:gap-16">
 			<div class="header-left md:w-1/2 p-6 sm:p-8 lg:p-0 flex flex-col justify-center">
-				<?php openphone_entry_meta_categories(); ?>
+				<?php
+				function custom_openphone_entry_meta_categories()
+				{
+					$firstCategoryDisplayed = false;
+					$categories = get_the_category();
+
+					foreach ($categories as $category) {
+						if ($firstCategoryDisplayed) {
+							break;
+						}
+
+						echo '<span class="[&_a]:text-sm sm:[&_a]:text-base lg:[&_a]:text-[19px] [&_a]:no-underline text-purple-900 font-semibold">';
+						echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . $category->name . '</a>';
+						echo '</span>';
+
+						$firstCategoryDisplayed = true;
+					}
+				}
+
+				custom_openphone_entry_meta_categories();
+				?>
+
 
 				<?php the_title('<h1 class="entry-title m-0 font-semibold text-3xl sm:text-4xl md:text-6xl">', '</h1>'); ?>
 

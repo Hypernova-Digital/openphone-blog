@@ -48,12 +48,22 @@
 	@apply hidden;
 }
 
-.desktop-nav .menu-item > a + .sub-menu:hover {
+.admin-bar .desktop-nav .menu-item > a + .sub-menu:hover {
 	@apply fixed left-auto top-24 z-[1000] block p-4;
 	box-shadow: 4px 4px 0px 0px #000;
 }
 
+.desktop-nav .menu-item > a + .sub-menu:hover {
+	@apply fixed left-auto top-[4.4rem] z-[1000] block p-4;
+	box-shadow: 4px 4px 0px 0px #000;
+}
+
 .desktop-nav .menu-item:hover > a + .sub-menu {
+	@apply fixed left-auto top-[4.4rem] z-[1000] block rounded-lg border-[1px] border-black bg-white p-4;
+	box-shadow: 4px 4px 0px 0px #000;
+}
+
+.admin-bar .desktop-nav .menu-item:hover > a + .sub-menu {
 	@apply fixed left-auto top-24 z-[1000] block rounded-lg border-[1px] border-black bg-white p-4;
 	box-shadow: 4px 4px 0px 0px #000;
 }
