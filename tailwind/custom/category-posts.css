@@ -2,12 +2,6 @@
 	line-height: 1 !important;
 }
 
-.prose-a\:text-primary
-	.category-posts.title-and-link
-	:is(:where(a):not(:where([class~="not-prose"] *))) {
-	color: black !important;
-}
-
 .category-posts img.webpexpress-processed {
     @apply w-full;
 }

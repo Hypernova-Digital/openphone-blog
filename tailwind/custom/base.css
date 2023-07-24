@@ -70,6 +70,7 @@ ul li::marker {
 }
 
 a:hover {
+	@apply text-purple-900;
 	transition: all 0.3s ease !important;
 }
 

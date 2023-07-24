@@ -36,6 +36,10 @@ get_header();
 						}
 						?>
 					</ul>
+
+					<div>
+						<?php echo do_shortcode('[facetwp facet="categories"]'); ?>
+					</div>
 				</header><!-- .entry-header -->
 		<?php
 			endif;

@@ -259,3 +259,8 @@ iframe {
 .yarpp.yarpp-related.yarpp-related-shortcode.yarpp-template-yarpp-template-thumbnail span a {
 	font-weight: 300;
 }
+
+.related-posts-after-content .related-thumb:hover {
+	@apply border-opacity-100;
+	box-shadow: 4px 4px 0px 0px #000;
+}

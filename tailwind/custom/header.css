@@ -142,7 +142,7 @@
 
 
 @media (min-width: 568px) {
-	.admin-bar .mobile-nav .header-search{
+	.admin-bar .mobile-nav .header-search {
 		top: 39px;
 	}
 }
@@ -157,8 +157,9 @@
 }
 
 @media (min-width: 568px) {
-	.admin-bar .mobile-nav .header-search{
-		top: 80px;
+	.admin-bar .mobile-nav .header-search {
+		top: 70px;
+		right: 330px;
 	}
 }
 
@@ -198,7 +199,8 @@
 
 @media (min-width: 568px) {
 	.admin-bar .mobile-nav button[aria-controls="primary-menu"] {
-		top: 5.5rem;
+		top: 80px;
+		right: 24px;
 	}
 }
 
