@@ -18,7 +18,8 @@
 	@apply rounded-[10px] border-[1.5px] border-[rgba(0,0,0,0.10)] bg-white;
 }
 
-.featured-resource-block img {
+.featured-resource-block img:first-child,
+.featured-resource-block picture:first-child {
 	@apply w-2/5;
 }
 
