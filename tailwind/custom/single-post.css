@@ -46,7 +46,7 @@ article.post {
 
 /* Headings */
 .wp-block-heading {
-	@apply mt-12 mb-8;
+	@apply mt-24 mb-8;
 }
 
 .post .entry-content h2,
@@ -75,13 +75,13 @@ article.post {
 }
 
 /* Body Copy */
-.post .entry-content > p:first-of-type,
+.post.entry-content > p:first-of-type,
 .post-template-default.single.single-post .entry-content > p:first-of-type,
 .post-template-single-image.single.signle-post .entry-content > p:first-of-type,
 .post-template-single-video.single.signle-post
 	.entry-content.prose.prose-neutral
 	> p:first-of-type {
-	@apply mt-8 text-[23px] font-light leading-7 sm:mt-16 md:mt-32 lg:mt-32;
+	@apply mt-8 text-base lg:text-[23px] font-light leading-[1.6] sm:mt-16 md:mt-32 lg:mt-32;
 }
 
 .post .entry-content > p:nth-of-type(2),
@@ -90,7 +90,7 @@ article.post {
 .post-template-single-video.single.signle-post
 	.entry-content.prose.prose-neutral
 	> p:nth-of-type(2) {
-	@apply text-[19px] font-light leading-7 my-12;
+	@apply text-xs sm:text-sm lg:text-[19px] font-light leading-[1.5] my-12;
 }
 
 .post .entry-content > p:first-of-type a,
@@ -100,19 +100,20 @@ article.post {
 	.entry-content.prose.prose-neutral
 	> p:first-of-type
 	a {
-	@apply mt-8 text-xl font-normal leading-7 sm:mt-16 md:mt-32 lg:mt-32;
+	@apply mt-8 text-base lg:text-[23px] font-normal leading-[1.6] sm:mt-16 md:mt-32 lg:mt-32;
 }
 
 .post .entry-content > p:first-of-type,
 .post .entry-content > p:first-of-type a {
-	@apply mt-8 text-xl font-normal leading-7 sm:mt-16 md:mt-32 lg:mt-32;
+	@apply mt-8 text-xs sm:text-sm lg:text-[19px] font-normal leading-[1.6] sm:mt-16 md:mt-32 lg:mt-32;
 }
 
 .post .entry-content p,
 .post .entry-content li,
 .post .entry-content a,
 .post .entry-content strong {
-	@apply text-[19px] font-light leading-6 text-black;
+	@apply text-xs sm:text-sm lg:text-[19px] font-light leading-[1.5s] text-black;
+	line-height: 1.5 !important;
 }
 
 .post .entry-content a:hover {
@@ -120,11 +121,11 @@ article.post {
 }
 
 .post .entry-content strong {
-	@apply text-[19px] font-semibold leading-6 text-black;
+	@apply text-xs sm:text-sm lg:text-[19px] font-semibold leading-6 text-black;
 }
 
 .post .entry-content em {
-	@apply text-[19px] font-light leading-6 text-black;
+	@apply text-xs sm:text-sm lg:text-[19px] font-light leading-6 text-black;
 }
 
 
@@ -140,19 +141,22 @@ article.post {
 	@apply rounded-lg p-10;
 }
 
-.post-template-default.single.single-post .entry-content .callout h1,
-.post-template-default.single.single-post .entry-content .callout h2,
-.post-template-default.single.single-post .entry-content .callout h3,
-.post-template-default.single.single-post .entry-content .callout h4,
-.post-template-default.single.single-post .entry-content .callout h5,
-.post-template-default.single.single-post .entry-content .callout h6 {
-	/* @apply mt-0;
-	margin-top: 0 !important; */
-}
-
 .callout h4.wp-block-heading {
 	@apply mt-0;
 	margin-top: 0 !important;
+}
+
+.post .entry-content blockquote.wp-block-quote,
+.post .entry-content blockquote.wp-block-quote p {
+	@apply text-purple-900 text-2xl lg:text-5xl font-serif border-none p-0 not-italic leading-[1.3] mb-12 lg:my-24;
+}
+
+.prose :where(blockquote p:first-of-type):not(:where([class~="not-prose"] *))::before {
+	content: "" !important;
+}
+
+.prose :where(blockquote p:last-of-type):not(:where([class~="not-prose"] *))::after {
+	content: "" !important;
 }
 
 .lwptoc.lwptoc-autoWidth.lwptoc-baseItems.lwptoc-light.lwptoc-notInherit {
