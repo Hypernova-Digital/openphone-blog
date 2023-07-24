@@ -20,6 +20,11 @@
 .active.schema-faq-question::after {
 	transform: rotate(0deg);
 }
+
+.schema-faq-answer[role="textbox"] {
+	display: block !important;
+}
+
 .schema-faq-answer {
 	display: none !important;
 	font-size: 16px !important;
