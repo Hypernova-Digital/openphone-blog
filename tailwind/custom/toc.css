@@ -30,7 +30,7 @@
 }
 
 .entry-content div#open-phone-toc {
-	@apply sticky right-0 top-44 ml-auto mr-28 h-0 overflow-visible w-72 flex flex-col gap-6 bottom-0 float-right;
+	@apply sticky right-0 top-44 ml-auto mr-28 overflow-visible w-72 flex flex-col gap-6 bottom-0 float-right;
 }
 
 .entry-content div#open-phone-toc a {

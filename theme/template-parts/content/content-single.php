@@ -13,7 +13,7 @@ $bg_color = get_post_meta(get_the_ID(), 'header_bg_color', true);
 
 // If the custom field is empty or not set, use the default value
 if (empty($bg_color)) {
-    $bg_color = 'bg-purple-900';
+	$bg_color = 'bg-purple-900';
 }
 ?>
 
@@ -91,10 +91,10 @@ if (empty($bg_color)) {
 		);
 		?>
 	</div><!-- .entry-content -->
-
-	<footer class="entry-footer w-full bg-[#F7F5F2]">
-		<div class="lg:max-w-7xl py-12 sm:py-14 md:py-24 lg:py-28 mx-auto">
-			<?php openphone_entry_footer(); ?>
-		</div>
-	</footer><!-- .entry-footer -->
 </article><!-- #post-${ID} -->
+
+<footer class="entry-footer w-full bg-[#F7F5F2]">
+	<div class="lg:max-w-7xl py-12 sm:py-14 md:py-24 lg:py-28 mx-auto">
+		<?php openphone_entry_footer(); ?>
+	</div>
+</footer><!-- .entry-footer -->
