@@ -90,7 +90,7 @@
 }
 
 .header-content {
-	@apply mx-auto;
+	@apply mx-auto lg:px-20 min-[1280px]:px-0;
 }
 
 #masthead {

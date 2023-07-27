@@ -13,7 +13,7 @@ $bg_color = get_post_meta(get_the_ID(), 'header_bg_color', true);
 
 // If the custom field is empty or not set, use the default value
 if (empty($bg_color)) {
-	$bg_color = 'bg-purple-900';
+	$bg_color = 'bg-purple-50';
 }
 ?>
 
