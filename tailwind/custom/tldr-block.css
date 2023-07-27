@@ -35,17 +35,36 @@
     @apply text-base leading-[1.5] font-normal m-0;
 }
 
-.tldr-title::after {
+.editor-styles-wrapper .tdlr-title,
+.editor-styles-wrapper .tldr-header-container h2 {
+    @apply flex flex-row justify-between items-center gap-4 m-0;
+    margin: 0 !important;
+}
+
+h2.tdlr-title::after {
 	@apply block h-6 w-6 transition-transform;
 	content: "";
 	transform: rotate(180deg);
 	background: url("images/cheveron-down.svg") no-repeat center center;
 }
 
-.active .tldr-title::after {
+.active.tdlr-title::after {
 	transform: rotate(0deg);
 }
 
-.tldr-header-container :where(h2):not(:where([class~="not-prose"] *)) {
+.tdlr-header-container :where(h2):not(:where([class~="not-prose"] *)),
+.editor-styles-wrapper .prose :where(h2):not(:where([class~="not-prose"] *)) {
+    margin: 0 !important;
+    margin-block-end: 0 !important;
+    margin-block-start: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    
+}
+
+h2.tdlr-title {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
     margin: 0 !important;
 }

@@ -178,13 +178,17 @@ const {
     }, "TL;DR"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
       onClick: onAccordionToggle,
       style: {
-        cursor: 'pointer'
+        cursor: 'pointer',
+        margin: 0
       },
       className: isAccordionOpen ? 'active tldr-title' : 'tdlr-title'
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
       tagName: "h2",
       onChange: onChangeTitle,
-      value: attributes.title
+      value: attributes.title,
+      style: {
+        margin: 0
+      }
     }))), isAccordionOpen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "content"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
@@ -203,7 +207,8 @@ const {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
       className: "tldr-text"
     }, "TL;DR"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
-      className: "tldr-title"
+      className: "tldr-title",
+      style: "margin: 0 !important;"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText.Content, {
       value: attributes.title
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

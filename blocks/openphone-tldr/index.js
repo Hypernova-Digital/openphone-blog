@@ -34,13 +34,14 @@ registerBlockType(name, {
 					<span className="tldr-text">TL;DR</span>
 					<h2
 						onClick={onAccordionToggle}
-						style={{ cursor: 'pointer' }}
+						style={{ cursor: 'pointer', margin: 0 }}
 						className={isAccordionOpen ? 'active tldr-title' : 'tdlr-title'}
 					>
 						<RichText
 							tagName="h2"
 							onChange={onChangeTitle}
 							value={attributes.title}
+							style={{ margin: 0 }}
 						/>
 					</h2>
 				</div>
@@ -62,7 +63,7 @@ registerBlockType(name, {
 			<div className="tldr-block">
 				<div className="tldr-header-container">
 					<span className="tldr-text">TL;DR</span>
-					<h2 className="tldr-title">
+					<h2 className="tldr-title" style="margin: 0 !important;">
 						<RichText.Content value={attributes.title} />
 					</h2>
 				</div>

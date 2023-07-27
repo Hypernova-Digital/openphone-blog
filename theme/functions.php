@@ -719,3 +719,55 @@ function openphone_render_next_posts_block($attributes, $content)
 			}
 			return false;
 		}
+
+		function custom_header_bg_color_meta_box()
+		{
+			add_meta_box(
+				'custom_header_bg_color',
+				__('Header Background Color', 'text-domain'),
+				'render_custom_header_bg_color_meta_box',
+				'post', // Change this to the desired post type, e.g., 'page' for pages
+				'side', // Change 'normal' to 'side'
+				'high'
+			);
+		}
+
+
+		function render_custom_header_bg_color_meta_box($post)
+		{
+			$bg_color = get_post_meta($post->ID, 'header_bg_color', true);
+			$colors = array(
+				'bg-purple-900' => 'Purple',
+				'bg-red-50' => 'Red',
+				'bg-green-50' => 'Green',
+				'bg-blue-50' => 'Blue',
+				'bg-yellow-50' => 'Yellow',
+				'bg-orange-50' => 'Orange',
+				// Add more colors as needed
+			);
+?>
+
+	<label for="header-bg-color"><?php _e('Select Header Background Color:', 'text-domain'); ?></label>
+	<select name="header-bg-color" id="header-bg-color">
+		<?php foreach ($colors as $color_class => $color_name) : ?>
+			<option value="<?php echo esc_attr($color_class); ?>" <?php selected($bg_color, $color_class); ?>><?php echo esc_html($color_name); ?></option>
+		<?php endforeach; ?>
+	</select>
+
+<?php
+		}
+
+		function save_custom_header_bg_color($post_id)
+		{
+			if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+				return;
+			}
+
+			if (isset($_POST['header-bg-color'])) {
+				$bg_color = sanitize_text_field($_POST['header-bg-color']);
+				update_post_meta($post_id, 'header_bg_color', $bg_color);
+			}
+		}
+
+		add_action('add_meta_boxes', 'custom_header_bg_color_meta_box');
+		add_action('save_post', 'save_custom_header_bg_color');

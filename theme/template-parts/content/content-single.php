@@ -8,11 +8,18 @@
  * @package OpenPhone
  */
 
+// Get the custom field value for header background color
+$bg_color = get_post_meta(get_the_ID(), 'header_bg_color', true);
+
+// If the custom field is empty or not set, use the default value
+if (empty($bg_color)) {
+    $bg_color = 'bg-purple-900';
+}
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<header class="entry-header bg-purple-50">
+	<header class="entry-header <?php echo esc_attr($bg_color); ?>">
 		<div class="header-content md:py-16 lg:max-w-7xl md:mx-auto flex flex-col-reverse md:flex-row lg:gap-16">
 			<div class="header-left md:w-1/2 p-6 sm:p-8 lg:p-0 flex flex-col justify-center">
 				<?php

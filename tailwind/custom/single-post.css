@@ -4,7 +4,7 @@
 
 /* Header Styles */
 .post-template-default.single.single-post #masthead {
-	@apply bg-purple-50;
+	/* @apply bg-purple-50; */
 }
 
 .single .entry-content > * {
