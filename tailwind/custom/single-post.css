@@ -182,7 +182,7 @@ article.post {
 }
 
 /* Author box */
-.post-template-default.single.single-post .saboxplugin-wrap {
+.single.single-post .saboxplugin-wrap {
 	@apply rounded-lg bg-purple-50 p-6;
 }
 
@@ -241,7 +241,7 @@ img.avatar.avatar-100.photo {
 	content: "Words By ";
 }
 
-.post-template-default.single.single-post .saboxplugin-wrap .saboxplugin-desc {
+.single.single-post .saboxplugin-wrap .saboxplugin-desc {
 	@apply col-start-1 col-end-2 m-0 w-56 w-full text-left text-xs md:col-start-2 md:col-end-5;
 	display: flex !important;
 }
