@@ -182,3 +182,8 @@ footer .footer-categories aside {
 .mobile footer .footer-categories aside.active h2:after {
 	transform: rotate(180deg);
 }
+
+/* to fix header bg on single posts */
+.bg-white {
+	background: #fff !important;
+}
