@@ -46,3 +46,13 @@
 .prose .category-posts .meta :where(img):not(:where([class~="not-prose"] *)) {
 	@apply w-9 sm:w-14 text-purple-900;
 }
+
+.category-posts-list::-webkit-scrollbar {
+	display: none;
+  }
+  
+
+  .category-posts-list  {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+  }
