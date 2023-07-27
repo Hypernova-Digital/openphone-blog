@@ -14,34 +14,21 @@
 	<div class="header-content lg:max-w-7xl px-6 py-4  lg:px-0 md:py-8 flex flex-row items-center justify-between">
 		<div>
 			<?php
-			if (is_front_page()) :
-
-
-			?><a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+			if (function_exists('get_custom_logo')) {
+				$custom_logo_id = get_theme_mod('custom_logo');
+				$logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+				if (has_custom_logo()) {
+					echo '<a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row gap-2 items-center"><img src="' . esc_url($logo[0]) . '"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
+				} else {
+					echo '<a href="' . esc_url(home_url('/')) . '" rel="home"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
+				}
+			} else { ?>
+				<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
 					<h1 class="logo-and-title">
-						<?php if (function_exists('the_custom_logo')) {
-							the_custom_logo();
-						}
-						bloginfo('name'); ?></h1>
+						<?php bloginfo('name'); ?>
+					</h1>
 				</a>
-			<?php
-			else :
-			?><a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-					<p class="logo-and-title">
-						<?php if (function_exists('the_custom_logo')) {
-							the_custom_logo();
-						}
-						bloginfo('name'); ?></p>
-				</a>
-			<?php
-			endif;
-
-			$openphone_description = get_bloginfo('description', 'display');
-			if ($openphone_description || is_customize_preview()) :
-			?>
-				<p><?php echo $openphone_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					?></p>
-			<?php endif; ?>
+			<?php } ?>
 		</div>
 
 		<?php if (is_active_sidebar('header-ctas')) : ?>
