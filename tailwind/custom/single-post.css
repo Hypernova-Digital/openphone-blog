@@ -42,7 +42,11 @@ article.post {
 
 /* Headings */
 .wp-block-heading {
-	@apply mt-24 mb-8;
+	@apply mt-14 lg:mt-24 mb-8;
+}
+
+.gb-grid-wrapper .wp-block-heading {
+	@apply mt-0;
 }
 
 .post .entry-content h2,
@@ -129,8 +133,16 @@ article.post {
 	@apply text-black;
 }
 
+.prose :where(figure):not(:where([class~="not-prose"] *)) img {
+	@apply m-0;
+}
+
 .entry-content li {
 	@apply mb-[28.5px];
+}
+
+.entry-content li:last-child {
+	@apply mb-0;
 }
 
 .post-template-default.single.single-post .entry-content .callout {
