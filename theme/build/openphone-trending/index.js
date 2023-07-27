@@ -181,15 +181,21 @@ const {
         cards: newCards
       });
     };
-    const onChangeTag = (index, tag) => {
+    const onChangeTag = (index, field, value) => {
       const newTags = [...tags];
-      newTags[index] = tag;
+      newTags[index] = {
+        ...newTags[index],
+        [field]: value
+      };
       setAttributes({
         tags: newTags
       });
     };
     const addTag = () => {
-      const newTags = [...tags, ''];
+      const newTags = [...tags, {
+        text: '',
+        tagLink: ''
+      }];
       setAttributes({
         tags: newTags
       });
@@ -220,12 +226,17 @@ const {
       onChange: link => onChangeCard(index, 'link', link)
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
       onClick: addCard
-    }, "Add Card"), tags.map((tag, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-      key: index,
+    }, "Add Card"), tags.map((tag, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      key: index
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
       label: "Tag",
-      value: tag,
-      onChange: tag => onChangeTag(index, tag)
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+      value: tag.text,
+      onChange: text => onChangeTag(index, 'text', text)
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.URLInput, {
+      label: "Tag Link",
+      value: tag.tagLink,
+      onChange: link => onChangeTag(index, 'tagLink', link)
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
       onClick: addTag
     }, "Add Tag"));
   },
@@ -260,10 +271,11 @@ const {
       className: "tag-title"
     }, "All topics:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "tags"
-    }, tags.map((tag, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    }, tags.map((tag, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
       key: index,
-      className: "tag"
-    }, tag))))));
+      href: tag.tagLink,
+      className: "tag text-white hover:text-white visited:text-whtie no-underline"
+    }, tag.text))))));
   }
 });
 })();

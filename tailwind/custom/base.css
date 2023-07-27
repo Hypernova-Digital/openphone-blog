@@ -184,6 +184,6 @@ footer .footer-categories aside {
 }
 
 /* to fix header bg on single posts */
-.bg-white {
+header.bg-white {
 	background: #fff !important;
 }

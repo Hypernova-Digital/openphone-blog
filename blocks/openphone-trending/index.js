@@ -35,14 +35,14 @@ registerBlockType(name, {
 			setAttributes({ cards: newCards });
 		};
 
-		const onChangeTag = (index, tag) => {
+		const onChangeTag = (index, field, value) => {
 			const newTags = [...tags];
-			newTags[index] = tag;
+			newTags[index] = { ...newTags[index], [field]: value };
 			setAttributes({ tags: newTags });
 		};
 
 		const addTag = () => {
-			const newTags = [...tags, ''];
+			const newTags = [...tags, { text: '', tagLink: '' }];
 			setAttributes({ tags: newTags });
 		};
 
@@ -82,12 +82,18 @@ registerBlockType(name, {
 				))}
 				<Button onClick={addCard}>Add Card</Button>
 				{tags.map((tag, index) => (
-					<TextControl
-						key={index}
-						label="Tag"
-						value={tag}
-						onChange={(tag) => onChangeTag(index, tag)}
-					/>
+					<Fragment key={index}>
+						<TextControl
+							label="Tag"
+							value={tag.text}
+							onChange={(text) => onChangeTag(index, 'text', text)}
+						/>
+						<URLInput
+							label="Tag Link"
+							value={tag.tagLink}
+							onChange={(link) => onChangeTag(index, 'tagLink', link)}
+						/>
+					</Fragment>
 				))}
 				<Button onClick={addTag}>Add Tag</Button>
 			</div>
@@ -120,9 +126,9 @@ registerBlockType(name, {
 
 						<div className="tags">
 							{tags.map((tag, index) => (
-								<span key={index} className="tag">
-									{tag}
-								</span>
+								<a key={index} href={tag.tagLink} className="tag text-white hover:text-white visited:text-whtie no-underline">
+									{tag.text}
+								</a>
 							))}
 						</div>
 					</div>

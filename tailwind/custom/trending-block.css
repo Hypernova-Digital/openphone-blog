@@ -38,8 +38,13 @@
 	@apply text-base lg:text-2xl font-semibold leading-[1.2] tracking-[-0.2px] text-white;
 }
 
-.tag {
+.tag
+a.tag,
+a:link.tag,
+a:visited.tag,
+a:hover.tag {
 	@apply rounded-md bg-white bg-opacity-10 px-4 py-2 text-sm font-semibold leading-[1.5] text-white;
+	color: white !important;
 }
 
 .tags {

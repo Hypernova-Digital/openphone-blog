@@ -737,7 +737,7 @@ function openphone_render_next_posts_block($attributes, $content)
 		{
 			$bg_color = get_post_meta($post->ID, 'header_bg_color', true);
 			$colors = array(
-				'bg-purple-900' => 'Purple',
+				'bg-purple-50' => 'Purple',
 				'bg-red-50' => 'Red',
 				'bg-green-50' => 'Green',
 				'bg-blue-50' => 'Blue',
