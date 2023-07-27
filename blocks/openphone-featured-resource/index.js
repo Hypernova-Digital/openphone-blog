@@ -30,7 +30,7 @@ registerBlockType(name, {
 
 		return (
 			<div {...blockProps} className="flex flex-col justify-center gap-4">
-				<div clqssName="flex flex-row w-full">
+				<div className="flex flex-row w-full">
 					<input
 						type="text"
 						value={attributes.link}

@@ -179,7 +179,7 @@ const {
       ...blockProps,
       className: "flex flex-col justify-center gap-4"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      clqssName: "flex flex-row w-full"
+      className: "flex flex-row w-full"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       type: "text",
       value: attributes.link,
