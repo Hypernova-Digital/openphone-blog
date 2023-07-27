@@ -20,7 +20,7 @@
 	</div>
 </section>
 
-<footer id="colophon" class="p-8 bg-[#F7F5F2] pt-16">
+<footer id="colophon" class="p-8 bg-white pt-16">
 	<div class="footer-categories flex flex-col items-start md:flex-row justify-between container mx-auto md:flex-wrap">
 		<?php if (is_active_sidebar('footer-categories-1')) : ?>
 			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 text-base">
@@ -75,7 +75,7 @@
 		<?php endif; ?>
 	</div>
 
-	<div class="footer-tagline container mx-auto mt-8 md:mt-0 text-xs">
+	<div class="footer-tagline container mx-auto mt-8 md:mt-0 text-xs opacity-60">
 		<?php
 		printf(
 			'© ' . date("Y") . ' OpenPhone Technologies, Inc. All rights reserved.'
