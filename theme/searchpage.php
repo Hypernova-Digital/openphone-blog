@@ -25,7 +25,7 @@ get_header();
 				<?php
 				the_title( '<h1 class="page-title text-center my-6 mx-auto text-[40px] lg:text-[60px]  font-semibold leading-[1] tracking-[-0.8px]">', '</h1>' );
 
-               echo do_shortcode('[ivory-search id="20303" title="Custom Search Form"]');
+               echo do_shortcode('[ivory-search id="20327" title="Custom Search Form"]');
 				?>
 			</header><!-- .page-header -->
 		</main><!-- #main -->

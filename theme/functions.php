@@ -613,25 +613,25 @@ function openphone_render_next_posts_block($attributes, $content)
 		<a href="<?php echo $cat_link; ?>" class="mt-0 mb-6 lg:mb-12 mr-6 no-underline text-sm font-medium text-black w-24  ">See all -></a>
 	</div>
 	<div class="category-posts post-wrapper flex flex-col lg:mb-28 mr-0">
-		<div class="category-posts-list flex flex-row overflow-scroll snap-x px-6 pb-6 gap-6 w-full">
+		<div class="category-posts-list flex flex-row overflow-scroll snap-x px-6 pb-6 gap-6 w-full" style="transition-duration: 100ms !important;">
 
 			<?php
 
 			foreach ($next_posts as $post) {
 				setup_postdata($post);
 			?>
-				<a class="no-underline" href="<?php echo get_permalink($post); ?>">
-					<div class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[35rem]">
-						<div class="rounded-md overflow-hidden">
+				<a class="no-underline transition" href="<?php echo get_permalink($post); ?>" style="transition-duration: 100ms !important;">
+					<div style="transition-duration: 100ms !important;" class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[35rem]">
+						<div class="rounded-md overflow-hidden" style="transition-duration: 100ms !important;">
 							<div class="image w-64 md:w-96 lg:w-[36rem]">
 
 								<img src="<?php echo get_the_post_thumbnail_url($post); ?>" class="m-0 w-full" />
 
 							</div>
 
-							<div class="content p-4 lg:p-6">
-								<div class="meta">
-									<span class="font-semibold text-[11px] sm:text-xs md:text-sm no-underline text-purple-900">
+							<div class="content p-4 lg:p-6" style="transition-duration: 100ms !important;">
+								<div class="meta" style="transition-duration: 100ms !important;">
+									<span class="font-semibold text-[11px] sm:text-xs md:text-sm no-underline text-purple-900" style="transition-duration: 100ms !important;">
 										<?php
 										$categories = get_the_category($post);
 										if (!empty($categories)) {
@@ -640,7 +640,7 @@ function openphone_render_next_posts_block($attributes, $content)
 										?>
 									</span>
 									<span class="opacity-10"> | </span>
-									<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post); ?></span>
+									<span class="text-[11px] sm:text-xs md:text-sm opacity-70" style="transition-duration: 100ms !important;"><?php echo get_the_date('F j, Y', $post); ?></span>
 								</div>
 
 								<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold mt-2"><?php echo get_the_title($post); ?></span>
@@ -685,7 +685,7 @@ function openphone_render_next_posts_block($attributes, $content)
 				),
 				'postsToShow' => array(
 					'type' => 'number',
-					'default' => 10
+					'default' => 5
 				),
 				'preHeader' => array(
 					'type' => 'string',
