@@ -771,3 +771,52 @@ function openphone_render_next_posts_block($attributes, $content)
 
 		add_action('add_meta_boxes', 'custom_header_bg_color_meta_box');
 		add_action('save_post', 'save_custom_header_bg_color');
+
+
+		function custom_layout_option_meta_box()
+		{
+			add_meta_box(
+				'custom_layout_option',
+				__('Layout Option', 'text-domain'),
+				'render_custom_layout_option_meta_box',
+				'post',
+				'side',
+				'high'
+			);
+		}
+
+		function render_custom_layout_option_meta_box($post)
+		{
+			$layout_option = get_post_meta($post->ID, 'layout_option', true);
+			$options = array(
+				'with-toc' => 'With TOC',
+				'without-toc' => 'Without TOC',
+			);
+?>
+	<label for="layout-option"><?php _e('Select Layout Option:', 'text-domain'); ?></label>
+	<select name="layout-option" id="layout-option">
+		<?php foreach ($options as $option_class => $option_name) : ?>
+			<option value="<?php echo esc_attr($option_class); ?>" <?php selected($layout_option, $option_class); ?>><?php echo esc_html($option_name); ?></option>
+		<?php endforeach; ?>
+	</select>
+<?php
+		}
+
+
+		function save_custom_layout_option($post_id)
+		{
+			if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+				return;
+			}
+		
+			if (isset($_POST['layout-option'])) {
+				$layout_option = sanitize_text_field($_POST['layout-option']);
+				update_post_meta($post_id, 'layout_option', $layout_option);
+				error_log("Layout option '$layout_option' saved for post $post_id");
+			} else {
+				error_log("No layout option received for post $post_id");
+			}
+		}
+		
+		add_action('add_meta_boxes', 'custom_layout_option_meta_box');
+		add_action('save_post', 'save_custom_layout_option');

@@ -15,6 +15,14 @@ $bg_color = get_post_meta(get_the_ID(), 'header_bg_color', true);
 if (empty($bg_color)) {
 	$bg_color = 'bg-purple-50';
 }
+
+$layout_option = get_post_meta(get_the_ID(), 'layout_option', true);
+
+// If the custom field is empty or not set, use the default value
+if (empty($layout_option)) {
+	$layout_option = 'with-toc';
+}
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -66,31 +74,34 @@ if (empty($bg_color)) {
 		</div>
 	</header><!-- .entry-header -->
 
-	<div <?php openphone_content_class('entry-content'); ?>>
-		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers. */
-					__('Continue reading<span class="sr-only"> "%s"</span>', 'openphone'),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
-			)
-		);
+	<div class="<?php echo esc_attr($layout_option); ?>">
 
-		wp_link_pages(
-			array(
-				'before' => '<div>' . __('Pages:', 'openphone'),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div><!-- .entry-content -->
+		<div <?php openphone_content_class('entry-content',); ?>>
+			<?php
+			the_content(
+				sprintf(
+					wp_kses(
+						/* translators: %s: Name of current post. Only visible to screen readers. */
+						__('Continue reading<span class="sr-only"> "%s"</span>', 'openphone'),
+						array(
+							'span' => array(
+								'class' => array(),
+							),
+						)
+					),
+					get_the_title()
+				)
+			);
+
+			wp_link_pages(
+				array(
+					'before' => '<div>' . __('Pages:', 'openphone'),
+					'after'  => '</div>',
+				)
+			);
+			?>
+		</div><!-- .entry-content -->
+	</div>
 </article><!-- #post-${ID} -->
 
 <footer class="entry-footer w-full bg-[#F7F5F2]">

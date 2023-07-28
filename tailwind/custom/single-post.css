@@ -11,6 +11,11 @@
 	@apply mx-auto md:ml-24 lg:w-[36rem] lg:ml-10 xl:w-[47.5rem] xl:ml-20 min-[1600px]:ml-40 min-[1800px]:ml-64 min-[2000px]:ml-[22rem] min-[2200px]:ml-[28rem] min-[2400px]:ml-[36rem] min-[2800px]:ml-[48rem];
 }
 
+.single .without-toc .entry-content > * {
+	@apply mx-auto lg:w-[36rem] xl:w-[47.5rem];
+}
+
+
 a[rel="category tag"] {
 	@apply mb-2 text-sm font-semibold leading-5 text-purple-900 sm:text-base lg:text-xl no-underline;
 }
@@ -31,10 +36,8 @@ a[rel="tag"] {
 	@apply hover:text-purple-900;
 }
 
-.entry-content span {
+.entry-content span:not(.lwptoc_item_label) {
 	@apply text-[19px];
-
-	/* font-size: 19px !; */
 }
 
 /* Content & Typography Styles */
