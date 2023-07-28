@@ -5,6 +5,12 @@
 .category-posts img.webpexpress-processed {
 	@apply w-full;
 }
+.category-posts picture,
+.category-posts img.webpexpress-processed {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+}
 
 .category-posts .image {
 	@apply h-36 overflow-hidden lg:h-72;
@@ -60,4 +66,13 @@
 .category-posts-list {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
+}
+
+.black-to-purple-link {
+
+	color: black !important;
+}
+
+.black-to-purple-link:hover {
+color: #6439F5 !important;
 }

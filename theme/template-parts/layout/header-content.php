@@ -18,9 +18,9 @@
 				$custom_logo_id = get_theme_mod('custom_logo');
 				$logo = wp_get_attachment_image_src($custom_logo_id, 'full');
 				if (has_custom_logo()) {
-					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title mt-1">' . get_bloginfo('name') . '</h1></a>';
+					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
 				} else {
-					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title mt-1">' . get_bloginfo('name') . '</h1></a>';
+					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
 				}
 			} else { ?>
 				<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
