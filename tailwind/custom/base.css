@@ -109,7 +109,7 @@ a:hover {
 }
 
 .above-footer .wp-block-button:nth-child(2) .wp-block-button__link {
-	@apply border border-white bg-transparent;
+	@apply border border-white bg-transparent hover:text-white;
 }
 
 .above-footer aside h2 {
