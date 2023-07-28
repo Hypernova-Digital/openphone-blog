@@ -12,15 +12,15 @@
 
 <header id="masthead" class="">
 	<div class="header-content lg:max-w-7xl px-6 py-4  lg:px-0 md:py-8 flex flex-row items-center justify-between">
-		<div>
+		<div class="flex flex-row gap-2 items-center">
 			<?php
 			if (function_exists('get_custom_logo')) {
 				$custom_logo_id = get_theme_mod('custom_logo');
 				$logo = wp_get_attachment_image_src($custom_logo_id, 'full');
 				if (has_custom_logo()) {
-					echo '<a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row gap-2 items-center"><img src="' . esc_url($logo[0]) . '"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
+					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title mt-1">' . get_bloginfo('name') . '</h1></a>';
 				} else {
-					echo '<a href="' . esc_url(home_url('/')) . '" rel="home"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
+					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title mt-1">' . get_bloginfo('name') . '</h1></a>';
 				}
 			} else { ?>
 				<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
