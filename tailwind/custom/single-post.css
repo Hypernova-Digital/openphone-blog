@@ -36,7 +36,7 @@ a[rel="tag"] {
 	@apply hover:text-purple-900;
 }
 
-.entry-content span:not(.lwptoc_item_label) {
+.single .entry-content span:not(.lwptoc_item_label) {
 	@apply text-[19px];
 }
 
