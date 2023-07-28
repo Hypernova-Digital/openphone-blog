@@ -31,6 +31,12 @@ a[rel="tag"] {
 	@apply hover:text-purple-900;
 }
 
+.entry-content span {
+	@apply text-[19px];
+
+	/* font-size: 19px !; */
+}
+
 /* Content & Typography Styles */
 .post .entry-content {
 	@apply px-8 pb-12 md:pb-16 lg:pb-32;
