@@ -35,7 +35,7 @@ registerBlockType(name, {
 					<h2
 						onClick={onAccordionToggle}
 						style={{ cursor: 'pointer', margin: 0 }}
-						className={isAccordionOpen ? 'active tldr-title' : 'tdlr-title'}
+						className={isAccordionOpen ? 'active tldr-title' : 'tldr-title'}
 					>
 						<RichText
 							tagName="h2"

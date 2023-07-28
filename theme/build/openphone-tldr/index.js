@@ -181,7 +181,7 @@ const {
         cursor: 'pointer',
         margin: 0
       },
-      className: isAccordionOpen ? 'active tldr-title' : 'tdlr-title'
+      className: isAccordionOpen ? 'active tldr-title' : 'tldr-title'
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
       tagName: "h2",
       onChange: onChangeTitle,
