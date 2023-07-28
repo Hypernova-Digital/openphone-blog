@@ -5,3 +5,11 @@
 .archive.category #main .navigation.pagination {
     @apply mx-auto;
 }
+
+.archive.category a:hover {
+    @apply text-black;
+}
+
+.archive.category a[rel="category tag"] {
+	@apply text-sm;
+}

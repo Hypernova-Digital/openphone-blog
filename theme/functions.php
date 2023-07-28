@@ -622,13 +622,11 @@ function openphone_render_next_posts_block($attributes, $content)
 				setup_postdata($post);
 			?>
 				<a class="no-underline transition" href="<?php echo get_permalink($post); ?>" style="transition-duration: 100ms !important;">
-					<div style="transition-duration: 100ms !important;" class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[35rem]">
-						<a href="<?php echo get_permalink($post); ?>" class="no-underline">
+					<div style="transition-duration: 100ms !important;" class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[35rem] flex">
+						<a href="<?php echo get_permalink($post); ?>" class="no-underline grow-1 overflow-hidden">
 							<div class="rounded-md overflow-hidden" style="transition-duration: 100ms !important;">
 								<div class="image w-64 md:w-96 lg:w-[36rem]">
-
 									<img src="<?php echo get_the_post_thumbnail_url($post); ?>" class="m-0 w-full" />
-
 								</div>
 
 								<div class="content p-4 lg:p-6" style="transition-duration: 100ms !important;">
@@ -666,7 +664,7 @@ function openphone_render_next_posts_block($attributes, $content)
 		?>
 
 		<?php if (isset($attributes['showBrowseResources']) && $attributes['showBrowseResources']) : ?>
-			<div class="browse-resources bg-purple-25 xl:w-[1200px] lg:rounded-[10px]">
+			<div class="browse-resources bg-purple-25 xl:w-[1200px] lg:rounded-[10px] lg:mt-16">
 				<a href="<?php echo $attributes['browseResourcesLink']; ?>" class="flex flex-row items-center gap-4 px-8 lg:px-4 text-sm sm:text-base lg:text-[19px] text-black no-underline font-medium leading-[1.5]">
 					<img src="<?php echo $attributes['browseResourcesImage']; ?>" alt="" class="resource-image lg:my-4 my-6" />
 					<?php echo $attributes['browseResourcesText']; ?>

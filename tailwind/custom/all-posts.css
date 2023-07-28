@@ -44,6 +44,10 @@
     @apply bg-opacity-100 text-white;
 }
 
+.blog a[rel="category tag"] {
+    @apply text-sm;
+}
+
 .blog .pagination,
 .archive .pagination,
 .search .pagination {
@@ -81,9 +85,32 @@
     color: white !important;
 }
 
-
 .blog .pagination .page-numbers,
 .archive .pagination .page-numbers,
 .search .pagination .page-numbers {
     @apply inline-flex items-center px-4 py-2 rounded-sm border-[1px] border-opacity-5 text-black text-base font-normal;
+}
+
+/* Facet WP Styles */
+.blog .facetwp-radio.checked,
+.blog .facetwp-radio {
+    @apply inline-block px-4 py-2 rounded-md bg-black bg-opacity-5 text-black text-sm;
+    background-image: none;
+}
+
+.blog .facetwp-radio.checked,
+.blog .facetwp-radio:hover {
+    @apply bg-opacity-100 text-white;
+}
+
+.category-list {
+    @apply flex flex-wrap gap-4;
+}
+
+.facetwp-counter {
+    @apply hidden;
+}
+
+.facetwp-facet {
+    @apply flex flex-row flex-wrap gap-4;
 }
