@@ -69,7 +69,8 @@ if (empty($layout_option)) {
 			</div>
 
 			<div class="header-image md:w-1/2">
-				<?php openphone_post_thumbnail(); ?>
+				<?php // openphone_post_thumbnail( 'full' ); ?>
+			 <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>"	/>
 			</div>
 		</div>
 	</header><!-- .entry-header -->
