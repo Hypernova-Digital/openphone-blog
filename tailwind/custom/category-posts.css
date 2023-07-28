@@ -2,11 +2,11 @@
 	line-height: 1 !important;
 }
 
-.category-posts img.webpexpress-processed {
+.category-posts img.thumbnail {
 	@apply w-full;
 }
 .category-posts picture,
-.category-posts img.webpexpress-processed {
+.category-posts img.thumbnail {
     display: block;
     height: 100%;
     object-fit: cover;

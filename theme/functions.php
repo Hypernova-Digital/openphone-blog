@@ -626,7 +626,7 @@ function openphone_render_next_posts_block($attributes, $content)
 						<a href="<?php echo get_permalink($post); ?>" class="no-underline grow-1 overflow-hidden">
 							<div class="rounded-md overflow-hidden" style="transition-duration: 100ms !important;">
 								<div class="image w-64 md:w-96 lg:w-[36rem]">
-									<img src="<?php echo get_the_post_thumbnail_url($post, 'full'); ?>" class="m-0 w-full" />
+									<img src="<?php echo get_the_post_thumbnail_url($post, 'full'); ?>" class="thumbnail m-0 w-full" />
 								</div>
 
 								<div class="content p-4 lg:p-6" style="transition-duration: 100ms !important;">
