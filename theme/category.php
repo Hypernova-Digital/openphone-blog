@@ -18,7 +18,7 @@ get_header();
             <?php the_archive_description('<span class="block text-center opacity-70 text-sm font-normal leading-[1.5]">', '</span>'); ?>
         </div>
     </header>
-	<main id="main" class="max-w-7xl mx-auto flex flex-col md:flex-row flex-wrap justify-between mb-10 px-6 lg:px-0">
+	<main id="main" class="gap-12 [&_article]:mb-6  max-w-7xl mx-auto flex flex-col md:flex-row flex-wrap justify-between mb-10 px-6 lg:px-0">
 
 		<?php if (have_posts()) : ?>
 
