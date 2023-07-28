@@ -513,7 +513,7 @@ function openphone_render_next_posts_block($attributes, $content)
 
 ?>
 	<div class="next-posts title-and-link flex flex-row justify-between items-center lg:mt-12">
-		<div class="mx-6 lg:mx-0 mb-6 mt-12 text-[23px] font-semibold">The Latest</div>
+		<div class="mx-6 lg:mx-0 mb-6 mt-12 text-[23px] font-semibold text-black">The Latest</div>
 		<?php
 		$blog_page = get_option('page_for_posts');
 		$blog_page_link = get_permalink($blog_page);
@@ -598,10 +598,10 @@ function openphone_render_next_posts_block($attributes, $content)
 			$cat_description = $cat->description;
 			?>
 	<?php if ($attributes['preHeader']) : ?>
-		<h4 class="wp-block-heading eyebrows"><?php echo $attributes['preHeader']; ?></h4>
+		<h4 class="wp-block-heading eyebrows text-black"><?php echo $attributes['preHeader']; ?></h4>
 	<?php endif; ?>
 
-	<div class="category-posts title-and-link flex flex-row justify-between items-end lg:mt-12">
+	<div class="category-posts title-and-link flex flex-row justify-between items-end lg:mt-12 text-black">
 		<div class="mx-6 lg:mx-0 mb-6 lg:mb-12 mt-12">
 			<div class="text-[40px] lg:text-7xl font-semibold leading-[1]"><?php echo $cat_name; ?></div>
 			<div class="text-sm lg:text-[19px] opacity-70 mt-4 lg:mt-3"><?php echo $cat_description; ?></div>
