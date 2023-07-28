@@ -23,7 +23,7 @@
 
 	<?php openphone_post_thumbnail(); ?>
 
-	<div <?php openphone_content_class( 'entry-content' ); ?>>
+	<div <?php openphone_content_class( 'entry-content overflow-hidden' ); ?>>
 		<?php
 		the_content();
 
