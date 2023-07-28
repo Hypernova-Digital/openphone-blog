@@ -105,7 +105,8 @@ a:hover {
 }
 
 .above-footer aside h2 {
-	@apply text-4xl font-normal md:text-5xl lg:text-6xl;
+	@apply text-4xl font-medium md:text-5xl lg:text-6xl;
+	font-family: 'Roobert', sans-serif;
 }
 
 .above-footer aside p {
