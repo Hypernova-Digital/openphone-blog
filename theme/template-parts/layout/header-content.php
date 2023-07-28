@@ -32,7 +32,7 @@
 		</div>
 
 		<?php if (is_active_sidebar('header-ctas')) : ?>
-			<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-52 lg:ml-6 header-ctas hidden md:block lg:hidden">
+			<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-52 lg:ml-6 header-ctas hidden md:block xl:hidden">
 				<?php dynamic_sidebar('header-ctas'); ?>
 			</aside>
 		<?php endif; ?>

@@ -251,7 +251,7 @@ const {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "trending-block w-full bg-[#190E3D] text-white"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "container mx-auto px-6 lg:w-[1200px]"
+      className: "container mx-auto px-6 xl:w-[1200px]"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
       className: "text-center"
     }, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

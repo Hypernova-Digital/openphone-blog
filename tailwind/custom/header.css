@@ -249,7 +249,7 @@
 .mobile-nav button[aria-controls="primary-menu"]::before,
 .mobile-nav button[aria-controls="primary-menu"]::after,
 .mobile-nav button[aria-controls="primary-menu"] {
-	@apply lg:hidden;
+	@apply xl:hidden;
 }
 
 .mobile-nav .menu-item a {
