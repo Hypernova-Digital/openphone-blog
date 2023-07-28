@@ -86,12 +86,16 @@ registerBlockType(name, {
 						<TextControl
 							label="Tag"
 							value={tag.text}
-							onChange={(text) => onChangeTag(index, 'text', text)}
+							onChange={(text) =>
+								onChangeTag(index, 'text', text)
+							}
 						/>
 						<URLInput
 							label="Tag Link"
 							value={tag.tagLink}
-							onChange={(link) => onChangeTag(index, 'tagLink', link)}
+							onChange={(link) =>
+								onChangeTag(index, 'tagLink', link)
+							}
 						/>
 					</Fragment>
 				))}
@@ -110,15 +114,15 @@ registerBlockType(name, {
 
 					<div className="trending-block-cards">
 						{cards.map((card, index) => (
-							<div key={index} className="trending-block-card">
-								<a
-									href={card.link}
-									className="trending-block-link"
+							<a href={card.link} className="trending-block-link">
+								<div
+									key={index}
+									className="trending-block-card"
 								>
 									<img src={card.img} alt={card.text} />
 									<h4>{card.text}</h4>
-								</a>
-							</div>
+								</div>
+							</a>
 						))}
 					</div>
 					<div className="trending-block-tags">
@@ -126,7 +130,11 @@ registerBlockType(name, {
 
 						<div className="tags">
 							{tags.map((tag, index) => (
-								<a key={index} href={tag.tagLink} className="tag text-white hover:text-white visited:text-whtie no-underline">
+								<a
+									key={index}
+									href={tag.tagLink}
+									className="tag visited:text-whtie text-white no-underline hover:text-white"
+								>
 									{tag.text}
 								</a>
 							))}

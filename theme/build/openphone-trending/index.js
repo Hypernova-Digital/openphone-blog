@@ -256,12 +256,12 @@ const {
       className: "text-center"
     }, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "trending-block-cards"
-    }, cards.map((card, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      key: index,
-      className: "trending-block-card"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    }, cards.map((card, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
       href: card.link,
       className: "trending-block-link"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      key: index,
+      className: "trending-block-card"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
       src: card.img,
       alt: card.text
@@ -274,7 +274,7 @@ const {
     }, tags.map((tag, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
       key: index,
       href: tag.tagLink,
-      className: "tag text-white hover:text-white visited:text-whtie no-underline"
+      className: "tag visited:text-whtie text-white no-underline hover:text-white"
     }, tag.text))))));
   }
 });

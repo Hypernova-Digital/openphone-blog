@@ -622,33 +622,35 @@ function openphone_render_next_posts_block($attributes, $content)
 			?>
 				<a class="no-underline transition" href="<?php echo get_permalink($post); ?>" style="transition-duration: 100ms !important;">
 					<div style="transition-duration: 100ms !important;" class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[35rem]">
-						<div class="rounded-md overflow-hidden" style="transition-duration: 100ms !important;">
-							<div class="image w-64 md:w-96 lg:w-[36rem]">
+						<a href="<?php echo get_permalink($post); ?>" class="no-underline">
+							<div class="rounded-md overflow-hidden" style="transition-duration: 100ms !important;">
+								<div class="image w-64 md:w-96 lg:w-[36rem]">
 
-								<img src="<?php echo get_the_post_thumbnail_url($post); ?>" class="m-0 w-full" />
+									<img src="<?php echo get_the_post_thumbnail_url($post); ?>" class="m-0 w-full" />
 
-							</div>
-
-							<div class="content p-4 lg:p-6" style="transition-duration: 100ms !important;">
-								<div class="meta" style="transition-duration: 100ms !important;">
-									<span class="font-semibold text-[11px] sm:text-xs md:text-sm no-underline text-purple-900" style="transition-duration: 100ms !important;">
-										<?php
-										$categories = get_the_category($post);
-										if (!empty($categories)) {
-											echo esc_html($categories[0]->name);
-										}
-										?>
-									</span>
-									<span class="opacity-10"> | </span>
-									<span class="text-[11px] sm:text-xs md:text-sm opacity-70" style="transition-duration: 100ms !important;"><?php echo get_the_date('F j, Y', $post); ?></span>
 								</div>
 
-								<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold mt-2"><?php echo get_the_title($post); ?></span>
-								<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
-								?>
-							</div>
+								<div class="content p-4 lg:p-6" style="transition-duration: 100ms !important;">
+									<div class="meta" style="transition-duration: 100ms !important;">
+										<span class="font-semibold text-[11px] sm:text-xs md:text-sm no-underline text-purple-900" style="transition-duration: 100ms !important;">
+											<?php
+											$categories = get_the_category($post);
+											if (!empty($categories)) {
+												echo esc_html($categories[0]->name);
+											}
+											?>
+										</span>
+										<span class="opacity-10"> | </span>
+										<span class="text-[11px] sm:text-xs md:text-sm opacity-70" style="transition-duration: 100ms !important;"><?php echo get_the_date('F j, Y', $post); ?></span>
+									</div>
 
-						</div>
+									<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold mt-2"><?php echo get_the_title($post); ?></span>
+									<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
+									?>
+								</div>
+
+							</div>
+						</a>
 					</div>
 				</a>
 			<?php
@@ -808,7 +810,7 @@ function openphone_render_next_posts_block($attributes, $content)
 			if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
 				return;
 			}
-		
+
 			if (isset($_POST['layout-option'])) {
 				$layout_option = sanitize_text_field($_POST['layout-option']);
 				update_post_meta($post_id, 'layout_option', $layout_option);
@@ -817,6 +819,6 @@ function openphone_render_next_posts_block($attributes, $content)
 				error_log("No layout option received for post $post_id");
 			}
 		}
-		
+
 		add_action('add_meta_boxes', 'custom_layout_option_meta_box');
 		add_action('save_post', 'save_custom_layout_option');
