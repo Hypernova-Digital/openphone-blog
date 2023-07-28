@@ -276,3 +276,9 @@ iframe {
 	@apply border-opacity-100;
 	box-shadow: 4px 4px 0px 0px #000;
 }
+
+.gb-grid-wrapper {
+
+	flex-wrap: nowrap !important;
+	gap: 1rem !important;
+}
