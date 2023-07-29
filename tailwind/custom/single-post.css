@@ -215,29 +215,29 @@ article.post {
 	@apply rounded-lg bg-purple-50 p-6;
 }
 
-.post-template-default.single.single-post .saboxplugin-gravatar {
-	@apply p-0 md:row-span-2;
+.single.single-post .saboxplugin-gravatar {
+	@apply p-0 md:row-span-2 md:col-span-1;
 }
 
-.saboxplugin-tab {
-	@apply grid grid-cols-1 gap-3 text-left md:grid-cols-4 md:grid-rows-2;
+.single.single-post .saboxplugin-tab {
+	@apply grid grid-cols-1 gap-3 text-left md:grid-cols-7 md:grid-rows-2 md:gap-y-3;
 
 	grid-template-rows: auto;
 }
 
 @media (min-width: 880px) {
-	.saboxplugin-tab {
+	.single.single-post .saboxplugin-tab {
 		grid-template-rows: 1rem 1fr;
 	}
 }
 
-.post-template-default.single.single-post
+.single.single-post
 	.saboxplugin-wrap
 	.saboxplugin-authorname {
-	@apply col-start-1 col-end-2 m-0 h-min text-left md:col-start-2 md:col-end-5;
+	@apply col-start-1 col-end-2 m-0 h-min text-left md:col-start-2 md:col-end-8 font-semibold;
 }
 
-.post-template-default.single.single-post
+.single.single-post
 	.saboxplugin-wrap
 	.saboxplugin-gravatar
 	img {
@@ -245,19 +245,20 @@ article.post {
 	vertical-align: baseline;
 }
 
-.post-template-default.single.single-post
+.single.single-post
 	.saboxplugin-wrap
 	.saboxplugin-gravatar {
 	@apply m-0;
 }
 
 img.avatar.avatar-100.photo {
-	@apply md:w-full;
+	@apply md:w-20;
 }
 
-.post-template-default.single.single-post a[rel="author"] {
+.single.single-post a[rel="author"] {
 	@apply text-base font-semibold underline underline-offset-4;
 }
+
 
 .post-template-default.single.single-post
 	.prose-a\:text-primary
@@ -265,20 +266,32 @@ img.avatar.avatar-100.photo {
 	@apply text-black;
 }
 
-.post-template-default.single.single-post .saboxplugin-authorname::before {
-	@apply text-base font-semibold;
+.single.single-post .saboxplugin-authorname::before {
+	@apply text-base lg:text-[19px] font-semibold;
 	content: "Words By ";
 }
 
 .single.single-post .saboxplugin-wrap .saboxplugin-desc {
-	@apply col-start-1 col-end-2 m-0 w-56 w-full text-left text-xs md:col-start-2 md:col-end-5;
+	@apply col-start-1 col-end-2 m-0 w-full text-left text-xs md:col-start-2 md:col-end-8 leading-[1.4] mt-0 md:row-end-3;
 	display: flex !important;
 }
 
-.post-template-default.single.single-post
+.single.single-post .saboxplugin-wrap .clearfix {
+	@apply hidden;
+}
+
+.single.single-post .saboxplugin-wrap .saboxplugin-desc p {
+	@apply m-0;
+}
+
+.single.single-post
 	.saboxplugin-wrap
 	.saboxplugin-authorname {
 	@apply mt-0;
+}
+
+.single.single-post .sab-edit-settings {
+	@apply hidden;
 }
 
 iframe {
