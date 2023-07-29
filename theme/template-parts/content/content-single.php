@@ -41,8 +41,8 @@ if (empty($layout_option)) {
 							break;
 						}
 
-						echo '<span class="[&_a]:text-sm sm:[&_a]:text-base lg:[&_a]:text-[19px] [&_a]:no-underline text-purple-900 font-semibold mb-1">';
-						echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . $category->name . '</a>';
+						echo '<span class="[&_a]:text-sm sm:[&_a]:text-base lg:[&_a]:text-[19px] [&_a]:no-underline font-semibold mb-1">';
+						echo '<a href="' . esc_url(get_category_link($category->term_id)) . '" class="text-purple-900">' . $category->name . '</a>';
 						echo '</span>';
 
 						$firstCategoryDisplayed = true;

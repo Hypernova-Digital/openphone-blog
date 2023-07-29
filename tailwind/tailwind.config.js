@@ -1,5 +1,6 @@
 // Set the Preflight flag based on the build target.
 const includePreflight = 'editor' === process.env._TW_TARGET ? false : true;
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
 	presets: [
@@ -57,8 +58,12 @@ module.exports = {
 			},
 			animation: {
 				slideDown: 'slideDown 0.35s',
-			}
-		},
+			},
+			fontFamily: {
+				'inter': ['Inter', ...defaultTheme.fontFamily.sans],
+				'roobert': ['Roobert', 'sans-serif'],
+			},
+		},	  
 	},
 	corePlugins: {
 		// Disable Preflight base styles in builds targeting the editor.

@@ -20,7 +20,7 @@
 	</div>
 </section>
 
-<footer id="colophon" class="p-8 bg-white pt-16">
+<footer id="colophon" class="p-8 bg-white pt-16 lg:py-20 lg:px-0 lg:max-w-7xl mx-auto">
 	<div class="footer-categories flex flex-col items-start md:flex-row justify-between container mx-auto md:flex-wrap">
 		<?php if (is_active_sidebar('footer-categories-1')) : ?>
 			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 text-base">
@@ -59,9 +59,9 @@
 		<?php endif; ?>
 	</div>
 
-	<hr class="bg-[rgba(0, 0, 0, 0.10)] container mx-auto my-8 md:my-16">
+	<hr class="bg-[rgba(0, 0, 0, 0.10)] container mx-auto my-8 md:my-16 lg:max-w-7xl">
 
-	<div class="footer-widgets-bottom flex flex-col md:flex-row justify-between container mx-auto">
+	<div class="footer-widgets-bottom flex flex-col md:flex-row justify-between container mx-auto lg:max-w-7xl">
 		<?php if (is_active_sidebar('footer-1')) : ?>
 			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="md:w-1/3 md:mr-auto">
 				<?php dynamic_sidebar('footer-1'); ?>
@@ -69,7 +69,7 @@
 		<?php endif; ?>
 
 		<?php if (is_active_sidebar('footer-2')) : ?>
-			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="md:w-1/3 md:ml-auto mt-8 md:mt-0">
+			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="md:w-1/4 md:ml-auto mt-8 md:mt-0">
 				<?php dynamic_sidebar('footer-2'); ?>
 			</aside>
 		<?php endif; ?>
