@@ -114,6 +114,34 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 });
 
+/**
+ * This function adds the bg-color class from the single post header to the site's header.
+ */
+function addBgColorClassToSiteHeader() {
+	// Get the single post header
+	const postHeader = document.querySelector('.entry-header');
+
+	// Check if postHeader exists
+	if (postHeader) {
+		// Get all classes of the post header
+		const classes = postHeader.className.split(/\s+/);
+
+		// Filter out the bg-color class
+		const bgColorClass = classes.find((cls) => cls.startsWith('bg-'));
+
+		// If a bg-color class is found
+		if (bgColorClass) {
+			// Get the site's header
+			const siteHeader = document.getElementById('masthead');
+
+			// Add the bg-color class to the site's header
+			siteHeader.classList.add(bgColorClass);
+		}
+	}
+}
+
+document.addEventListener('DOMContentLoaded', addBgColorClassToSiteHeader);
+
 // Config
 
 // Set this to false before shipping
