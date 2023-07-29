@@ -17,19 +17,19 @@ get_header();
 ?>
 
 <script>
-jQuery(document).on('facetwp-loaded', function() {
-    // Extract the category from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get('_categories');
+	jQuery(document).on('facetwp-loaded', function() {
+		// Extract the category from the URL
+		const urlParams = new URLSearchParams(window.location.search);
+		const category = urlParams.get('_categories');
 
-    // If a category is selected, update the title
-    if (category) {
-        jQuery('header.entry-header h1.entry-title').text(decodeURIComponent(category));
-    } else {
-        // If no category is selected, set the title back to "All Posts"
-        jQuery('header.entry-header h1.entry-title').text('All Posts');
-    }
-});
+		// If a category is selected, update the title
+		if (category) {
+			jQuery('header.entry-header h1.entry-title').text(decodeURIComponent(category));
+		} else {
+			// If no category is selected, set the title back to "All Posts"
+			jQuery('header.entry-header h1.entry-title').text('All Posts');
+		}
+	});
 </script>
 
 
@@ -43,16 +43,16 @@ jQuery(document).on('facetwp-loaded', function() {
 			if (is_home() && !is_front_page()) :
 		?>
 				<header class="entry-header col-span-1 md:col-span-2 lg:col-span-3">
-					<h1 class="entry-title mx-0  lg:text-[90px] mt-20 mb-8 lg:h-20 leading-[1] capitalize"><?php single_post_title(); ?></h1>
+					<h1 class="entry-title mx-0  lg:text-[90px] mt-20 mb-8 lg:h-20 leading-[1] capitalize max-w-max"><?php single_post_title(); ?></h1>
 				</header><!-- .entry-header -->
 			<?php
 			endif;
 
 			?>
-			<div class="facetwp-template col-span-1 md:col-span-2 lg:col-span-3">
+			<div class="col-span-1 md:col-span-2 lg:col-span-3">
 				<?php echo do_shortcode('[facetwp facet="categories"]'); ?>
 			</div>
-			<!--fwp-loop-->
+		<!--fwp-loop-->
 		<?php
 			while (have_posts()) {
 				the_post();

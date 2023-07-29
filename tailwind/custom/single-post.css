@@ -45,16 +45,16 @@ article.post {
 }
 
 /* Headings */
-.single h2.wp-block-heading,
-.single h2.wp-block-heading > span {
+.single .entry-content h2.wp-block-heading,
+.single .entry-content h2.wp-block-heading > span {
 	@apply mb-8 mt-14 lg:mt-24 text-5xl;
 }
 
-h2.wp-block-heading + * {
+.entry-content .wp-block-heading + * {
 	@apply mt-8;
 }
 
-.wp-block-heading {
+.entry-content .wp-block-heading {
 	@apply mb-8 mt-6 lg:mt-12;
 }
 
@@ -312,3 +312,5 @@ iframe {
 	flex-wrap: nowrap !important;
 	gap: 1rem !important;
 }
+
+
