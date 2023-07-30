@@ -621,37 +621,37 @@ function openphone_render_next_posts_block($attributes, $content)
 			foreach ($next_posts as $post) {
 				setup_postdata($post);
 			?>
-				<a class="no-underline transition" href="<?php echo get_permalink($post); ?>" style="transition-duration: 100ms !important;">
-					<div style="transition-duration: 100ms !important;" class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[35rem] flex">
-						<a href="<?php echo get_permalink($post); ?>" class="no-underline grow-1 overflow-hidden">
-							<div class="rounded-md overflow-hidden" style="transition-duration: 100ms !important;">
-								<div class="image w-64 md:w-96 lg:w-[36rem]">
-									<img src="<?php echo get_the_post_thumbnail_url($post, 'full'); ?>" class="thumbnail m-0 w-full" />
-								</div>
-
-								<div class="content p-4 lg:p-6" style="transition-duration: 100ms !important;">
-									<div class="meta" style="transition-duration: 100ms !important;">
-										<span class="font-semibold text-[11px] sm:text-xs md:text-sm no-underline text-purple-900" style="transition-duration: 100ms !important;">
-											<?php
-											$categories = get_the_category($post);
-											if (!empty($categories)) {
-												echo esc_html($categories[0]->name);
-											}
-											?>
-										</span>
-										<span class="opacity-10"> | </span>
-										<span class="text-[11px] sm:text-xs md:text-sm opacity-70" style="transition-duration: 100ms !important;"><?php echo get_the_date('F j, Y', $post); ?></span>
-									</div>
-
-									<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold mt-2"><?php echo get_the_title($post); ?></span>
-									<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
-									?>
-								</div>
-
+				<!-- <a class="no-underline transition" href="<?php echo get_permalink($post); ?>" style="transition-duration: 100ms !important;"> -->
+				<div style="transition-duration: 100ms !important;" class="category-posts-post snap-center md:snap-start rounded-md border-[1px] border-opacity-10 border-black w-full lg:w-[35rem] flex">
+					<a href="<?php echo get_permalink($post); ?>" class="no-underline grow-1 overflow-hidden">
+						<div class="rounded-md overflow-hidden" style="transition-duration: 100ms !important;">
+							<div class="image w-64 md:w-96 lg:w-[36rem]">
+								<img src="<?php echo get_the_post_thumbnail_url($post, 'full'); ?>" class="thumbnail m-0 w-full" />
 							</div>
-						</a>
-					</div>
-				</a>
+
+							<div class="content p-4 lg:p-6" style="transition-duration: 100ms !important;">
+								<div class="meta" style="transition-duration: 100ms !important;">
+									<span class="font-semibold text-[11px] sm:text-xs md:text-sm no-underline text-purple-900" style="transition-duration: 100ms !important;">
+										<?php
+										$categories = get_the_category($post);
+										if (!empty($categories)) {
+											echo esc_html($categories[0]->name);
+										}
+										?>
+									</span>
+									<span class="opacity-10"> | </span>
+									<span class="text-[11px] sm:text-xs md:text-sm opacity-70" style="transition-duration: 100ms !important;"><?php echo get_the_date('F j, Y', $post); ?></span>
+								</div>
+
+								<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold mt-2"><?php echo get_the_title($post); ?></span>
+								<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
+								?>
+							</div>
+
+						</div>
+					</a>
+				</div>
+				<!-- </a> -->
 			<?php
 				wp_reset_postdata();
 			}
@@ -756,6 +756,8 @@ function openphone_render_next_posts_block($attributes, $content)
 	</select>
 
 <?php
+
+			// Custom Field Settings 
 		}
 
 		function save_custom_header_bg_color($post_id)
@@ -821,3 +823,40 @@ function openphone_render_next_posts_block($attributes, $content)
 
 		add_action('add_meta_boxes', 'custom_layout_option_meta_box');
 		add_action('save_post', 'save_custom_layout_option');
+
+
+
+		function custom_search_shortcode_meta_box()
+		{
+			add_meta_box(
+				'custom_search_shortcode',
+				__('Search Shortcode', 'text-domain'),
+				'render_custom_search_shortcode_meta_box',
+				'page',  // or 'post', if you want this metabox to show up on posts
+				'side',
+				'high'
+			);
+		}
+		add_action('add_meta_boxes', 'custom_search_shortcode_meta_box');
+
+		function render_custom_search_shortcode_meta_box($post)
+		{
+			$search_shortcode = get_post_meta($post->ID, 'search_field', true);
+?>
+	<label for="search-shortcode"><?php _e('Enter Search Shortcode:', 'text-domain'); ?></label>
+	<input type="text" id="search-shortcode" name="search-shortcode" value="<?php echo esc_attr($search_shortcode); ?>" />
+<?php
+		}
+
+		function save_custom_search_shortcode($post_id)
+		{
+			if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+				return;
+			}
+
+			if (isset($_POST['search-shortcode'])) {
+				$search_shortcode = sanitize_text_field($_POST['search-shortcode']);
+				update_post_meta($post_id, 'search_field', $search_shortcode);
+			}
+		}
+		add_action('save_post', 'save_custom_search_shortcode');

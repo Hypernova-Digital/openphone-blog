@@ -48,7 +48,5 @@ a:hover.tag {
 }
 
 .tags {
-	display: flex;
-	align-items: flex-start;
-	gap: 12px;
+	@apply flex justify-start flex-wrap gap-3;
 }
