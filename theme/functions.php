@@ -621,7 +621,7 @@ function openphone_render_next_posts_block($attributes, $content)
 		</div>
 	</div>
 	<?php if (isset($attributes['showBrowseResources']) && $attributes['showBrowseResources']) : ?>
-		<div class="browse-resources bg-purple-25 xl:w-[1200px] lg:rounded-[10px] lg:mt-16 lg:mb-28 xl:mb-32">
+		<div class="browse-resources bg-purple-25 lg:w-[880px] xl:w-[1200px] lg:rounded-[10px] lg:mt-16 lg:mb-28 xl:mb-32">
 			<a href="<?php echo $attributes['browseResourcesLink']; ?>" class="black-to-purple-link flex flex-row items-center gap-4 px-8 lg:px-4 text-sm sm:text-base lg:text-[19px] text-black no-underline font-medium leading-[1.5]">
 				<img src="<?php echo $attributes['browseResourcesImage']; ?>" alt="" class="resource-image lg:my-4 my-6" />
 				<?php echo $attributes['browseResourcesText']; ?>
