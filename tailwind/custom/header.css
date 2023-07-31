@@ -6,30 +6,35 @@
 	@apply hidden;
 }
 
-@media (min-width: 1280px) {
-	.desktop-nav {
-		@apply visible flex w-max;
+.desktop-nav {
+	@apply lg:visible lg:flex w-max;
+}
+
+.sticky-nav {
+	@apply animate-slideDown sticky top-0 z-50;
+}
+
+@media screen and (max-width: 880px) {
+	.sticky-nav {
+		top: 0;
 	}
 }
 
-/* change to 880px later */
-@media (min-width: 880px) {
-	.mobile-nav {
-		@apply hidden;
-	}
+/* this is hidden by default in the markup */
+.scroll-progress-bar {
+	@apply md:h-[4px] md:w-full md:bg-transparent md:align-bottom;
+}
 
-	.sticky-nav {
-		@apply animate-slideDown sticky top-0 z-50;
-	}
+.scroll-progress-value {
+	@apply md:h-full md:w-0 md:bg-purple-900;
+}
 
-	/* this is hidden by default in the markup */
-	.scroll-progress-bar {
-		@apply h-[4px] w-full bg-transparent align-bottom;
-	}
+.mobile-nav {
+	@apply md:hidden;
+}
 
-	.scroll-progress-value {
-		@apply h-full w-0 bg-purple-900;
-	}
+.mobile-nav .header-search {
+	@apply md:hidden;
 }
 
 .desktop-nav .header-search {
@@ -93,16 +98,8 @@
 	@apply mx-auto lg:px-20 min-[1280px]:px-0;
 }
 
-#masthead {
-	/* @apply sticky top-0; */
-}
-
-.admin-bar #masthead {
-	/* @apply sticky top-8; */
-}
-
-#masthead a > img {
-	width:152px;
+#masthead .site-logo {
+	width: 152px;
 }
 
 .logo-and-title {
@@ -123,7 +120,7 @@
 }
 
 #masthead .wp-block-button .wp-block-button__link.wp-element-button {
-	@apply px-[14px] py-2 text-[15px] leading-[1.5];
+	@apply px-3 py-1 xl:py-2 xl:px-4 text-[15px] leading-[1.5];
 }
 
 .mobile-nav {
@@ -154,27 +151,47 @@
 	right: 40px;
 }
 
-
-@media (min-width: 568px) {
-	.admin-bar .mobile-nav .header-search {
-		top: 39px;
-	}
+.admin-bar .header-search {
+	@apply absolute right-[40px] top-[3.8rem] mr-4 h-6 w-6 sm:top-[4.375rem] wpmd:top-[3.375rem] sm:mr-[16.8rem] lg:mr-0 lg:relative lg:top-0 lg:right-0;
 }
 
+.header-search {
+	@apply absolute right-[40px] top-[3.8rem] mr-4 h-6 w-6 sm:top-[1.375rem] wpmd:top-[1.375rem] sm:mr-[16.8rem] lg:mr-0 lg:relative lg:top-0 lg:right-0;
+}
 
 .admin-bar .mobile-nav .header-search {
-	@apply mr-4 h-6 w-6;
+	@apply sm:top-[70px] sm:hidden;
+}
+
+.admin-bar .sticky-nav .header-search {
+	@apply top-[1.8rem] sm:top-[1.4rem] lg:top-0;
+}
+
+.sticky-nav .header-search {
+	@apply top-[1.8rem] sm:top-[1.4rem] lg:top-0;
+}
+
+.admin-bar .sticky-nav .mobile-nav .header-search {
+	@apply top-4 mr-4 h-6 w-6;
 
 	position: absolute;
-	top: 60px;
 	right: 40px;
 }
 
-@media (min-width: 568px) {
-	.admin-bar .mobile-nav .header-search {
-		top: 70px;
-		right: 330px;
-	}
+
+.mobile-nav .header-search {
+	@apply sm:top-[70px] sm:hidden;
+}
+
+.sticky-nav .header-search {
+	@apply top-[1.8rem] sm:top-[1.4rem] lg:top-0;
+}
+
+.sticky-nav .mobile-nav .header-search {
+	@apply top-4 mr-4 h-6 w-6;
+
+	position: absolute;
+	right: 40px;
 }
 
 .mobile-nav .menu-openphone-menu-container[style="display: block;"] {
@@ -185,10 +202,8 @@
 	@apply h-[70vh] sm:h-[100vh];
 }
 
-@media (min-width: 880px) {
-	.mobile-nav .header-search {
-		@apply hidden;
-	}
+.menu-openphone-menu-container[style="display: block;"] {
+	@apply h-[70vh] sm:h-[100vh];
 }
 
 .mobile-nav button[aria-controls="primary-menu"] {
@@ -204,18 +219,16 @@
 	}
 }
 
-.admin-bar .mobile-nav button[aria-controls="primary-menu"] {
-	@apply h-[2px] w-6 bg-black;
-	position: absolute;
-	top: 4.4rem;
-	right: 1rem;
+.admin-bar .sticky-nav .mobile-nav button[aria-controls="primary-menu"] {
+	@apply absolute top-[1.6rem] right-4 h-[2px] w-6 bg-black sm:top-[2rem] sm:right-6 md:top-[2.2rem];
 }
 
-@media (min-width: 568px) {
-	.admin-bar .mobile-nav button[aria-controls="primary-menu"] {
-		top: 80px;
-		right: 24px;
-	}
+.admin-bar .mobile-nav button[aria-controls="primary-menu"] {
+	@apply absolute h-[2px] w-6 bg-black top-[4.4rem] right-[1rem] sm:top-[4.8rem] sm:right-6 wpmd:top-[3.875rem];
+}
+
+.mobile-nav button[aria-controls="primary-menu"] {
+	@apply absolute h-[2px] w-6 bg-black top-[1.6rem] right-[1rem] sm:top-[1.8rem] sm:right-6 wpmd:top-[1.875rem];
 }
 
 .mobile-nav button[aria-controls="primary-menu"][aria-expanded="true"] {
@@ -253,7 +266,7 @@
 .mobile-nav button[aria-controls="primary-menu"]::before,
 .mobile-nav button[aria-controls="primary-menu"]::after,
 .mobile-nav button[aria-controls="primary-menu"] {
-	@apply xl:hidden;
+	@apply lg:hidden;
 }
 
 .mobile-nav .menu-item a {

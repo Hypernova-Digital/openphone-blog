@@ -210,7 +210,7 @@ const {
     attributes
   }) => {
     const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps.save({
-      className: 'openphone-email-signup mx-0 bg-purple-50 p-4',
+      className: 'openphone-email-signup mx-0 bg-purple-50 p-6',
       style: 'max-width: 100%;'
     });
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -218,8 +218,10 @@ const {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-32 flex flex-col md:flex-row items-center"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
-      className: "m-0 text-3xl tracking-[-0.6px] leading-[1] font-bold text-black"
-    }, attributes.headingText), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "m-0 text-3xl tracking-[-0.6px] leading-[1] font-bold text-black md:w-1/2"
+    }, attributes.headingText), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "md:w-1/2"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
       className: "block mb-4 text-black opacity-70"
     }, attributes.subscribeText), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
       className: "mt-4 flex flex-col md:flex-row"

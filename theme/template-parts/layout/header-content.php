@@ -11,16 +11,16 @@
 ?>
 
 <header id="masthead" class="">
-	<div class="header-content lg:max-w-7xl px-6 py-4 xl:px-0 md:py-8 flex flex-row items-center justify-between">
+	<div class="header-content lg:max-w-7xl px-6 py-4 md:px-4 xl:px-0 xl:py-8 flex flex-row items-center justify-between">
 		<div class="flex flex-row gap-2 items-center">
 			<?php
 			if (function_exists('get_custom_logo')) {
 				$custom_logo_id = get_theme_mod('custom_logo');
 				$logo = wp_get_attachment_image_src($custom_logo_id, 'full');
 				if (has_custom_logo()) {
-					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
+					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '" class="site-logo"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
 				} else {
-					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
+					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '" class="site-logo"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
 				}
 			} else { ?>
 				<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
@@ -32,8 +32,14 @@
 		</div>
 
 		<?php if (is_active_sidebar('header-ctas')) : ?>
-			<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-52 lg:ml-6 header-ctas hidden lg:block xl:hidden">
+			<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-auto mr-[2.6rem] md:mr-14 header-ctas hidden sm:block lg:hidden md:justify-self-end lg:justify-self-auto">
 				<?php dynamic_sidebar('header-ctas'); ?>
+			</aside>
+		<?php endif; ?>
+
+		<?php if (is_active_sidebar('header-search')) : ?>
+			<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="hidden sm:block lg:hidden header-search">
+				<?php dynamic_sidebar('header-search'); ?>
 			</aside>
 		<?php endif; ?>
 

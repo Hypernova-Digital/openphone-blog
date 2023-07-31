@@ -11,7 +11,7 @@
 ?>
 
 <section class="above-footer px-6 py-12 md:p-16 text-white bg-purple-900">
-	<div class="container max-w-[992px] mx-auto text-center">
+	<div class="max-w-[992px] mx-auto text-center">
 		<?php if (is_active_sidebar('footer-ctas')) : ?>
 			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 text-base [&_h2]:mt-0">
 				<?php dynamic_sidebar('footer-ctas'); ?>
@@ -21,7 +21,7 @@
 </section>
 
 <footer id="colophon" class="p-8 bg-white pt-16 lg:py-20 lg:px-0 lg:max-w-7xl mx-auto">
-	<div class="footer-categories flex flex-col items-start md:flex-row justify-between container mx-auto md:flex-wrap">
+	<div class="footer-categories flex flex-col items-start md:flex-row justify-between mx-auto md:flex-wrap">
 		<?php if (is_active_sidebar('footer-categories-1')) : ?>
 			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 text-base">
 				<?php dynamic_sidebar('footer-categories-1'); ?>
@@ -59,9 +59,9 @@
 		<?php endif; ?>
 	</div>
 
-	<hr class="bg-[rgba(0, 0, 0, 0.10)] container mx-auto my-8 md:my-16 lg:max-w-7xl">
+	<hr class="bg-[rgba(0, 0, 0, 0.10)] mx-auto my-8 md:my-16 lg:max-w-7xl">
 
-	<div class="footer-widgets-bottom flex flex-col md:flex-row justify-between container mx-auto lg:max-w-7xl">
+	<div class="footer-widgets-bottom flex flex-col md:flex-row justify-between mx-auto lg:max-w-7xl">
 		<?php if (is_active_sidebar('footer-1')) : ?>
 			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="md:w-1/3 md:mr-auto">
 				<?php dynamic_sidebar('footer-1'); ?>
@@ -75,7 +75,7 @@
 		<?php endif; ?>
 	</div>
 
-	<div class="footer-tagline container mx-auto mt-8 md:mt-0 text-xs opacity-60">
+	<div class="footer-tagline mx-auto mt-8 md:mt-0 text-xs opacity-60">
 		<?php
 		printf(
 			'© ' . date("Y") . ' OpenPhone Technologies, Inc. All rights reserved.'

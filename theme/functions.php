@@ -483,7 +483,7 @@ function openphone_render_latest_post_block($attributes, $content)
 				<p class="hidden md:block opacity-70 text-base"><?php echo get_the_excerpt($post['ID']); ?></p>
 			</a>
 		</div>
-		<div class="image max-w-2xl">
+		<div class="image lg:max-w-2xl">
 			<a href="<?php echo $link; ?>">
 				<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
 			</a>
@@ -518,7 +518,7 @@ function openphone_render_next_posts_block($attributes, $content)
 		$blog_page = get_option('page_for_posts');
 		$blog_page_link = get_permalink($blog_page);
 		?>
-		<a href="<?php echo $blog_page_link; ?>" class="black-to-purple-link mt-4 mr-6 no-underline text-sm font-medium text-black hover:text-purple-900">See all -></a>
+		<a href="<?php echo $blog_page_link; ?>" class="black-to-purple-link mt-4 mr-6 lg:mr-0 no-underline text-sm font-medium text-black hover:text-purple-900">See all -></a>
 	</div>
 
 	<div class="next-posts flex flex-col lg:mb-12">
@@ -613,7 +613,7 @@ function openphone_render_next_posts_block($attributes, $content)
 		?>
 		<a href="<?php echo $cat_link; ?>" class="black-to-purple-link mt-0 mb-6 lg:mb-12 mr-6 no-underline text-sm font-medium text-black w-24  ">See all -></a>
 	</div>
-	<div class="category-posts post-wrapper flex flex-col lg:mb-28 mr-0">
+	<div class="category-posts post-wrapper flex flex-col lg:mb-28 xl:mb-32 mr-0 <?php if (isset($attributes['showBrowseResources']) && $attributes['showBrowseResources']) {echo 'has-browae-resources';} ?>">
 		<div class="category-posts-list flex flex-row overflow-scroll snap-x px-6 pb-6 gap-6 w-full" style="transition-duration: 100ms !important;">
 
 			<?php
@@ -657,21 +657,15 @@ function openphone_render_next_posts_block($attributes, $content)
 			}
 			?>
 		</div>
-
-		<?php
-			// var dump attributes
-			// var_dump($attributes);
-		?>
-
-		<?php if (isset($attributes['showBrowseResources']) && $attributes['showBrowseResources']) : ?>
-			<div class="browse-resources bg-purple-25 xl:w-[1200px] lg:rounded-[10px] lg:mt-16">
-				<a href="<?php echo $attributes['browseResourcesLink']; ?>" class="black-to-purple-link flex flex-row items-center gap-4 px-8 lg:px-4 text-sm sm:text-base lg:text-[19px] text-black no-underline font-medium leading-[1.5]">
-					<img src="<?php echo $attributes['browseResourcesImage']; ?>" alt="" class="resource-image lg:my-4 my-6" />
-					<?php echo $attributes['browseResourcesText']; ?>
-				</a>
-			</div>
-		<?php endif; ?>
 	</div>
+	<?php if (isset($attributes['showBrowseResources']) && $attributes['showBrowseResources']) : ?>
+		<div class="browse-resources bg-purple-25 xl:w-[1200px] lg:rounded-[10px] lg:mt-16 lg:mb-28 xl:mb-32">
+			<a href="<?php echo $attributes['browseResourcesLink']; ?>" class="black-to-purple-link flex flex-row items-center gap-4 px-8 lg:px-4 text-sm sm:text-base lg:text-[19px] text-black no-underline font-medium leading-[1.5]">
+				<img src="<?php echo $attributes['browseResourcesImage']; ?>" alt="" class="resource-image lg:my-4 my-6" />
+				<?php echo $attributes['browseResourcesText']; ?>
+			</a>
+		</div>
+	<?php endif; ?>
 <?php
 
 			return ob_get_clean();

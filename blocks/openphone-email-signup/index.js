@@ -57,18 +57,18 @@ registerBlockType(name, {
 
 	save: ({ attributes }) => {
 		const blockProps = useBlockProps.save({
-			className: 'openphone-email-signup mx-0 bg-purple-50 p-4',
+			className: 'openphone-email-signup mx-0 bg-purple-50 p-6',
 			style: 'max-width: 100%;',
 		});
 
 		return (
 			<div {...blockProps}>
 				<div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-32 flex flex-col md:flex-row items-center">
-					<h2 className="m-0 text-3xl tracking-[-0.6px] leading-[1] font-bold text-black">
+					<h2 className="m-0 text-3xl tracking-[-0.6px] leading-[1] font-bold text-black md:w-1/2">
 						{attributes.headingText}
 					</h2>
 
-					<div>
+					<div className="md:w-1/2">
 						<span className="block mb-4 text-black opacity-70">
 							{attributes.subscribeText}
 						</span>

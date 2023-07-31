@@ -63,6 +63,15 @@ module.exports = {
 				'inter': ['Inter', ...defaultTheme.fontFamily.sans],
 				'roobert': ['Roobert', 'sans-serif'],
 			},
+			screens: {
+				'sm': '568px',
+				'wpmd': '783px',
+				'md': '880px',
+				'lg': '1024px',
+				'xl': '1280px',
+				'2xl': '1440px',
+				'3xl': '1800px',			
+			},
 		},	  
 	},
 	corePlugins: {
