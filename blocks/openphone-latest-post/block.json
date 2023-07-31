@@ -1,9 +1,42 @@
 {
-    "apiVersion": 2,
-    "name": "openphone/latest-post",
-    "title": "Latest Post",
-    "category": "common",
-    "icon": "megaphone",
+	"apiVersion": 2,
+	"name": "openphone/latest-post",
+	"title": "Featured Post",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Example block written with ESNext standard and JSX support – build step provided by @wordpress/create-block.",
     "editorScript": "file:./index.js",
-    "attributes": {}
+	"attributes": {
+		"postTitle": {
+			"type": "string",
+			"default": "Post Title"
+		},
+		"postExcerpt": {
+			"type": "string",
+			"default": "Post Excerpt"
+		},
+		"postThumbnail": {
+			"type": "string",
+			"default": ""
+		},
+		"postLink": {
+			"type": "string",
+			"default": ""
+		},
+		"postDate": {
+			"type": "string",
+			"default": "Date"
+		},
+		"categoryLink": {
+			"type": "string",
+			"default": ""
+		},
+		"categoryLinkText": {
+			"type": "string",
+			"default": "Category"
+		}
+	},
+	"providesContext": {
+		"openphone/latest-post": "postType"
+	}
 }

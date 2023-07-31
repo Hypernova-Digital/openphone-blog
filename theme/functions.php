@@ -411,12 +411,19 @@ function openphone_enqueue_block_assets()
 		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
 	);
 
-	wp_enqueue_script(
-		'openphone-latest-post',
-		get_template_directory_uri() . '/build/openphone-latest-post/index.js',
-		include get_template_directory_uri() . '/build/openphone-latest-post/block.php',
-		array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
-	);
+	wp_register_script(
+        'openphone-latest-post',
+        get_template_directory_uri() . '/build/openphone-latest-post/index.js',
+        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
+    );
+
+    // Localize the script with new data
+    $theme_array = array(
+        'themeURL' => get_template_directory_uri(),
+    );
+    wp_localize_script('openphone-latest-post', 'themeData', $theme_array);
+    
+    wp_enqueue_script('openphone-latest-post');
 
 	wp_enqueue_script(
 		'openphone-faqs',
@@ -451,51 +458,6 @@ function openphone_enqueue_block_assets()
 
 add_action('enqueue_block_editor_assets', 'openphone_enqueue_block_assets');
 
-
-function openphone_render_latest_post_block($attributes, $content)
-{
-	$latest_posts = wp_get_recent_posts(array(
-		'numberposts' => 1,
-		'post_status' => 'publish',
-	));
-	if (empty($latest_posts)) {
-		return '';
-	}
-
-	$post = $latest_posts[0];
-	ob_start();
-?>
-	<div class="latest-post flex flex-col-reverse md:flex-row gap-4 lg:gap-16 lg:my-12 group cursor-pointer">
-		<?php
-		// get link to post
-		$link = get_permalink($post['ID']);
-		?>
-
-		<div class="content mx-6 sm:mt-6 sm:mx-8 md:mx-10 lg:mx-0 lg:mt-0">
-			<div class="meta">
-				<span class="[&_a]:text-[11px] sm:[&_a]:text-xs md:[&_a]:text-sm [&_a]:no-underline no-underline"><?php echo get_the_category_list(', ', '', $post['ID']); ?></span><span class="opacity-10"> | </span>
-				<span class="text-[11px] sm:text-xs md:text-sm opacity-70"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
-				<?php //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
-				?>
-			</div>
-			<a href="<?php echo $link; ?>" class="no-underline">
-				<h2 class="mb mt-3 sm:mt-[14px] md:mt-4 text-3xl sm:text-[40px] md:text-[56px] lg:text-6xl tracking-[-0.6px] leading-[1] mb-0 lg:mb-6 group-hover:text-purple-900"><?php echo get_the_title($post['ID']); ?></h2>
-				<p class="hidden md:block opacity-70 text-base"><?php echo get_the_excerpt($post['ID']); ?></p>
-			</a>
-		</div>
-		<div class="image lg:max-w-2xl">
-			<a href="<?php echo $link; ?>">
-				<img src="<?php echo get_the_post_thumbnail_url($post['ID']); ?>" class="m-0" />
-			</a>
-		</div>
-	</div>
-<?php
-	return ob_get_clean();
-}
-
-register_block_type('openphone/latest-post', array(
-	'render_callback' => 'openphone_render_latest_post_block',
-));
 
 function openphone_render_next_posts_block($attributes, $content)
 {
