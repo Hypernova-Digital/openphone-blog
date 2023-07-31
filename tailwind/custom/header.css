@@ -98,6 +98,12 @@
 	@apply mx-auto lg:px-20 min-[1280px]:px-0;
 }
 
+@media screen and (max-width: 600px){
+	#masthead  {
+		top: 0 !important;
+	}
+}
+
 #masthead .site-logo {
 	width: 152px;
 }
@@ -178,7 +184,6 @@
 	right: 40px;
 }
 
-
 .mobile-nav .header-search {
 	@apply sm:top-[70px] sm:hidden;
 }
@@ -221,6 +226,10 @@
 
 .admin-bar .sticky-nav .mobile-nav button[aria-controls="primary-menu"] {
 	@apply absolute top-[1.6rem] right-4 h-[2px] w-6 bg-black sm:top-[2rem] sm:right-6 md:top-[2.2rem];
+}
+
+.admin-bar .sticky-nav.scrolled .mobile-nav.visible button[aria-controls="primary-menu"] {
+	@apply bg-transparent;
 }
 
 .admin-bar .mobile-nav button[aria-controls="primary-menu"] {

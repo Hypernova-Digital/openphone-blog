@@ -155,15 +155,29 @@ const {
     const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ...blockProps,
-      className: "latest-post group flex cursor-pointer flex-col-reverse gap-4 md:flex-row lg:my-12 lg:gap-16"
+      className: "latest-post latest-post-block-editor group flex cursor-pointer flex-col-reverse gap-4 md:flex-row lg:my-12 lg:gap-16"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "flex flex-col"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "link-field-container flex flex-row items-center justify-start gap-4 p-4"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.URLInputButton, {
+      url: attributes.postLink,
+      onChange: postLink => setAttributes({
+        postLink
+      }),
+      className: "link"
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "helper-text"
+    }, "Post Link")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "flex flex-row"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "content mx-6 sm:mx-8 sm:mt-6 md:mx-10 lg:mx-0 lg:mt-0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "meta flex flex-row justify-start"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "flex flex-col max-w-[14rem] h-max"
+      className: "flex h-max max-w-[14rem] flex-col"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.PlainText, {
-      className: "no-underline text-[11px] no-underline sm:text-xs md:text-sm  max-w-[14rem]",
+      className: "max-w-[14rem] text-[11px] no-underline sm:text-xs  md:text-sm",
       onChange: categoryLinkText => setAttributes({
         categoryLinkText
       }),
@@ -200,12 +214,9 @@ const {
       value: attributes.postExcerpt
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "image lg:max-w-2xl"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.URLInputButton, {
-      url: attributes.postLink,
-      onChange: postLink => setAttributes({
-        postLink
-      })
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      className: "block overflow-auto"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
       onSelect: media => setAttributes({
         postThumbnail: media.url
       }),
@@ -214,11 +225,14 @@ const {
       render: ({
         open
       }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-        onClick: open
-      }, !attributes.postThumbnail ? 'Select Image' : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+        onClick: open,
+        className: "block overflow-auto"
+      }, !attributes.postThumbnail ? 'Select Image' : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
         src: attributes.postThumbnail
-      }))
-    })))));
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+        className: "helper-text"
+      }, "Change Image")))
+    })))))));
   },
   save: ({
     attributes
@@ -231,16 +245,16 @@ const {
       className: "meta"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
       href: attributes.categoryLink,
-      className: "no-underline [&_a]:text-[11px] [&_a]:no-underline sm:[&_a]:text-xs md:[&_a]:text-sm"
+      className: "meta-link text-[11px] text-purple-900 no-underline sm:text-xs md:text-sm"
     }, attributes.categoryLinkText), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
       className: "opacity-10"
     }, " | "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "text-[11px] opacity-70 sm:text-xs md:text-sm"
+      className: "meta-date text-[11px] opacity-70 sm:text-xs md:text-sm"
     }, attributes.postDate)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
       className: "no-underline"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
       tagName: "h2",
-      className: "mb mt-3 sm:mt-[14px] md:mt-4 text-3xl sm:text-[40px] md:text-[56px] lg:text-6xl tracking-[-0.6px] leading-[1] mb-0 lg:mb-6 group-hover:text-purple-900",
+      className: "mb-0 mt-3 text-3xl leading-[1] tracking-[-0.6px] group-hover:text-purple-900 sm:mt-[14px] sm:text-[40px] md:mt-4 md:text-[56px] lg:mb-6 lg:text-6xl",
       value: attributes.postTitle
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
       tagName: "p",
