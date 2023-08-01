@@ -816,3 +816,17 @@ function openphone_render_next_posts_block($attributes, $content)
 			}
 		}
 		add_action('save_post', 'save_custom_search_shortcode');
+
+
+		function custom_archive_title($title) {
+			if (is_tag()) {
+				// Get the tag name without the "Tag Archives: " prefix
+				$tag_name = single_tag_title('', false);
+				
+				// Return only the tag name
+				return $tag_name;
+			}
+			return $title;
+		}
+		add_filter('get_the_archive_title', 'custom_archive_title');
+		
