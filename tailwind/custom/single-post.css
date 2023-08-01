@@ -8,7 +8,7 @@
 }
 
 .single .entry-content > * {
-	@apply mx-auto md:ml-24 lg:ml-10 lg:w-[36rem] xl:ml-20 xl:w-[47.5rem] min-[1600px]:ml-40 min-[1800px]:ml-64 min-[2000px]:ml-[22rem] min-[2200px]:ml-[28rem] min-[2400px]:ml-[36rem] min-[2800px]:ml-[48rem];
+	@apply mx-auto md:ml-0 md:w-[30rem] lg:ml-10 lg:w-[39.375rem] min-[1180px]:w-[40rem] xl:ml-20 xl:w-[47.5rem] min-[1600px]:ml-40 min-[1800px]:ml-64 min-[2000px]:ml-[22rem] min-[2200px]:ml-[28rem] min-[2400px]:ml-[36rem] min-[2800px]:ml-[48rem];
 }
 
 /* Styles specifically for the .category-posts.post-wrapper element */

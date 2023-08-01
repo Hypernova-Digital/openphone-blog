@@ -14,6 +14,11 @@ function setPostWrapperWidth() {
 	const titleAndLinkElements = entryContent.querySelectorAll('.category-posts.title-and-link');
 	const postWrapperElements = entryContent.querySelectorAll('.category-posts.post-wrapper');
   
+	if (!titleAndLinkElements.length || !postWrapperElements.length) {
+	  // If either of the sections does not exist, exit the function
+	  return;
+	}
+  
 	for (let i = 0; i < titleAndLinkElements.length; i++) {
 	  const titleAndLink = titleAndLinkElements[i];
 	  const postWrapper = postWrapperElements[i];
@@ -59,7 +64,7 @@ function setPostWrapperWidth() {
 	}
   }
   
-  // Call the function initially
+  // Check if the sections exist and then call the function initially
   setPostWrapperWidth();
   
   // Add a resize event listener to recalculate on window resize

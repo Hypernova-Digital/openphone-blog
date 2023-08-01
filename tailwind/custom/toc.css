@@ -30,7 +30,7 @@
 }
 
 .entry-content div#open-phone-toc {
-	@apply sticky right-0 top-44 ml-auto lg:mr-0 xl:mr-10 min-[1440px]:mr-28 min-[1600px]:mr-40 min-[1800px]:mr-64 min-[2000px]:mr-[22rem] min-[2200px]:mr-[28rem] min-[2400px]:mr-[36rem] min-[2800px]:mr-[48rem] overflow-visible w-72 flex flex-col gap-6 bottom-0 float-right;
+	@apply sticky right-0 top-44 ml-auto md:mr-8 lg:mr-[4.5rem] min-[1180px]:mr-36 xl:mr-10 min-[1440px]:mr-28 min-[1600px]:mr-40 min-[1800px]:mr-64 min-[2000px]:mr-[22rem] min-[2200px]:mr-[28rem] min-[2400px]:mr-[36rem] min-[2800px]:mr-[48rem] overflow-visible w-72 flex flex-col gap-6 bottom-0 float-right;
 }
 
 .entry-content div#open-phone-toc a,

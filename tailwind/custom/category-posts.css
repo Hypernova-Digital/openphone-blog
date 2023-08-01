@@ -43,7 +43,7 @@
   }
 
 .wp-block-heading.eyebrows {
-	@apply mx-6 mb-0 mt-12 text-xl font-semibold leading-[1.2] tracking-[-0.16px] lg:mx-auto lg:mt-28;!
+	@apply mx-6 mb-0 mt-12 text-xl font-semibold leading-[1.2] tracking-[-0.16px] lg:mx-auto lg:mt-28;
 }
 
 .wp-block-heading.eyebrows + .category-posts {
