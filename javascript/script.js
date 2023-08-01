@@ -8,11 +8,68 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-	// Add an event listener to handle accordion clicks on the frontend
-	const isAccordionTitle = (element) =>
-		element.tagName === 'DIV' &&
-		element.classList.contains('tldr-header-container');
-
+// JavaScript
+function setPostWrapperWidth() {
+	const entryContent = document.querySelector('.entry-content');
+	const titleAndLinkElements = entryContent.querySelectorAll('.category-posts.title-and-link');
+	const postWrapperElements = entryContent.querySelectorAll('.category-posts.post-wrapper');
+  
+	for (let i = 0; i < titleAndLinkElements.length; i++) {
+	  const titleAndLink = titleAndLinkElements[i];
+	  const postWrapper = postWrapperElements[i];
+  
+	  // Get all child elements of .entry-content
+	  const childElements = entryContent.children;
+  
+	  // Calculate the total width including margins of all child elements inside .entry-content
+	  let totalChildWidth = 0;
+	  for (let i = 0; i < childElements.length; i++) {
+		const childStyles = window.getComputedStyle(childElements[i]);
+		const childMarginLeft = parseFloat(childStyles.marginLeft);
+		const childMarginRight = parseFloat(childStyles.marginRight);
+		const childTotalWidth = childElements[i].offsetWidth + childMarginLeft + childMarginRight;
+		totalChildWidth += childTotalWidth;
+	  }
+  
+	  // Calculate the width of .category-posts.post-wrapper
+	  const postWrapperWidth = ((entryContent.offsetWidth - titleAndLink.offsetWidth) / 2) + 1200;
+  
+	  // Apply the calculated width as an inline style and set max-width to the same value
+	  postWrapper.style.width = `${postWrapperWidth}px`;
+	  postWrapper.style.maxWidth = `${postWrapperWidth}px`;
+  
+	  // Add the calculated-width class to apply the styles from CSS
+	  postWrapper.classList.add('calculated-width');
+	}
+  }
+  
+  // Function to remove the calculated-width class
+  function resetPostWrapperWidth() {
+	const postWrapperElements = document.querySelectorAll('.category-posts.post-wrapper');
+  
+	for (let i = 0; i < postWrapperElements.length; i++) {
+	  const postWrapper = postWrapperElements[i];
+  
+	  // Reset the width and max-width styles
+	  postWrapper.style.width = '';
+	  postWrapper.style.maxWidth = '';
+  
+	  // Remove the calculated-width class
+	  postWrapper.classList.remove('calculated-width');
+	}
+  }
+  
+  // Call the function initially
+  setPostWrapperWidth();
+  
+  // Add a resize event listener to recalculate on window resize
+  window.addEventListener('resize', function () {
+	resetPostWrapperWidth();
+	setPostWrapperWidth();
+  });
+  
+  
+  
 	// Function to handle TLDR block accordion clicks on the frontend
 	const handleAccordionClick = (event) => {
 		const target = event.target;

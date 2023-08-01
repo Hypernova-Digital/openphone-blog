@@ -109,7 +109,7 @@ registerBlockType(name, {
 
 		return (
 			<div className="trending-block w-full bg-[#190E3D] text-white">
-				<div className="container mx-auto px-6 xl:w-[1200px]">
+				<div className="trending-container mx-auto px-6">
 					<h2 className="text-center">{title}</h2>
 
 					<div className="trending-block-cards">

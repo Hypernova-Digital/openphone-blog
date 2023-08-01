@@ -575,7 +575,7 @@ function openphone_render_next_posts_block($attributes, $content)
 		?>
 		<a href="<?php echo $cat_link; ?>" class="black-to-purple-link mt-0 mb-6 lg:mb-12 mr-6 no-underline text-sm font-medium text-black w-24  ">See all -></a>
 	</div>
-	<div class="category-posts post-wrapper flex flex-col lg:mb-28 xl:mb-32 mr-0 <?php if (isset($attributes['showBrowseResources']) && $attributes['showBrowseResources']) {echo 'has-browae-resources';} ?>">
+	<div class="category-posts post-wrapper flex flex-col lg:mb-28 xl:mb-32 mr-0 <?php if (isset($attributes['showBrowseResources']) && $attributes['showBrowseResources']) {echo 'has-browae-resources';} ?>" id="post-wrapper">
 		<div class="category-posts-list flex flex-row overflow-scroll snap-x px-6 pb-6 gap-6 w-full" style="transition-duration: 100ms !important;">
 
 			<?php

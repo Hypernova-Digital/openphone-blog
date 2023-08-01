@@ -50,3 +50,8 @@ a:hover.tag {
 .tags {
 	@apply flex justify-start flex-wrap gap-3;
 }
+
+
+.trending-container {
+	@apply xl:w-[1200px];
+}

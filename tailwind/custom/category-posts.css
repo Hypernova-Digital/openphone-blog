@@ -24,12 +24,26 @@
 	@apply w-full;
 }
 
-.category-posts.post-wrapper {
+/* .category-posts.post-wrapper {
 	@apply xl:max-w-[1240px] min-[1440px]:max-w-[1320px] min-[1800px]:max-w-[1500px] min-[2000px]:max-w-[1600px] min-[2200px]:max-w-[1700px] min-[2400px]:max-w-[1800px] min-[2560px]:max-w-[1900px] pr-0;
-}
+} */
+
+ 
+/* Style for the dynamically calculated width */
+.category-posts.post-wrapper.calculated-width {
+  width: auto;
+  height: auto;
+  /* max-width: 100%;  */
+  /* This should override any previous width setting */
+} 
+
+/* Use the calc() function to calculate the width */
+.category-posts.post-wrapper {
+	/* width: calc((var(--entry-content-child-width) - var(--title-and-link-width)) / 2) !important; */
+  }
 
 .wp-block-heading.eyebrows {
-	@apply mx-6 mb-0 mt-12 text-xl font-semibold leading-[1.2] tracking-[-0.16px] lg:mx-auto lg:mt-28;
+	@apply mx-6 mb-0 mt-12 text-xl font-semibold leading-[1.2] tracking-[-0.16px] lg:mx-auto lg:mt-28;!
 }
 
 .wp-block-heading.eyebrows + .category-posts {
