@@ -830,3 +830,83 @@ function openphone_render_next_posts_block($attributes, $content)
 		}
 		add_filter('get_the_archive_title', 'custom_archive_title');
 		
+// functions.php
+// functions.php
+
+function custom_openphone_get_category_dropdown_options()
+{
+    $categories = get_categories();
+    $options = '<option value="0">Select a Category</option>';
+
+    foreach ($categories as $category) {
+        $options .= '<option value="' . esc_attr($category->term_id) . '">' . esc_html($category->name) . '</option>';
+    }
+
+    return $options;
+}
+
+function custom_openphone_get_selected_category_name($post_id)
+{
+    $selected_category_id = get_post_meta($post_id, 'selected_category', true);
+
+    if ($selected_category_id) {
+        $selected_category = get_category($selected_category_id);
+        return $selected_category->name;
+    }
+
+    return '';
+}
+
+function custom_openphone_add_metabox()
+{
+    add_meta_box(
+        'custom_openphone_category_metabox',
+        'Select Category',
+        'custom_openphone_render_metabox',
+        'post',
+        'side',
+        'default'
+    );
+}
+
+function custom_openphone_render_metabox($post)
+{
+    // Retrieve the selected category ID if it exists
+    $selected_category_id = get_post_meta($post->ID, 'selected_category', true);
+
+    // Use nonce for verification
+    wp_nonce_field('custom_openphone_save_metabox', 'custom_openphone_nonce');
+
+    // Output the dropdown select
+    echo '<label for="selected-category">Select Category:</label>';
+    echo '<select name="selected_category" id="selected-category">';
+    echo custom_openphone_get_category_dropdown_options();
+    echo '</select>';
+
+    // Set the selected category value
+    echo '<script>document.getElementById("selected-category").value = "' . esc_js($selected_category_id) . '";</script>';
+}
+
+function custom_openphone_save_metabox($post_id)
+{
+    // Check if the current user has permission to save the post
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Verify the nonce before proceeding
+    if (!isset($_POST['custom_openphone_nonce']) || !wp_verify_nonce($_POST['custom_openphone_nonce'], 'custom_openphone_save_metabox')) {
+        return;
+    }
+
+    // Save the selected category
+    if (isset($_POST['selected_category'])) {
+        update_post_meta($post_id, 'selected_category', sanitize_text_field($_POST['selected_category']));
+    }
+}
+
+// Add the metabox to the editor
+add_action('add_meta_boxes', 'custom_openphone_add_metabox');
+
+// Save the metabox data
+add_action('save_post', 'custom_openphone_save_metabox');

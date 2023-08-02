@@ -8,6 +8,29 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+// Custom JavaScript
+
+document.addEventListener('DOMContentLoaded', function () {
+    const categoryDropdown = document.getElementById('category-dropdown');
+
+    if (categoryDropdown) {
+        categoryDropdown.addEventListener('change', function () {
+            const selectedCategoryId = categoryDropdown.value;
+
+            if (selectedCategoryId > 0) {
+                const categoryLink = categoryDropdown.options[categoryDropdown.selectedIndex].text;
+                const categorySpan = document.querySelector('.entry-header .entry-meta a');
+
+                if (categorySpan) {
+                    categorySpan.textContent = categoryLink;
+                    categorySpan.href = categoryDropdown.options[categoryDropdown.selectedIndex].value;
+                }
+            }
+        });
+    }
+});
+
+
 	// Category post block card alignment with title and link on larger screens
 	function setPostWrapperWidth() {
 		if (window.innerWidth >= 880) {
