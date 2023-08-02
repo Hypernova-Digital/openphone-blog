@@ -30,33 +30,29 @@ if (empty($layout_option)) {
         <div class="header-content md:py-16 lg:max-w-7xl md:mx-auto flex flex-col-reverse md:flex-row lg:gap-16">
             <div class="header-left md:w-1/2 p-6 sm:p-8 lg:p-0 flex flex-col justify-center">
                 <?php
-                function custom_openphone_entry_meta_categories($post_id)
+                function custom_openphone_entry_meta_categories()
                 {
-                    $selected_category_name = custom_openphone_get_selected_category_name($post_id);
+                    $firstCategoryDisplayed = false;
+                    $categories = get_the_category();
 
-                    if ($selected_category_name) {
-                        echo '<span class="[&_a]:text-sm sm:[&_a]:text-base lg:[&_a]:text-[19px] [&_a]:no-underline font-semibold mb-1">';
-                        echo '<a href="' . esc_url(get_category_link(get_post_meta($post_id, 'selected_category', true))) . '" class="text-purple-900">' . $selected_category_name . '</a>';
-                        echo '</span>';
-                    } else {
-                        $firstCategoryDisplayed = false;
-                        $categories = get_the_category();
-
-                        foreach ($categories as $category) {
-                            if ($firstCategoryDisplayed) {
-                                break;
-                            }
-
-                            echo '<span class="[&_a]:text-sm sm:[&_a]:text-base lg:[&_a]:text-[19px] [&_a]:no-underline font-semibold mb-1">';
-                            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '" class="text-purple-900">' . $category->name . '</a>';
-                            echo '</span>';
-
-                            $firstCategoryDisplayed = true;
+                    foreach ($categories as $category) {
+                        if ($firstCategoryDisplayed) {
+                            break;
                         }
+
+                        echo '<span class="[&_a]:text-sm sm:[&_a]:text-base lg:[&_a]:text-[19px] [&_a]:no-underline font-semibold mb-1">';
+                        echo '<a href="' . esc_url(get_category_link($category->term_id)) . '" class="text-purple-900">' . $category->name . '</a>';
+                        echo '</span>';
+
+                        $firstCategoryDisplayed = true;
                     }
                 }
 
-                custom_openphone_entry_meta_categories(get_the_ID());
+				echo '<span class="[&_a]:text-sm sm:[&_a]:text-base lg:[&_a]:text-[19px] [&_a]:no-underline [&_a]:text-purple-900 font-semibold mb-1">';
+
+				openphone_display_yoast_primary_category();
+
+				echo '</span>';
                 ?>
 
                 <h1 class="entry-title m-0 font-semibold text-3xl sm:text-4xl md:text-6xl">
