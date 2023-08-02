@@ -46,7 +46,7 @@
 }
 
 #primary-menu > .menu-item {
-	@apply flex h-8 flex-col items-center justify-center;
+	@apply flex h-12 flex-col items-center justify-center;
 }
 
 .desktop-nav .menu-item > .sub-menu {
@@ -158,11 +158,11 @@
 }
 
 .admin-bar .header-search {
-	@apply absolute right-[40px] top-[3.8rem] mr-4 h-6 w-6 sm:top-[4.375rem] wpmd:top-[3.375rem] sm:mr-[16.8rem] lg:mr-0 lg:relative lg:top-0 lg:right-0;
+	@apply absolute right-[40px] top-[3.8rem] mr-4 h-6 w-6 sm:top-[4.375rem] wpmd:top-[3.375rem] sm:mr-[17.8rem] lg:mr-0 lg:relative lg:top-0 lg:right-0;
 }
 
 .header-search {
-	@apply absolute right-[40px] top-[3.8rem] mr-4 h-6 w-6 sm:top-[1.375rem] wpmd:top-[1.375rem] sm:mr-[16.8rem] lg:mr-0 lg:relative lg:top-0 lg:right-0;
+	@apply absolute right-[40px] top-[3.8rem] mr-4 h-6 w-6 sm:top-[1.375rem] wpmd:top-[1.375rem] sm:mr-[17.8rem] lg:mr-0 lg:relative lg:top-0 lg:right-0;
 }
 
 .admin-bar .mobile-nav .header-search {

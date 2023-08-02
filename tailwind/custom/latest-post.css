@@ -12,6 +12,10 @@
     @apply lg:max-w-2xl;
 }
 
+div.latest-post:hover .content a h2.latest-post-title {
+    @apply text-purple-900;
+}
+
 .latest-post .content {
     @apply mx-6 sm:mt-6 sm:mx-8 md:mx-10 lg:mx-0 lg:mt-0;
 }
@@ -29,3 +33,4 @@
 .latest-post .link-field-container {
     @apply border border-solid border-purple-900 rounded-md mb-2;
 }
+

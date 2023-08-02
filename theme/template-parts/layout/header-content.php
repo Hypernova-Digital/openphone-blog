@@ -11,7 +11,7 @@
 ?>
 
 <header id="masthead" class="">
-	<div class="header-content lg:max-w-7xl px-6 py-4 md:px-4 xl:px-0 xl:py-8 flex flex-row items-center justify-between">
+	<div class="header-content lg:max-w-7xl px-6 py-4 md:px-4 xl:px-0 xl:py-7 flex flex-row items-center justify-between lg:gap-4">
 		<div class="flex flex-row gap-2 items-center">
 			<?php
 			if (function_exists('get_custom_logo')) {

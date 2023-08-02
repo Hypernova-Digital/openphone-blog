@@ -139,10 +139,10 @@ registerBlockType(name, {
 							{attributes.postDate}
 						</span>
 					</div>
-					<a className="no-underline">
+					<a href={attributes.postLink} className="hover:group:text-purple-900 no-underline">
 						<RichText.Content
 							tagName="h2"
-							className="mb-0 mt-3 text-3xl leading-[1] tracking-[-0.6px] group-hover:text-purple-900 sm:mt-[14px] sm:text-[40px] md:mt-4 md:text-[56px] lg:mb-6 lg:text-6xl"
+							className="latest-post-title mb-0 mt-3 text-3xl leading-[1] tracking-[-0.6px] sm:mt-[14px] sm:text-[40px] md:mt-4 md:text-[56px] lg:mb-6 lg:text-6xl"
 							value={attributes.postTitle}
 						/>
 						<RichText.Content
@@ -154,10 +154,13 @@ registerBlockType(name, {
 				</div>
 				<div className="image lg:max-w-2xl">
 					<a href={attributes.postLink}>
-						<img src={attributes.postThumbnail} className="m-0" />
+						<img
+							src={attributes.postThumbnail}
+							className="m-0"
+						/>
 					</a>
 				</div>
 			</div>
 		);
-	},
+	},	
 });

@@ -48,7 +48,7 @@ module.exports = window["wp"]["element"];
   \*****************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"openphone/cta","title":"CTA Block","icon":"megaphone","category":"common","editorScript":"file:./index.js","attributes":{"title":{"type":"string","default":"Port now, pay later"},"description":{"type":"string","source":"html","selector":"p","default":"Port your existing business number and join thousands of other businesses already using OpenPhone to communicate better with their customers."},"buttonText":{"type":"string","default":"Learn More"},"buttonLink":{"type":"string","default":"#"},"backgroundColor":{"type":"string","default":"inherit"},"bgColor":{"type":"string","default":""},"buttonStyle":{"type":"string","default":"button cta-button"}}}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"openphone/cta","title":"CTA Block","icon":"megaphone","category":"common","editorScript":"file:./index.js","attributes":{"title":{"type":"string","default":"Port now, pay later"},"description":{"type":"string","source":"html","selector":"p","default":"Port your existing business number and join thousands of other businesses already using OpenPhone to communicate better with their customers."},"buttonText":{"type":"string","default":"Learn More"},"buttonLink":{"type":"string","default":"#"},"backgroundColor":{"type":"string","default":"inherit"},"bgColor":{"type":"string","default":"bg-purple-50"},"buttonStyle":{"type":"string","default":"button cta-button"},"imgUrl":{"type":"string","default":"themeURL + /images/logo.png"}}}');
 
 /***/ })
 

@@ -8,71 +8,64 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-// JavaScript
-function setPostWrapperWidth() {
-	const entryContent = document.querySelector('.entry-content');
-	const titleAndLinkElements = entryContent.querySelectorAll('.category-posts.title-and-link');
-	const postWrapperElements = entryContent.querySelectorAll('.category-posts.post-wrapper');
-  
-	if (!titleAndLinkElements.length || !postWrapperElements.length) {
-	  // If either of the sections does not exist, exit the function
-	  return;
-	}
-  
-	for (let i = 0; i < titleAndLinkElements.length; i++) {
-	  const titleAndLink = titleAndLinkElements[i];
-	  const postWrapper = postWrapperElements[i];
-  
-	  // Get all child elements of .entry-content
-	  const childElements = entryContent.children;
-  
-	  // Calculate the total width including margins of all child elements inside .entry-content
-	  let totalChildWidth = 0;
-	  for (let i = 0; i < childElements.length; i++) {
-		const childStyles = window.getComputedStyle(childElements[i]);
-		const childMarginLeft = parseFloat(childStyles.marginLeft);
-		const childMarginRight = parseFloat(childStyles.marginRight);
-		const childTotalWidth = childElements[i].offsetWidth + childMarginLeft + childMarginRight;
-		totalChildWidth += childTotalWidth;
-	  }
-  
-	  // Calculate the width of .category-posts.post-wrapper
-	  const postWrapperWidth = ((entryContent.offsetWidth - titleAndLink.offsetWidth) / 2) + 1200;
-  
-	  // Apply the calculated width as an inline style and set max-width to the same value
-	  postWrapper.style.width = `${postWrapperWidth}px`;
-	  postWrapper.style.maxWidth = `${postWrapperWidth}px`;
-  
-	  // Add the calculated-width class to apply the styles from CSS
-	  postWrapper.classList.add('calculated-width');
-	}
+  // Category post block card alignment with title and link on larger screens
+  function setPostWrapperWidth() {
+    if(window.innerWidth >= 880) { // Add this line
+      const entryContent = document.querySelector('.entry-content');
+      const titleAndLinkElements = entryContent.querySelectorAll('.category-posts.title-and-link');
+      const postWrapperElements = entryContent.querySelectorAll('.category-posts.post-wrapper');
+
+      if (!titleAndLinkElements.length || !postWrapperElements.length) {
+        return;
+      }
+
+      for (let i = 0; i < titleAndLinkElements.length; i++) {
+        const titleAndLink = titleAndLinkElements[i];
+        const postWrapper = postWrapperElements[i];
+
+        const childElements = entryContent.children;
+
+        let totalChildWidth = 0;
+        for (let i = 0; i < childElements.length; i++) {
+          const childStyles = window.getComputedStyle(childElements[i]);
+          const childMarginLeft = parseFloat(childStyles.marginLeft);
+          const childMarginRight = parseFloat(childStyles.marginRight);
+          const childTotalWidth = childElements[i].offsetWidth + childMarginLeft + childMarginRight;
+          totalChildWidth += childTotalWidth;
+        }
+
+        const postWrapperWidth = ((entryContent.offsetWidth - titleAndLink.offsetWidth) / 2) + 1200;
+
+        postWrapper.style.width = `${postWrapperWidth}px`;
+        postWrapper.style.maxWidth = `${postWrapperWidth}px`;
+
+        postWrapper.classList.add('calculated-width');
+      }
+    } // Add this line
   }
-  
+
   // Function to remove the calculated-width class
   function resetPostWrapperWidth() {
-	const postWrapperElements = document.querySelectorAll('.category-posts.post-wrapper');
-  
-	for (let i = 0; i < postWrapperElements.length; i++) {
-	  const postWrapper = postWrapperElements[i];
-  
-	  // Reset the width and max-width styles
-	  postWrapper.style.width = '';
-	  postWrapper.style.maxWidth = '';
-  
-	  // Remove the calculated-width class
-	  postWrapper.classList.remove('calculated-width');
-	}
+    if(window.innerWidth >= 880) { // Add this line
+      const postWrapperElements = document.querySelectorAll('.category-posts.post-wrapper');
+
+      for (let i = 0; i < postWrapperElements.length; i++) {
+        const postWrapper = postWrapperElements[i];
+
+        postWrapper.style.width = '';
+        postWrapper.style.maxWidth = '';
+
+        postWrapper.classList.remove('calculated-width');
+      }
+    } // Add this line
   }
-  
-  // Check if the sections exist and then call the function initially
+
   setPostWrapperWidth();
-  
-  // Add a resize event listener to recalculate on window resize
+
   window.addEventListener('resize', function () {
-	resetPostWrapperWidth();
-	setPostWrapperWidth();
+    resetPostWrapperWidth();
+    setPostWrapperWidth();
   });
-  
   
   
 	// Function to handle TLDR block accordion clicks on the frontend
