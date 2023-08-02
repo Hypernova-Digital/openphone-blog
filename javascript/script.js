@@ -8,66 +8,82 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Category post block card alignment with title and link on larger screens
-  function setPostWrapperWidth() {
-    if(window.innerWidth >= 880) { // Add this line
-      const entryContent = document.querySelector('.entry-content');
-      const titleAndLinkElements = entryContent.querySelectorAll('.category-posts.title-and-link');
-      const postWrapperElements = entryContent.querySelectorAll('.category-posts.post-wrapper');
+	// Category post block card alignment with title and link on larger screens
+	function setPostWrapperWidth() {
+		if (window.innerWidth >= 880) {
+			// Add this line
+			const entryContent = document.querySelector('.entry-content');
+			const titleAndLinkElements = entryContent.querySelectorAll(
+				'.category-posts.title-and-link'
+			);
+			const postWrapperElements = entryContent.querySelectorAll(
+				'.category-posts.post-wrapper'
+			);
 
-      if (!titleAndLinkElements.length || !postWrapperElements.length) {
-        return;
-      }
+			if (!titleAndLinkElements.length || !postWrapperElements.length) {
+				return;
+			}
 
-      for (let i = 0; i < titleAndLinkElements.length; i++) {
-        const titleAndLink = titleAndLinkElements[i];
-        const postWrapper = postWrapperElements[i];
+			for (let i = 0; i < titleAndLinkElements.length; i++) {
+				const titleAndLink = titleAndLinkElements[i];
+				const postWrapper = postWrapperElements[i];
 
-        const childElements = entryContent.children;
+				const childElements = entryContent.children;
 
-        let totalChildWidth = 0;
-        for (let i = 0; i < childElements.length; i++) {
-          const childStyles = window.getComputedStyle(childElements[i]);
-          const childMarginLeft = parseFloat(childStyles.marginLeft);
-          const childMarginRight = parseFloat(childStyles.marginRight);
-          const childTotalWidth = childElements[i].offsetWidth + childMarginLeft + childMarginRight;
-          totalChildWidth += childTotalWidth;
-        }
+				let totalChildWidth = 0;
+				for (let i = 0; i < childElements.length; i++) {
+					const childStyles = window.getComputedStyle(
+						childElements[i]
+					);
+					const childMarginLeft = parseFloat(childStyles.marginLeft);
+					const childMarginRight = parseFloat(
+						childStyles.marginRight
+					);
+					const childTotalWidth =
+						childElements[i].offsetWidth +
+						childMarginLeft +
+						childMarginRight;
+					totalChildWidth += childTotalWidth;
+				}
 
-        const postWrapperWidth = ((entryContent.offsetWidth - titleAndLink.offsetWidth) / 2) + 1200;
+				const postWrapperWidth =
+					(entryContent.offsetWidth - titleAndLink.offsetWidth) / 2 +
+					1200;
 
-        postWrapper.style.width = `${postWrapperWidth}px`;
-        postWrapper.style.maxWidth = `${postWrapperWidth}px`;
+				postWrapper.style.width = `${postWrapperWidth}px`;
+				postWrapper.style.maxWidth = `${postWrapperWidth}px`;
 
-        postWrapper.classList.add('calculated-width');
-      }
-    } // Add this line
-  }
+				postWrapper.classList.add('calculated-width');
+			}
+		} // Add this line
+	}
 
-  // Function to remove the calculated-width class
-  function resetPostWrapperWidth() {
-    if(window.innerWidth >= 880) { // Add this line
-      const postWrapperElements = document.querySelectorAll('.category-posts.post-wrapper');
+	// Function to remove the calculated-width class
+	function resetPostWrapperWidth() {
+		if (window.innerWidth >= 880) {
+			// Add this line
+			const postWrapperElements = document.querySelectorAll(
+				'.category-posts.post-wrapper'
+			);
 
-      for (let i = 0; i < postWrapperElements.length; i++) {
-        const postWrapper = postWrapperElements[i];
+			for (let i = 0; i < postWrapperElements.length; i++) {
+				const postWrapper = postWrapperElements[i];
 
-        postWrapper.style.width = '';
-        postWrapper.style.maxWidth = '';
+				postWrapper.style.width = '';
+				postWrapper.style.maxWidth = '';
 
-        postWrapper.classList.remove('calculated-width');
-      }
-    } // Add this line
-  }
+				postWrapper.classList.remove('calculated-width');
+			}
+		} // Add this line
+	}
 
-  setPostWrapperWidth();
+	setPostWrapperWidth();
 
-  window.addEventListener('resize', function () {
-    resetPostWrapperWidth();
-    setPostWrapperWidth();
-  });
-  
-  
+	window.addEventListener('resize', function () {
+		resetPostWrapperWidth();
+		setPostWrapperWidth();
+	});
+
 	// Function to handle TLDR block accordion clicks on the frontend
 	const handleAccordionClick = (event) => {
 		const target = event.target;
@@ -485,12 +501,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	const mobileNavClickHandler = (e) => {
 		const ul = e.target.nextElementSibling;
 		if (ul) {
-			ul.classList.toggle('active');
-			return false;
-		} else {
-			return true;
+			if (!ul.classList.contains('active')) {
+				e.preventDefault();
+				ul.classList.add('active');
+				e.target.classList.add('active'); 
+			} else {
+				ul.classList.remove('active');
+				e.target.classList.remove('active');
+			}
 		}
-	};
+	};	
+	
 
 	const applyMobile = () => {
 		// Runs on transition between (mobile <-> desktop)

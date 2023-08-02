@@ -1,15 +1,3 @@
-/* .archive.category #masthead {
-    @apply bg-purple-50;
+.archive a[rel="category tag"] {
+	@apply mb-2 text-sm font-semibold leading-5 text-purple-900 no-underline sm:text-base lg:text-base;
 }
-
-.archive.category #main .navigation.pagination {
-    @apply mx-auto;
-}
-
-.archive.category a:hover {
-    @apply text-black;
-}
-
-.archive.category a[rel="category tag"] {
-	@apply text-sm;
-} */

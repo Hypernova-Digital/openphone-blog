@@ -13,7 +13,7 @@
 
 /* Styles specifically for the .category-posts.post-wrapper element */
 
-a[rel="category tag"] {
+.single a[rel="category tag"] {
 	@apply mb-2 text-sm font-semibold leading-5 text-purple-900 no-underline sm:text-base lg:text-xl;
 }
 
@@ -316,6 +316,5 @@ iframe {
 
 
 .related-posts-after-content .attachment-post-thumbnail {
-    object-fit: cover;
-    height: 19.2rem;
+	@apply h-[8.875rem] sm:h-[16.5rem] md:h-48 lg:h-[18.5rem] xl:h-[18.5rem] object-cover;
 }
