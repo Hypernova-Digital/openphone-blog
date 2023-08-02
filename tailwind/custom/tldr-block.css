@@ -68,3 +68,7 @@ h2.tldr-title {
     align-items: center !important;
     margin: 0 !important;
 }
+
+.tldr-title .title2 {
+    @apply  hidden sm:inline-block sm:ml-[.1rem] ;
+}

@@ -20,8 +20,16 @@ registerBlockType(name, {
 			setAttributes({ title });
 		};
 
+		const onChangeTitle2 = (title2) => {
+			setAttributes({ title2 });
+		};
+
 		const onChangeContent = (content) => {
 			setAttributes({ content });
+		};
+
+		const onChangeTldr = (tldrText) => {
+			setAttributes({ tldrText });
 		};
 
 		const onAccordionToggle = () => {
@@ -31,17 +39,27 @@ registerBlockType(name, {
 		return (
 			<div {...blockProps}>
 				<div className="tldr-header-container">
-					<span className="tldr-text">TL;DR</span>
+					<RichText
+						className="tldr-text"
+						onChange={onChangeTldr}
+						value={attributes.tldrText}
+					/>
 					<h2
 						onClick={onAccordionToggle}
 						style={{ cursor: 'pointer', margin: 0 }}
 						className={isAccordionOpen ? 'active tldr-title' : 'tldr-title'}
 					>
 						<RichText
-							tagName="h2"
+							tagName="span"
 							onChange={onChangeTitle}
 							value={attributes.title}
 							style={{ margin: 0 }}
+						/>
+						<RichText
+							tagName="span"
+							className="title2"
+							onChange={onChangeTitle2}
+							value={attributes.title2}
 						/>
 					</h2>
 				</div>
@@ -62,15 +80,22 @@ registerBlockType(name, {
 		return (
 			<div className="tldr-block">
 				<div className="tldr-header-container">
-					<span className="tldr-text">TL;DR</span>
-					<h2 className="tldr-title" style="margin: 0 !important;">
-						<RichText.Content value={attributes.title} />
+					<RichText.Content
+						tagName="span"
+						className="tldr-text"
+						value={attributes.tldrText}
+					/>
+					<h2 className="tldr-title" style={{ margin: 0 }}>
+						<RichText.Content tagName="span" value={attributes.title} />
+						<span className="title2">
+							<RichText.Content tagName="span" value={attributes.title2} />
+						</span>
 					</h2>
 				</div>
 				<div className={`content ${attributes.isOpen ? 'active' : ''}`}>
-					<RichText.Content value={attributes.content} />
+					<RichText.Content tagName="div" value={attributes.content} />
 				</div>
 			</div>
 		);
-	},
+	},	
 });
