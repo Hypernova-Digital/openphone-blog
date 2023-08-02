@@ -5,9 +5,9 @@
 		"color": {
 			"palette": [
 				{
-					"slug": "background",
-					"color": "#ffffff",
-					"name": "Background"
+					"slug": "bg-purple-50",
+					"color": "bg-purple-50",
+					"name": "purple"
 				},
 				{
 					"slug": "foreground",

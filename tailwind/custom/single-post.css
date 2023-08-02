@@ -13,7 +13,6 @@
 
 /* Styles specifically for the .category-posts.post-wrapper element */
 
-
 a[rel="category tag"] {
 	@apply mb-2 text-sm font-semibold leading-5 text-purple-900 no-underline sm:text-base lg:text-xl;
 }
@@ -46,7 +45,7 @@ article.post {
 /* Headings */
 .single .entry-content h2.wp-block-heading,
 .single .entry-content h2.wp-block-heading > span {
-	@apply mb-8 mt-14 lg:mt-24 text-5xl;
+	@apply mb-8 mt-14 text-5xl lg:mt-24;
 }
 
 .entry-content .wp-block-heading + * {
@@ -120,6 +119,10 @@ article.post {
 	@apply mt-8 text-base font-normal leading-[1.6] sm:mt-16 md:mt-32 lg:mt-32 lg:text-[23px];
 }
 
+p > a {
+font-size: inherit !important;
+}
+
 .post .entry-content > p:first-of-type,
 .post .entry-content > p:first-of-type a {
 	@apply mt-8 text-xs font-normal leading-[1.6] sm:mt-16 sm:text-sm md:mt-32 lg:mt-32 lg:text-[19px];
@@ -129,8 +132,8 @@ article.post {
 .post .entry-content li,
 .post .entry-content a,
 .post .entry-content strong {
-	@apply text-xs font-light leading-[1.5s] text-black sm:text-sm lg:text-[19px];
-	line-height: 1.5 !important;
+	@apply text-xs font-light leading-[1.5] text-black sm:text-sm lg:text-[19px];
+	line-height: inherit !important;
 }
 
 .signle .entry-content a:hover {
@@ -141,10 +144,6 @@ article.post {
 	.prose-a\:text-primary
 	:is(:where(a):not(:where([class~="not-prose"] *))):hover {
 	@apply text-purple-900;
-}
-
-.post .entry-content strong {
-	@apply text-xs font-semibold leading-6 text-black sm:text-sm lg:text-[19px];
 }
 
 .post .entry-content em {
@@ -215,7 +214,7 @@ article.post {
 }
 
 .single.single-post .saboxplugin-gravatar {
-	@apply p-0 md:row-span-2 md:col-span-1;
+	@apply p-0 md:col-span-1 md:row-span-2;
 }
 
 .single.single-post .saboxplugin-tab {
@@ -230,23 +229,16 @@ article.post {
 	}
 }
 
-.single.single-post
-	.saboxplugin-wrap
-	.saboxplugin-authorname {
-	@apply col-start-1 col-end-2 m-0 h-min text-left md:col-start-2 md:col-end-8 font-semibold;
+.single.single-post .saboxplugin-wrap .saboxplugin-authorname {
+	@apply col-start-1 col-end-2 m-0 h-min text-left font-semibold md:col-start-2 md:col-end-8;
 }
 
-.single.single-post
-	.saboxplugin-wrap
-	.saboxplugin-gravatar
-	img {
+.single.single-post .saboxplugin-wrap .saboxplugin-gravatar img {
 	@apply m-0 block rounded-full;
 	vertical-align: baseline;
 }
 
-.single.single-post
-	.saboxplugin-wrap
-	.saboxplugin-gravatar {
+.single.single-post .saboxplugin-wrap .saboxplugin-gravatar {
 	@apply m-0;
 }
 
@@ -258,7 +250,6 @@ img.avatar.avatar-100.photo {
 	@apply text-base font-semibold underline underline-offset-4;
 }
 
-
 .post-template-default.single.single-post
 	.prose-a\:text-primary
 	:is(:where(a):not(:where([class~="not-prose"] *))) {
@@ -266,12 +257,12 @@ img.avatar.avatar-100.photo {
 }
 
 .single.single-post .saboxplugin-authorname::before {
-	@apply text-base lg:text-[19px] font-semibold;
+	@apply text-base font-semibold lg:text-[19px];
 	content: "Words By ";
 }
 
 .single.single-post .saboxplugin-wrap .saboxplugin-desc {
-	@apply col-start-1 col-end-2 m-0 w-full text-left text-xs md:col-start-2 md:col-end-8 leading-[1.4] mt-0 md:row-end-3;
+	@apply col-start-1 col-end-2 m-0 mt-0 w-full text-left text-xs leading-[1.4] md:col-start-2 md:col-end-8 md:row-end-3;
 	display: flex !important;
 }
 
@@ -283,9 +274,7 @@ img.avatar.avatar-100.photo {
 	@apply m-0;
 }
 
-.single.single-post
-	.saboxplugin-wrap
-	.saboxplugin-authorname {
+.single.single-post .saboxplugin-wrap .saboxplugin-authorname {
 	@apply mt-0;
 }
 
@@ -324,5 +313,3 @@ iframe {
 	flex-wrap: nowrap !important;
 	gap: 1rem !important;
 }
-
-

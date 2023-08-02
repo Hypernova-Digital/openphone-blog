@@ -1,14 +1,32 @@
 import { registerBlockType } from '@wordpress/blocks';
 import metadata from './block.json';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	RichText,
+	InspectorControls,
+	MediaUpload,
+	MediaUploadCheck,
+} from '@wordpress/block-editor';
+import { SelectControl, Button } from '@wordpress/components';
 
 const { name, ...settings } = metadata;
 
-// The themeURL passed from the PHP code is available as window.themeData.themeURL
-const themeURL = window.themeData.themeURL;
+const themeURL = window.themeData.themeURL; // The themeURL passed from the PHP code is available as window.themeData.themeURL
 
 registerBlockType(name, {
 	...settings,
+
+	attributes: {
+		...settings.attributes,
+		imageUrl: {
+			type: 'string',
+			default: '',
+		},
+		buttonStyle: {
+			type: 'string',
+			default: 'button cta-button',
+		},
+	},
 
 	edit: (props) => {
 		const { attributes, setAttributes } = props;
@@ -18,55 +36,115 @@ registerBlockType(name, {
 			setAttributes({ buttonLink: buttonLink });
 		};
 
-		// onchange event for button text field
 		const onChangeButtonText = (buttonText) => {
 			setAttributes({ buttonText: buttonText });
 		};
 
-		// onchange event for text field
 		const onChangeTitle = (title) => {
 			setAttributes({ title: title });
 		};
 
-		// onchange event for description field
 		const onChangeDescription = (description) => {
 			setAttributes({ description: description });
 		};
 
+		const onChangeBgColor = (newColor) => {
+			setAttributes({ bgColor: newColor });
+		};
+
+		const onImageSelect = (media) => {
+			setAttributes({ imageUrl: media.url });
+		};
+
+		const onRemoveImage = () => {
+			setAttributes({ imageUrl: '' });
+		};
+
+		const onChangeButtonStyle = (newStyle) => {
+			setAttributes({ buttonStyle: newStyle });
+		};
+
 		return (
-			<div {...blockProps}>
-				<img
-					src={themeURL + '/images/logo.png'}
-					alt="Logo"
-					className="cta-logo"
-				/>
-				<RichText
-					tagName="h2"
-					value={attributes.title}
-					onChange={onChangeTitle}
-					placeholder="Enter your title here"
-				/>
-				<RichText
-					tagName="p"
-					value={attributes.description}
-					onChange={onChangeDescription}
-					placeholder="Enter your description here"
-				/>
+			<>
+				<InspectorControls>
+					<SelectControl
+						label="Background Color"
+						value={attributes.bgColor}
+						options={[
+							{ label: 'Purple', value: 'bg-purple-50' },
+							{ label: 'Red', value: 'bg-red-50' },
+							{ label: 'Green', value: 'bg-green-50' },
+							{ label: 'Blue', value: 'bg-blue-50' },
+							{ label: 'Yellow', value: 'bg-yellow-50' },
+							{ label: 'Orange', value: 'bg-orange-50' },
+						]}
+						onChange={onChangeBgColor}
+					/>
+					<SelectControl
+						label="Button Style"
+						value={attributes.buttonStyle}
+						options={[
+							{ label: 'Default', value: 'button cta-button' },
+							{ label: 'Black', value: 'button cta-button button-black' },
+						]}
+						onChange={onChangeButtonStyle}
+					/>
+				</InspectorControls>
+				<div
+					{...blockProps}
+					className={`${blockProps.className} ${attributes.bgColor}`}
+				>
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={onImageSelect}
+							allowedTypes={['image']}
+							value={attributes.imageUrl}
+							render={({ open }) => (
+								<Button onClick={open}>
+									{ ! attributes.imageUrl ? (
+										'Upload Image'
+									) : (
+										<>
+											<img
+												src={attributes.imageUrl}
+												alt="Logo"
+												className="cta-logo mx-auto"
+											/>
+											<Button onClick={onRemoveImage}>Remove Image</Button>
+										</>
+									) }
+								</Button>
+							)}
+						/>
+					</MediaUploadCheck>
+					<RichText
+						tagName="h2"
+						value={attributes.title}
+						onChange={onChangeTitle}
+						placeholder="Enter your title here"
+					/>
+					<RichText
+						tagName="p"
+						value={attributes.description}
+						onChange={onChangeDescription}
+						placeholder="Enter your description here"
+					/>
 
-				<RichText
-					tagName="a"
-					value={attributes.buttonLink}
-					onChange={onChangeButtonLink}
-					placeholder="Button Link"
-				/>
+					<RichText
+						tagName="a"
+						value={attributes.buttonLink}
+						onChange={onChangeButtonLink}
+						placeholder="Button Link"
+					/>
 
-				<RichText
-					tagName="a"
-					value={attributes.buttonText}
-					onChange={onChangeButtonText}
-					placeholder="Button Text"
-				/>
-			</div>
+					<RichText
+						tagName="a"
+						value={attributes.buttonText}
+						onChange={onChangeButtonText}
+						placeholder="Button Text"
+					/>
+				</div>
+			</>
 		);
 	},
 
@@ -74,16 +152,23 @@ registerBlockType(name, {
 		const blockProps = useBlockProps.save();
 
 		return (
-			<div {...blockProps}>
-				<img
-					src={themeURL + '/images/logo.png'}
-					alt="Logo"
-					className="cta-logo"
-				/>
+			<div
+				{...blockProps}
+				className={`${blockProps.className} ${attributes.bgColor}`}
+			>
+				{attributes.imageUrl && (
+					<img
+						src={attributes.imageUrl || themeURL + '/images/logo.png'}
+						alt="Logo"
+						className="cta-logo"
+					/>
+				)}
 				<RichText.Content tagName="h2" value={attributes.title} />
-                <p>{attributes.description}</p>
+				<RichText.Content tagName="p" value={attributes.description} />
 
-				<a href={attributes.buttonLink} className="button cta-button">{attributes.buttonText}</a>
+				<a href={attributes.buttonLink} className={attributes.buttonStyle}>
+					{attributes.buttonText}
+				</a>
 			</div>
 		);
 	},

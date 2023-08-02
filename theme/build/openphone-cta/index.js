@@ -22,6 +22,16 @@ module.exports = window["wp"]["blocks"];
 
 /***/ }),
 
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -38,7 +48,7 @@ module.exports = window["wp"]["element"];
   \*****************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"openphone/cta","title":"CTA Block","icon":"megaphone","category":"common","editorScript":"file:./index.js","attributes":{"title":{"type":"string","default":"Port now, pay later"},"description":{"type":"string","source":"html","selector":"p","default":"Port your existing business number and join thousands of other businesses already using OpenPhone to communicate better with their customers."},"buttonText":{"type":"string","default":"Learn More"},"buttonLink":{"type":"string","default":"#"},"backgroundColor":{"type":"string","default":"inherit"}}}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"openphone/cta","title":"CTA Block","icon":"megaphone","category":"common","editorScript":"file:./index.js","attributes":{"title":{"type":"string","default":"Port now, pay later"},"description":{"type":"string","source":"html","selector":"p","default":"Port your existing business number and join thousands of other businesses already using OpenPhone to communicate better with their customers."},"buttonText":{"type":"string","default":"Learn More"},"buttonLink":{"type":"string","default":"#"},"backgroundColor":{"type":"string","default":"inherit"},"bgColor":{"type":"string","default":""},"buttonStyle":{"type":"string","default":"button cta-button"}}}');
 
 /***/ })
 
@@ -124,6 +134,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./blocks/openphone-cta/block.json");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -132,11 +145,21 @@ const {
   name,
   ...settings
 } = _block_json__WEBPACK_IMPORTED_MODULE_2__;
+const themeURL = window.themeData.themeURL; // The themeURL passed from the PHP code is available as window.themeData.themeURL
 
-// The themeURL passed from the PHP code is available as window.themeData.themeURL
-const themeURL = window.themeData.themeURL;
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(name, {
   ...settings,
+  attributes: {
+    ...settings.attributes,
+    imageUrl: {
+      type: 'string',
+      default: ''
+    },
+    buttonStyle: {
+      type: 'string',
+      default: 'button cta-button'
+    }
+  },
   edit: props => {
     const {
       attributes,
@@ -148,34 +171,94 @@ const themeURL = window.themeData.themeURL;
         buttonLink: buttonLink
       });
     };
-
-    // onchange event for button text field
     const onChangeButtonText = buttonText => {
       setAttributes({
         buttonText: buttonText
       });
     };
-
-    // onchange event for text field
     const onChangeTitle = title => {
       setAttributes({
         title: title
       });
     };
-
-    // onchange event for description field
     const onChangeDescription = description => {
       setAttributes({
         description: description
       });
     };
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      ...blockProps
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-      src: themeURL + '/images/logo.png',
-      alt: "Logo",
-      className: "cta-logo"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
+    const onChangeBgColor = newColor => {
+      setAttributes({
+        bgColor: newColor
+      });
+    };
+    const onImageSelect = media => {
+      setAttributes({
+        imageUrl: media.url
+      });
+    };
+    const onRemoveImage = () => {
+      setAttributes({
+        imageUrl: ''
+      });
+    };
+    const onChangeButtonStyle = newStyle => {
+      setAttributes({
+        buttonStyle: newStyle
+      });
+    };
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+      label: "Background Color",
+      value: attributes.bgColor,
+      options: [{
+        label: 'Purple',
+        value: 'bg-purple-50'
+      }, {
+        label: 'Red',
+        value: 'bg-red-50'
+      }, {
+        label: 'Green',
+        value: 'bg-green-50'
+      }, {
+        label: 'Blue',
+        value: 'bg-blue-50'
+      }, {
+        label: 'Yellow',
+        value: 'bg-yellow-50'
+      }, {
+        label: 'Orange',
+        value: 'bg-orange-50'
+      }],
+      onChange: onChangeBgColor
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+      label: "Button Style",
+      value: attributes.buttonStyle,
+      options: [{
+        label: 'Default',
+        value: 'button cta-button'
+      }, {
+        label: 'Black',
+        value: 'button cta-button button-black'
+      }],
+      onChange: onChangeButtonStyle
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ...blockProps,
+      className: `${blockProps.className} ${attributes.bgColor}`
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
+      onSelect: onImageSelect,
+      allowedTypes: ['image'],
+      value: attributes.imageUrl,
+      render: ({
+        open
+      }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+        onClick: open
+      }, !attributes.imageUrl ? 'Upload Image' : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+        src: attributes.imageUrl,
+        alt: "Logo",
+        className: "cta-logo mx-auto"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+        onClick: onRemoveImage
+      }, "Remove Image")))
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
       tagName: "h2",
       value: attributes.title,
       onChange: onChangeTitle,
@@ -195,24 +278,28 @@ const themeURL = window.themeData.themeURL;
       value: attributes.buttonText,
       onChange: onChangeButtonText,
       placeholder: "Button Text"
-    }));
+    })));
   },
   save: ({
     attributes
   }) => {
     const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      ...blockProps
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-      src: themeURL + '/images/logo.png',
+      ...blockProps,
+      className: `${blockProps.className} ${attributes.bgColor}`
+    }, attributes.imageUrl && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: attributes.imageUrl || themeURL + '/images/logo.png',
       alt: "Logo",
       className: "cta-logo"
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText.Content, {
       tagName: "h2",
       value: attributes.title
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, attributes.description), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText.Content, {
+      tagName: "p",
+      value: attributes.description
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
       href: attributes.buttonLink,
-      className: "button cta-button"
+      className: attributes.buttonStyle
     }, attributes.buttonText));
   }
 });

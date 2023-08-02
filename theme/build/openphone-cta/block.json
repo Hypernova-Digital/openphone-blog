@@ -27,6 +27,14 @@
     "backgroundColor": {
       "type": "string",
       "default": "inherit"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonStyle": {
+      "type": "string",
+      "default": "button cta-button"
     }
   }
 }
