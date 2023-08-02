@@ -497,11 +497,12 @@ function openphone_render_next_posts_block($attributes, $content)
 						</div>
 
 						<div class="content p-4">
-							<div class="meta text-purple-900">
+							<div class="meta text-purple-900 text-[.875rem]">
 								<?php
 								foreach ((get_the_category($post['ID'])) as $category) {
 									echo $category->cat_name . ' ';
 								} 								?>
+								<?php openphone_display_yoast_primary_category(false, $post['ID']); ?>
 								</span><span class="opacity-10"> | </span>
 								<span class="text-[11px] sm:text-xs md:text-sm opacity-70 text-black"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
 								<?php //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
@@ -825,47 +826,52 @@ function openphone_render_next_posts_block($attributes, $content)
 		}
 		add_filter('get_the_archive_title', 'custom_archive_title');
 
-		function openphone_display_yoast_primary_category($useCatLink = true)
-		{
+		function openphone_display_yoast_primary_category($useCatLink = true, $postID = null)
+{
+    // If no post ID is provided, use the current post ID
+    if (empty($postID)) {
+        $postID = get_the_ID();
+    }
 
-			// Retrieves post categories
-			$category = get_the_category();
+    // Retrieves post categories
+    $category = get_the_category($postID);
 
-			// If post has a category assigned.
-			if ($category) {
-				$category_display = '';
-				$category_link = '';
+    // If post has a category assigned.
+    if ($category) {
+        $category_display = '';
+        $category_link = '';
 
-				// Get post's 'Primary' category from post meta
-				$yoast_primary_key = get_post_meta(get_the_id(), '_yoast_wpseo_primary_category', TRUE);
+        // Get post's 'Primary' category from post meta
+        $yoast_primary_key = get_post_meta($postID, '_yoast_wpseo_primary_category', TRUE);
 
-				if (!empty($yoast_primary_key)) {
-					$term = get_term($yoast_primary_key);
+        if (!empty($yoast_primary_key)) {
+            $term = get_term($yoast_primary_key);
 
-					if (is_wp_error($term)) {
-						// Default to first category (not Yoast) if an error is returned
-						$category_display = $category[0]->name;
-						$category_link = get_category_link($category[0]->term_id);
-					} else {
-						// Yoast's Primary category
-						$category_display = $term->name;
-						$category_link = get_category_link($term->term_id);
-					}
-				} else {
-					// Default, display the first category in WP's list of assigned categories
-					$category_display = $category[0]->name;
-					$category_link = get_category_link($category[0]->term_id);
-				}
+            if (is_wp_error($term)) {
+                // Default to first category (not Yoast) if an error is returned
+                $category_display = $category[0]->name;
+                $category_link = get_category_link($category[0]->term_id);
+            } else {
+                // Yoast's Primary category
+                $category_display = $term->name;
+                $category_link = get_category_link($term->term_id);
+            }
+        } else {
+            // Default, display the first category in WP's list of assigned categories
+            $category_display = $category[0]->name;
+            $category_link = get_category_link($category[0]->term_id);
+        }
 
-				// Display category
-				if (!empty($category_display)) {
-					if ($useCatLink == true && !empty($category_link)) {
-						echo '<span class="post-category">';
-						echo '<a href="', esc_url($category_link), '">', esc_html_e($category_display), '</a>';
-						echo '</span>';
-					} else {
-						echo '<span class="post-category">', esc_html_e($category_display), '</span>';
-					}
-				}
-			}
-		}
+        // Display category
+        if (!empty($category_display)) {
+            if ($useCatLink == true && !empty($category_link)) {
+                echo '<span class="post-category">';
+                echo '<a href="', esc_url($category_link), '">', esc_html_e($category_display), '</a>';
+                echo '</span>';
+            } else {
+                echo '<span class="post-category">', esc_html_e($category_display), '</span>';
+            }
+        }
+    }
+}
+
