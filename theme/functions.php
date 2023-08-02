@@ -498,10 +498,6 @@ function openphone_render_next_posts_block($attributes, $content)
 
 						<div class="content p-4">
 							<div class="meta text-purple-900 text-[.875rem]">
-								<?php
-								foreach ((get_the_category($post['ID'])) as $category) {
-									echo $category->cat_name . ' ';
-								} 								?>
 								<?php openphone_display_yoast_primary_category(false, $post['ID']); ?>
 								</span><span class="opacity-10"> | </span>
 								<span class="text-[11px] sm:text-xs md:text-sm opacity-70 text-black"><?php echo get_the_date('F j, Y', $post['ID']); ?></span>
