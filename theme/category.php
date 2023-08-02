@@ -28,7 +28,7 @@ get_header();
 </script>
 
 <section id="primary" class="">
-	<main id="main" class="max-w-7xl mx-auto px-8 md:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-auto mb-10">
+	<main id="main" class="max-w-7xl mx-auto px-8 lg:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-auto mb-10">
 
 
 		<?php

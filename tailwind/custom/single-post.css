@@ -313,3 +313,9 @@ iframe {
 	flex-wrap: nowrap !important;
 	gap: 1rem !important;
 }
+
+
+.related-posts-after-content .attachment-post-thumbnail {
+    object-fit: cover;
+    height: 19.2rem;
+}
