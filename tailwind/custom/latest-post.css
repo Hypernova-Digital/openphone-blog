@@ -29,7 +29,6 @@ div.latest-post:hover .content a h2.latest-post-title {
 }
 
 /* Editor Styles */
-
 .latest-post .link-field-container {
     @apply border border-solid border-purple-900 rounded-md mb-2;
 }

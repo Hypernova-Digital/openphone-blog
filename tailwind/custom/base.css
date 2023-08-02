@@ -136,7 +136,7 @@ footer h2.wp-block-heading {
 }
 
 footer li a {
-	@apply text-sm leading-[1.5] block text-black text-opacity-80 font-normal;
+	@apply text-sm lg:text-[.8rem] xl:text-sm leading-[1.5] block text-black text-opacity-80 font-normal;
 }
 
 footer li {
@@ -153,6 +153,10 @@ footer .wp-block-social-links {
 
 footer .footer-categories aside {
 	@apply w-full md:w-auto;
+}
+
+footer .footer-categories aside.blog-posts {
+	@apply md:w-full lg:w-auto;
 }
 
 footer .wp-block-media-text {

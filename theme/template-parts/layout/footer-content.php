@@ -20,7 +20,7 @@
 	</div>
 </section>
 
-<footer id="colophon" class="p-8 bg-white pt-16 lg:py-20 lg:px-0 lg:max-w-7xl mx-auto">
+<footer id="colophon" class="p-8 bg-white pt-16 lg:py-20 xl:px-0 lg:max-w-7xl mx-auto">
 	<div class="footer-categories flex flex-col items-start md:flex-row justify-between mx-auto md:flex-wrap">
 		<?php if (is_active_sidebar('footer-categories-1')) : ?>
 			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 text-base">
@@ -53,7 +53,7 @@
 		<?php endif; ?>
 
 		<?php if (is_active_sidebar('footer-blog')) : ?>
-			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="mb-3 md:mb-0 md:flex-grow md:mt-8 lg:mt-0 lg:flex-grow-0">
+			<aside role="complementary" aria-label="<?php esc_attr_e('Footer', 'openphone'); ?>" class="blog-posts mb-3 md:mb-0 md:flex-grow md:flex-wrap xl:mt-0 xl:flex-grow-0">
 				<?php dynamic_sidebar('footer-blog'); ?>
 			</aside>
 		<?php endif; ?>
