@@ -49,7 +49,7 @@ a.tag,
 a:link.tag,
 a:visited.tag,
 a:hover.tag {
-	@apply rounded-md bg-white bg-opacity-10 px-4 py-2 text-sm font-semibold leading-[1.5] text-white;
+	@apply rounded-md bg-white bg-opacity-10 px-4 py-2 text-sm font-semibold leading-[1.5] text-white hover:bg-purple-900 hover:bg-opacity-100;
 	color: white !important;
 }
 

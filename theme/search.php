@@ -17,7 +17,7 @@ get_header();
 ?>
 
 	<section id="primary">
-		<main id="main" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-12 px-8 lg:px-0 max-w-7xl lg:mx-8 xl:mx-auto">
+		<main id="main" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 px-8 lg:px-0 max-w-7xl lg:mx-8 xl:mx-auto">
 
 		<?php if ( have_posts() ) : ?>
 

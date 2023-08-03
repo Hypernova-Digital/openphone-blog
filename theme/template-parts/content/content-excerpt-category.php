@@ -23,7 +23,7 @@
 					<span class="posted-on opacity-70 [&_a]:font-light text-sm [&_time]:text-sm"><?php openphone_posted_on(); ?></span>
 
 					<a href="<?php the_permalink(); ?>" rel="bookmark norewrite" title="<?php the_title_attribute(); ?>">
-						<?php the_title('<span class="related-post-title block text-sm font-semibold [&_strong]:font-semibold md:text-xl lg:text-[23px] mt-2"> ', '</span>'); ?>
+						<?php the_title('<span class="related-post-title block text-sm font-semibold [&_strong]:font-semibold md:text-xl lg:text-[23px] mt-2 font-roobert"> ', '</span>'); ?>
 					</a>
 				</a>
 			</div>

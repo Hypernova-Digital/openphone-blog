@@ -475,7 +475,7 @@ function openphone_render_next_posts_block($attributes, $content)
 
 ?>
 	<div class="next-posts title-and-link flex flex-row justify-between items-center lg:mt-12">
-		<div class="mx-6 lg:mx-0 mb-6 mt-12 text-[23px] font-semibold text-black">The Latest</div>
+		<div class="mx-6 lg:mx-0 mb-6 mt-12 text-[23px] font-semibold text-black font-roobert">The Latest</div>
 		<?php
 		$blog_page = get_option('page_for_posts');
 		$blog_page_link = get_permalink($blog_page);
@@ -555,7 +555,7 @@ function openphone_render_next_posts_block($attributes, $content)
 
 	<div class="category-posts title-and-link flex flex-row justify-between items-end lg:mt-12 text-black">
 		<div class="mx-6 lg:mx-0 mb-6 lg:mb-12 mt-12">
-			<div class="text-[40px] lg:text-7xl font-semibold leading-[1]"><?php echo $cat_name; ?></div>
+			<div class="text-[40px] lg:text-7xl font-semibold leading-[1] font-roobert"><?php echo $cat_name; ?></div>
 			<div class="text-sm lg:text-[19px] opacity-70 mt-4 lg:mt-3"><?php echo $cat_description; ?></div>
 		</div>
 		<?php
@@ -596,7 +596,7 @@ function openphone_render_next_posts_block($attributes, $content)
 									<span class="text-[11px] sm:text-xs md:text-sm opacity-70" style="transition-duration: 100ms !important;"><?php echo get_the_date('F j, Y', $post); ?></span>
 								</div>
 
-								<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold mt-2"><?php echo get_the_title($post); ?></span>
+								<span class="m-0 leading-1 text-base lg:text-xl leading-[1px] font-semibold mt-2 font-roobert"><?php echo get_the_title($post); ?></span>
 								<?php  //echo (do_shortcode('[rt_reading_time postfix="minute read" postfix_singular="minute read" post_id="' . $post['ID'] . '"]')); 
 								?>
 							</div>
