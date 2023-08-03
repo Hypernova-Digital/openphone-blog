@@ -11,67 +11,36 @@
 get_header();
 ?>
 
-<script>
-	jQuery(document).on('facetwp-loaded', function() {
-		// Extract the category from the URL
-		const urlParams = new URLSearchParams(window.location.search);
-		const category = urlParams.get('_categories');
+<section id="primary">
+    <header class="entry-header bg-purple-50 flex flex-col py-16 mb-16 text-center">
+        <div class="header-left p-6 sm:p-8 lg:p-0 flex flex-col justify-center mx-auto max-w-7xl">
+            <?php the_archive_title('<h1 class="page-title mx-0 text-5xl lg:text-[90px] font-semibold leading-[1] tracking-[-1.8px] text-center block w-full">', '</h1>'); ?>
+            <?php the_archive_description('<span class="block text-center opacity-70 text-sm font-normal leading-[1.5]">', '</span>'); ?>
+        </div>
+    </header>
+	<main id="main" class="gap-12 [&_article]:mb-6  max-w-7xl mx-auto flex flex-col md:flex-row flex-wrap justify-between mb-10 px-6 lg:px-0">
 
-		// If a category is selected, update the title
-		if (category) {
-			jQuery('header.entry-header h1.entry-title').text(decodeURIComponent(category));
-		} else {
-			// If no category is selected, set the title back to "All Posts"
-			jQuery('header.entry-header h1.entry-title').text('All Posts');
-		}
-	});
-</script>
-
-<section id="primary" class="">
-	<main id="main" class="max-w-7xl mx-auto px-8 lg:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-auto mb-10">
-
+		<?php if (have_posts()) : ?>
 
 		<?php
-		if (have_posts()) {
-
-		?>
-			<header class="entry-header col-span-1 md:col-span-2 lg:col-span-3">
-				<h1 class="entry-title mx-0  lg:text-[90px] mt-20 mb-8 lg:h-20 leading-[1] capitalize max-w-max"><?php echo openphone_get_the_archive_title(); ?></h1>
-				<!-- <h1 class="entry-title mx-0"><?php // echo openphone_get_the_archive_title(); ?></h1> -->
-				<ul class="category-list">
-					<li><a href="https://openphone.local/blog-listing/" class="all-posts">All posts</a></li>
-					<?php
-					$categories = get_categories(); // Retrieve all categories
-					foreach ($categories as $category) {
-						$active_class = (is_category($category->term_id)) ? 'active' : ''; // Check if the current category matches the looped category
-						echo '<li><a href="' . get_category_link($category->term_id) . '" class="' . $active_class . '">' . $category->name . '</a></li>';
-					}
-					?>
-				</ul>
-			</header><!-- .entry-header -->
-			<?php
-
-			?>
-			<div class="col-span-1 md:col-span-2 lg:col-span-3">
-				<?php //echo do_shortcode('[facetwp facet="categories"]'); 
-				?>
-			</div>
-			<!--fwp-loop-->
-		<?php
-			while (have_posts()) {
+			// Start the Loop.
+			while (have_posts()) :
 				the_post();
-				get_template_part('template-parts/content/content-excerpt');
-			}
+				get_template_part('template-parts/content/content', 'excerpt-category');
+
+			// End the loop.
+			endwhile;
 
 			// Previous/next page navigation.
 			openphone_the_posts_navigation();
-		} else {
+
+		else :
 
 			// If no content, include the "No posts found" template.
 			get_template_part('template-parts/content/content', 'none');
-		}
-		?>
 
+		endif;
+		?>
 	</main><!-- #main -->
 </section><!-- #primary -->
 

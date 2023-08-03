@@ -16,7 +16,7 @@
 
 
  ?>
-<div class="bg-purple-50">
+<div class="">
  <?php
 get_header();
 ?>

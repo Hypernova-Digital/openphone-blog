@@ -21,9 +21,9 @@
 
 .blog #main .navigation.pagination,
 .archive #main .navigation.pagination {
-    @apply col-span-1 md:col-span-2 lg:col-span-3;
+    @apply col-span-1 md:col-span-2 lg:col-span-3 lg:w-full lg:block lg:mx-auto;
 }
-
+  
 .category-list {
     @apply flex flex-wrap gap-4;
 }
@@ -62,6 +62,10 @@
 
 .search .pagination {
     @apply col-span-1 md:col-span-2 lg:col-span-3;
+}
+
+.archive .pagination {
+    @apply flex-grow;
 }
 
 .blog .pagination .next.page-numbers::after,

@@ -484,7 +484,7 @@ function openphone_render_next_posts_block($attributes, $content)
 	</div>
 
 	<div class="next-posts flex flex-col lg:mb-12">
-		<div class="next-posts-list flex flex-row overflow-scroll snap-x px-6 lg:px-0 pb-14 lg:pb-6 gap-6">
+		<div class="next-posts-list flex flex-row overflow-scroll md:overflow-hidden snap-x px-6 lg:px-0 pb-14 lg:pb-6 gap-6">
 			<?php
 
 			foreach ($next_posts as $post) {

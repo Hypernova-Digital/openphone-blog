@@ -318,3 +318,12 @@ iframe {
 .related-posts-after-content .attachment-post-thumbnail {
 	@apply h-[8.875rem] sm:h-[16.5rem] md:h-48 lg:h-[18.5rem] xl:h-[18.5rem] object-cover;
 }
+
+.single .entry-content {
+scroll-snap-type: x mandatory;
+
+}
+
+.wp-block-heading {
+	scroll-margin-top: 8rem;
+}
