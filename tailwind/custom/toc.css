@@ -107,3 +107,7 @@
 .entry-header #open-phone-toc a .lwptoc_item_label {
     @apply opacity-70;
 }
+
+.without-toc .entry-content > * {
+	@apply mx-auto;
+}

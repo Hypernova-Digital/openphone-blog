@@ -5,6 +5,12 @@
 	color: white !important;
 }
 
+.trending-block-card:hover {
+	border: 1.5px solid #000;
+
+box-shadow: 4px 4px 0px 0px #6439F5;
+}
+
 .trending-block h2 {
 	@apply mt-0 mb-12 md:mb-16 text-[40px] sm:text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1] tracking-[-0.8px] lg:tracking-[-1.44px];
 	color: white !important;

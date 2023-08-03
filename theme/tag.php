@@ -13,7 +13,7 @@ get_header();
 
 <section id="primary">
     <header class="entry-header bg-purple-50 flex flex-col py-16 mb-16 text-center">
-        <div class="header-left p-6 sm:p-8 lg:p-0 flex flex-col justify-center mx-auto max-w-7xl">
+        <div class="header-left p-6 sm:p-8 lg:p-0 flex flex-col justify-center mx-auto lg:max-w-7xl xl:w-full">
             <?php the_archive_title('<h1 class="page-title mx-0 text-5xl lg:text-[90px] font-semibold leading-[1] tracking-[-1.8px] text-center block w-full">', '</h1>'); ?>
             <?php the_archive_description('<span class="block text-center opacity-70 text-sm font-normal leading-[1.5]">', '</span>'); ?>
         </div>
