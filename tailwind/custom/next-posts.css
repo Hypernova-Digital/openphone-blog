@@ -1,0 +1,18 @@
+.prose .next-posts :where(h2):not(:where([class~="not-prose"] *)) {
+	line-height: 1 !important;
+}
+
+/* .prose-a\:text-primary
+	.next-posts.title-and-link
+	:is(:where(a):not(:where([class~="not-prose"] *))) {
+	color: black !important;
+} */
+
+.next-posts img.webpexpress-processed {
+    @apply w-full;
+}
+
+.next-posts-post:hover {
+	@apply border-opacity-100;
+	box-shadow: 4px 4px 0px 0px #000;
+}

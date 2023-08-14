@@ -1,0 +1,14 @@
+{
+  "apiVersion": 2,
+  "name": "openphone/next-posts",
+  "title": "Next Three Posts",
+  "icon": "megaphone",
+  "category": "common",
+  "editorScript": "file:./index.js",
+  "attributes": {
+    "postsToShow": {
+      "type": "number",
+      "default": 3
+    }
+  }
+}

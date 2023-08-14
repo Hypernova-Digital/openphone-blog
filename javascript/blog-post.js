@@ -19,4 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	window.addEventListener('scroll', scrollProgressHandler, {passive: true});
+
+
+        var relatedThumbs = document.querySelectorAll('.related-thumb');
+        relatedThumbs.forEach(function(relatedThumb) {
+            relatedThumb.addEventListener('click', function() {
+                window.location = this.querySelector('a').getAttribute('href');
+            });
+        });
+
 });

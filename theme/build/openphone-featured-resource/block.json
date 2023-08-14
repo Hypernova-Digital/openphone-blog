@@ -1,0 +1,31 @@
+{
+  "apiVersion": 2,
+  "name": "openphone/featured-resource",
+  "title": "Featured Resource",
+  "icon": "megaphone",
+  "category": "common",
+  "editorScript": "file:./index.js",
+  "attributes": {
+    "textField": {
+      "type": "string",
+      "source": "html",
+      "selector": "h2"
+    },
+    "image": {
+      "type": "string",
+      "default": ""
+    },
+    "link": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "tagline": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}

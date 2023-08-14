@@ -17,7 +17,7 @@ get_header();
 ?>
 
 	<section id="primary">
-		<main id="main" class="related-posts-after-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-12 px-8 lg:px-0 max-w-7xl lg:mx-auto">
+		<main id="main" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 px-8 lg:px-0 max-w-7xl lg:mx-8 xl:mx-auto">
 
 		<?php if ( have_posts() ) : ?>
 
@@ -27,8 +27,8 @@ get_header();
 				 
 				printf(
 					/* translators: 1: search result title. 2: search term. */
-					'<h1 class="page-title m-0">' . $wp_query->found_posts . ' ' . $result . ' %1$s <span>%2$s</span></h1>',
-					esc_html__( ' for: ', 'openphone' ),
+					'<h1 class="page-title text-left md:text-center m-0">' . $wp_query->found_posts . ' ' . $result . ' %1$s <span>%2$s</span></h1>',
+					esc_html__( ' for ', 'openphone' ),
 					get_search_query()
 				);
 				?>

@@ -1,0 +1,41 @@
+.wp-block-yoast-faq-block {
+}
+
+.schema-faq-section {
+	@apply py-6 border-b border-black border-opacity-10;
+}
+
+.schema-faq-question {
+	@apply flex flex-row justify-between text-[19px] leading-[1.4];
+	font-weight: 500 !important;
+}
+
+.schema-faq-question::after {
+	@apply block h-6 w-6 transition-transform;
+	content: "";
+	transform: rotate(180deg);
+	background: url("images/cheveron-down.svg") no-repeat center center;
+}
+
+.active.schema-faq-question::after {
+	transform: rotate(0deg);
+}
+
+.schema-faq-answer[role="textbox"] {
+	display: block !important;
+}
+
+.schema-faq-answer {
+	display: none !important;
+	font-size: 16px !important;
+	font-weight: 400 !important;
+	line-height: 150% !important;
+}
+
+.active + p.schema-faq-answer.collapse[style="display: block;"] {
+	display: block !important;
+}
+
+.schema-faq-answer {
+	@apply transition-all;
+}

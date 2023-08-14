@@ -1,0 +1,15 @@
+{
+    "apiVersion": 2,
+    "name": "openphone/faqs",
+    "title": "FAQs",
+    "icon": "megaphone",
+    "category": "common",
+    "editorScript": "file:./index.js",
+    "attributes": {
+        "textField": {
+            "type": "string",
+            "source": "html",
+            "selector": "h2"
+        }
+    }
+}

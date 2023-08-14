@@ -14,11 +14,11 @@ $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : g
 ?>
 
 <section id="primary" class="px-8 ">
-    <main id="main" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-auto">
-        <header class="page-header col-span-1 md:col-span-2 lg:col-span-3 flex flex-col-reverse md:flex-row gap-6 my-14 md:my-[72px]">
+    <main id="main" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-auto pb-14">
+        <header class="page-header col-span-1 md:col-span-2 lg:col-span-3 flex flex-col-reverse md:flex-row md:gap-6 my-14 lg:my-[72px]">
             <div class="author-info md:w-2/3">
-                <h1 class="author-name text-[90px] font-semibold leading-[1] tracking-[-1.8px] mb-6 text-black"><?php echo $curauth->first_name; ?> <?php echo $curauth->last_name; ?></h1>
-                <span class="author-bio opacity-70 text-[19px] font-normal leading-[1.4]"><?php echo $curauth->user_description; ?></span>
+                <h1 class="author-name text-6xl lg:text-[90px] font-semibold leading-[1] tracking-[-1.8px] mb-4 md:mb-6 text-black"><?php echo $curauth->first_name; ?> <?php echo $curauth->last_name; ?></h1>
+                <span class="author-bio opacity-70 text-sm lg:text-[19px] font-normal leading-[1.4]"><?php echo $curauth->user_description; ?></span>
             </div>
             <div class="author-photo md:w-1/3 flex md:justify-end items-center">
                 <div class="author-photo-frame">

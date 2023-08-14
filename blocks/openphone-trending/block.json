@@ -1,0 +1,40 @@
+{
+    "apiVersion": 2,
+    "name": "openphone/trending",
+    "title": "Trending",
+    "icon": "megaphone",
+    "category": "common",
+    "editorScript": "file:./index.js",
+    "attributes": {
+        "title": {
+            "type": "string",
+            "source": "html",
+            "selector": "h2"
+        },
+        "cards": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "properties": {
+                    "img": {
+                        "type": "string"
+                    },
+                    "text": {
+                        "type": "string"
+                    },
+                    "link": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "tags": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

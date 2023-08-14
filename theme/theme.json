@@ -5,9 +5,9 @@
 		"color": {
 			"palette": [
 				{
-					"slug": "background",
-					"color": "#ffffff",
-					"name": "Background"
+					"slug": "bg-purple-50",
+					"color": "bg-purple-50",
+					"name": "purple"
 				},
 				{
 					"slug": "foreground",
@@ -28,6 +28,11 @@
 					"slug": "tertiary",
 					"color": "#0369a1",
 					"name": "Tertiary"
+				},
+				{
+					"slug": "bg-purple-50",
+					"color": "#F0ECFE",
+					"name": "Purple"
 				}
 			]
 		},

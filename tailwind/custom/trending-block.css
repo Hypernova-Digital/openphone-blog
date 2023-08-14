@@ -1,0 +1,63 @@
+.trending-block {
+	@apply m-0 w-full bg-[#190E3D] py-12 lg:py-24 text-white;
+
+	max-width: 100% !important;
+	color: white !important;
+}
+
+.trending-block-card:hover {
+	border: 1.5px solid #000;
+
+box-shadow: 4px 4px 0px 0px #6439F5;
+}
+
+.trending-block h2 {
+	@apply mt-0 mb-12 md:mb-16 text-[40px] sm:text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1] tracking-[-0.8px] lg:tracking-[-1.44px];
+	color: white !important;
+}
+
+.trending-block h4 {
+	@apply mb-0 mt-6;
+}
+
+.trending-block-card {
+	@apply flex flex-col items-center justify-between rounded-[10px] bg-white p-6;
+}
+
+.trending-block-card img {
+	@apply m-0 rounded-lg max-h-32 md:max-h-none object-cover w-full;
+}
+
+.trending-block-cards {
+	@apply grid grid-cols-1 gap-4 md:grid-cols-3;
+}
+
+.trending-block-link {
+	@apply text-center text-xl font-semibold leading-[1.2] tracking-[-0.2px] text-black no-underline block w-full;
+}
+
+.trending-block-tags {
+	@apply mt-12 lg:mt-16 flex flex-col md:flex-row gap-4 md:items-center justify-center md:gap-3;
+}
+
+.tag-title {
+	@apply text-base lg:text-2xl font-semibold leading-[1.2] tracking-[-0.2px] text-white;
+}
+
+.tag
+a.tag,
+a:link.tag,
+a:visited.tag,
+a:hover.tag {
+	@apply rounded-md bg-white bg-opacity-10 px-4 py-2 text-sm font-semibold leading-[1.5] text-white hover:bg-purple-900 hover:bg-opacity-100;
+	color: white !important;
+}
+
+.tags {
+	@apply flex justify-start flex-wrap gap-3;
+}
+
+
+.trending-container {
+	@apply xl:w-[1200px];
+}

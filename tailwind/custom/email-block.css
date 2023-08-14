@@ -1,0 +1,25 @@
+.openphone-email-signup > div{
+    @apply lg:gap-32;
+}
+
+.openphone-email-signup h2 {
+    @apply flex flex-row items-center gap-4 lg:gap-10 text-3xl sm:text-4xl lg:text-6xl mb-6 md:mb-0;
+}
+
+.openphone-email-signup h2::before {
+    @apply inline-block bg-cover bg-no-repeat w-14 h-14 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28 bg-contain;
+    content: '';
+    background-image: url("images/mail-icon.svg");
+}
+
+.openphone-email-signup input[type="email"] {
+    @apply mr-0 lg:mr-4;
+}
+
+.openphone-email-signup button {
+    @apply w-max text-[19px];
+}
+
+.openphone-email-signup span {
+    @apply text-xs sm:text-sm;
+}

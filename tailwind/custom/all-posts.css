@@ -13,11 +13,17 @@
     @apply w-full;
 }
 
-.blog #main .navigation.pagination,
-.archive #main .navigation.pagination {
-    @apply col-span-1 md:col-span-2 lg:col-span-3;
+.blog #main > article:hover
+.archive #main > article:hover {
+    @apply border-opacity-100;
+	box-shadow: 4px 4px 0px 0px #000;
 }
 
+.blog #main .navigation.pagination,
+.archive #main .navigation.pagination {
+    @apply col-span-1 md:col-span-2 lg:col-span-3 lg:w-full lg:block lg:mx-auto;
+}
+  
 .category-list {
     @apply flex flex-wrap gap-4;
 }
@@ -38,6 +44,10 @@
     @apply bg-opacity-100 text-white;
 }
 
+.blog a[rel="category tag"] {
+    @apply text-sm;
+}
+
 .blog .pagination,
 .archive .pagination,
 .search .pagination {
@@ -52,6 +62,10 @@
 
 .search .pagination {
     @apply col-span-1 md:col-span-2 lg:col-span-3;
+}
+
+.archive .pagination {
+    @apply flex-grow;
 }
 
 .blog .pagination .next.page-numbers::after,
@@ -75,9 +89,32 @@
     color: white !important;
 }
 
-
 .blog .pagination .page-numbers,
 .archive .pagination .page-numbers,
 .search .pagination .page-numbers {
     @apply inline-flex items-center px-4 py-2 rounded-sm border-[1px] border-opacity-5 text-black text-base font-normal;
+}
+
+/* Facet WP Styles */
+.blog .facetwp-radio.checked,
+.blog .facetwp-radio {
+    @apply inline-block px-4 py-2 rounded-md bg-black bg-opacity-5 text-black text-sm;
+    background-image: none;
+}
+
+.blog .facetwp-radio.checked,
+.blog .facetwp-radio:hover {
+    @apply bg-opacity-100 text-white;
+}
+
+.category-list {
+    @apply flex flex-wrap gap-4;
+}
+
+.facetwp-counter {
+    @apply hidden;
+}
+
+.facetwp-facet {
+    @apply flex flex-row flex-wrap gap-4;
 }

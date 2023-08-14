@@ -35,7 +35,7 @@
 .page-content > *,
 .entry-content > * {
 	/* Content width from the `theme.json` file */
-	@apply max-w-content mx-auto;
+	@apply max-w-[1200px] mx-auto md:px-8 lg:px-16 xl:px-0;
 }
 
 .entry-content > .alignwide {
@@ -68,5 +68,5 @@
 
 .wp-element-button {
 	font-family: Inter, sans-serif !important;
-	@apply text-center text-base font-medium leading-[1.5] flex h-[2.25rem] px-4 justify-center items-center border-[1.5px] border-black rounded-md;
+	@apply text-center text-base font-medium leading-[1] flex h-[2.25rem] px-8 py-4 justify-center items-center border-[1.5px] border-black rounded-md;
 }

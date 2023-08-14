@@ -16,8 +16,26 @@
 get_header();
 ?>
 
+<script>
+	jQuery(document).on('facetwp-loaded', function() {
+		// Extract the category from the URL
+		const urlParams = new URLSearchParams(window.location.search);
+		const category = urlParams.get('_categories');
+
+		// If a category is selected, update the title
+		if (category) {
+			jQuery('header.entry-header h1.entry-title').text(decodeURIComponent(category));
+		} else {
+			// If no category is selected, set the title back to "All Posts"
+			jQuery('header.entry-header h1.entry-title').text('All Posts');
+		}
+	});
+</script>
+
+
 <section id="primary" class="">
-	<main id="main" class="max-w-7xl mx-auto px-8 md:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-auto mb-10">
+	<main id="main" class="max-w-7xl mx-auto px-8 xl:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-auto mb-10">
+
 
 		<?php
 		if (have_posts()) {
@@ -25,22 +43,17 @@ get_header();
 			if (is_home() && !is_front_page()) :
 		?>
 				<header class="entry-header col-span-1 md:col-span-2 lg:col-span-3">
-					<h1 class="entry-title mx-0"><?php single_post_title(); ?></h1>
-					<ul class="category-list">
-						<li><a href="https://openphone.local/blog-listing/" class="all-posts">All posts</a></li>
-						<?php
-						$categories = get_categories(); // Retrieve all categories
-						foreach ($categories as $category) {
-							$active_class = (is_category($category->term_id)) ? 'active' : ''; // Check if the current category matches the looped category
-							echo '<li><a href="' . get_category_link($category->term_id) . '" class="' . $active_class . '">' . $category->name . '</a></li>';
-						}
-						?>
-					</ul>
+					<h1 class="entry-title mx-0  lg:text-[90px] mt-20 mb-8 lg:h-20 leading-[1] capitalize max-w-max"><?php single_post_title(); ?></h1>
 				</header><!-- .entry-header -->
-		<?php
+			<?php
 			endif;
 
-			// Load posts loop.
+			?>
+			<div class="col-span-1 md:col-span-2 lg:col-span-3">
+				<?php echo do_shortcode('[facetwp facet="categories"]'); ?>
+			</div>
+		<!--fwp-loop-->
+		<?php
 			while (have_posts()) {
 				the_post();
 				get_template_part('template-parts/content/content-excerpt');

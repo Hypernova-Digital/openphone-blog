@@ -3,37 +3,42 @@
 }
 
 .desktop-nav {
-    @apply hidden;
+	@apply hidden;
 }
 
-@media (min-width: 1200px) {
-    .desktop-nav {
-        @apply flex visible w-max;
-    }
+.desktop-nav {
+	@apply lg:visible lg:flex w-max;
 }
 
-/* change to 880px later */
-@media (min-width: 880px) {
-    .mobile-nav {
-        @apply hidden;
-    }
+.sticky-nav {
+	@apply animate-slideDown sticky top-0 z-50;
+}
 
+@media screen and (max-width: 880px) {
 	.sticky-nav {
-		@apply sticky top-0 z-50 animate-slideDown;
+		top: 0;
 	}
+}
 
-	/* this is hidden by default in the markup */
-	.scroll-progress-bar {
-		@apply align-bottom w-full h-[4px] bg-transparent;
-	}
+/* this is hidden by default in the markup */
+.scroll-progress-bar {
+	@apply md:h-[4px] md:w-full md:bg-transparent md:align-bottom;
+}
 
-	.scroll-progress-value {
-		@apply w-0 h-full bg-purple-900;
-	}
+.scroll-progress-value {
+	@apply md:h-full md:w-0 md:bg-purple-900;
+}
+
+.mobile-nav {
+	@apply md:hidden;
+}
+
+.mobile-nav .header-search {
+	@apply md:hidden;
 }
 
 .desktop-nav .header-search {
-    @apply w-6 h-6;
+	@apply h-6 w-6;
 }
 
 .desktop-nav .menu-openphone-menu-container #primary-menu {
@@ -41,58 +46,66 @@
 }
 
 #primary-menu > .menu-item {
-    @apply h-8 flex flex-col items-center justify-center;
+	@apply flex h-12 flex-col items-center justify-center;
 }
 
 .desktop-nav .menu-item > .sub-menu {
 	@apply hidden;
 }
 
+.admin-bar .desktop-nav .menu-item > a + .sub-menu:hover {
+	@apply fixed left-auto top-24 z-[1000] block p-4;
+	box-shadow: 4px 4px 0px 0px #000;
+}
+
 .desktop-nav .menu-item > a + .sub-menu:hover {
-	@apply fixed left-auto top-24 z-[1000] block p-4 ;
-    box-shadow: 4px 4px 0px 0px #000;
+	@apply fixed left-auto top-[4.4rem] z-[1000] block p-4;
+	box-shadow: 4px 4px 0px 0px #000;
 }
 
 .desktop-nav .menu-item:hover > a + .sub-menu {
-	@apply fixed left-auto top-24 z-[1000] block bg-white p-4 rounded-lg border-[1px] border-black;
-    box-shadow: 4px 4px 0px 0px #000;
+	@apply fixed left-auto top-[4.4rem] z-[1000] block rounded-lg border-[1px] border-black bg-white p-4;
+	box-shadow: 4px 4px 0px 0px #000;
+}
+
+.admin-bar .desktop-nav .menu-item:hover > a + .sub-menu {
+	@apply fixed left-auto top-[6.5rem] z-[1000] block rounded-lg border-[1px] border-black bg-white p-4;
+	box-shadow: 4px 4px 0px 0px #000;
 }
 
 .desktop-nav .sub-menu > .menu-item {
-    @apply px-[10px] py-[6px] rounded-md text-base;
+	@apply rounded-md px-[10px] py-[6px] text-base;
 }
 
 .desktop-nav .sub-menu > .menu-item:hover {
-    @apply bg-purple-25 cursor-pointer transition-all duration-200;
+	@apply bg-purple-25 cursor-pointer transition-all duration-200;
 }
 
 .desktop-nav .menu-item-has-children > a::after {
-    background-image: url('images/cheveron-down.svg');
-    content: '';
-    top: 2px;
+	background-image: url("images/cheveron-down.svg");
+	content: "";
+	top: 2px;
 
-    @apply relative ml-1 inline-block w-4 h-4 bg-contain bg-no-repeat bg-center;
+	@apply relative ml-1 inline-block h-4 w-4 bg-contain bg-center bg-no-repeat;
 }
 
 .desktop-nav .menu-item-has-children:hover > a::after {
-    transform: rotate(180deg);
-    @apply transition-transform duration-200;
+	transform: rotate(180deg);
+	@apply transition-transform duration-200;
 }
 
 .header-content {
-	@apply mx-auto;
+	@apply mx-auto lg:px-20 min-[1280px]:px-0;
 }
 
-#masthead {
-	/* @apply sticky top-0; */
+@media screen and (max-width: 600px){
+	#masthead  {
+		top: 0 !important;
+	}
 }
 
-.admin-bar #masthead {
-	/* @apply sticky top-8; */
-}
-
-.custom-logo {
-	@apply mr-3 h-[1.4rem] w-auto;
+#masthead .site-logo {
+	width: 152px;
 }
 
 .logo-and-title {
@@ -100,61 +113,181 @@
 }
 
 .logo-and-title:hover {
-    @apply text-purple-900 transition-colors duration-200;
+	@apply text-purple-900 transition-colors duration-200;
 }
 
 #masthead .wp-block-button:first-child a.wp-element-button {
-    @apply bg-white text-black border-[1px] border-black;
+	@apply border-[1px] border-black bg-white text-black;
+}
+
+#masthead .wp-block-button:first-child a.wp-element-button:hover {
+	border: 1.5px solid #000;
+	box-shadow: 4px 4px 0px 0px #000;
+}
+
+#masthead .wp-block-button .wp-block-button__link.wp-element-button {
+	@apply px-3 py-1 xl:py-2 xl:px-4 text-[15px] leading-[1.5];
 }
 
 .mobile-nav {
-    @apply flex flex-row-reverse justify-start;
+	@apply flex flex-col justify-start;
 }
 
 .mobile-nav .header-ctas {
-    @apply hidden;
+	@apply ml-0 hidden w-full border-t-[1.5px] border-black border-opacity-10 p-6;
+}
+
+.mobile-nav.visible .header-ctas {
+	@apply block sm:hidden;
+}
+
+.mobile-nav .header-ctas .wp-block-buttons {
+	@apply flex-col;
+}
+
+.mobile-nav .header-ctas .wp-block-buttons .wp-block-button {
+	@apply w-full;
 }
 
 .mobile-nav .header-search {
-    @apply w-6 h-6 mr-4;
+	@apply mr-4 h-6 w-6;
+
+	position: absolute;
+	top: 19px;
+	right: 40px;
+}
+
+.admin-bar .header-search {
+	@apply absolute right-[40px] top-[3.8rem] mr-4 h-6 w-6 sm:top-[4.375rem] wpmd:top-[3.375rem] sm:mr-[17.8rem] lg:mr-0 lg:relative lg:top-0 lg:right-0;
+}
+
+.header-search {
+	@apply absolute right-[40px] top-[3.8rem] mr-4 h-6 w-6 sm:top-[1.375rem] wpmd:top-[1.375rem] sm:mr-[17.8rem] lg:mr-0 lg:relative lg:top-0 lg:right-0;
+}
+
+.admin-bar .mobile-nav .header-search {
+	@apply sm:top-[70px] sm:hidden;
+}
+
+.admin-bar .sticky-nav .header-search {
+	@apply top-[1.8rem] sm:top-[1.4rem] lg:top-0;
+}
+
+.sticky-nav .header-search {
+	@apply top-[1.8rem] sm:top-[1.4rem] lg:top-0;
+}
+
+.admin-bar .sticky-nav .mobile-nav .header-search {
+	@apply top-4 mr-4 h-6 w-6;
+
+	position: absolute;
+	right: 40px;
+}
+
+.mobile-nav .header-search {
+	@apply sm:top-[70px] sm:hidden;
+}
+
+.sticky-nav .header-search {
+	@apply top-[1.8rem] sm:top-[1.4rem] lg:top-0;
+}
+
+.sticky-nav .mobile-nav .header-search {
+	@apply top-4 mr-4 h-6 w-6;
+
+	position: absolute;
+	right: 40px;
 }
 
 .mobile-nav .menu-openphone-menu-container[style="display: block;"] {
-    @apply  w-full h-[100vh];
+	@apply h-[76vh] w-full border-t-[1.5px] border-black border-opacity-10 p-6;
 }
 
-@media (min-width: 880px) {
-    .mobile-nav .header-search {
-        @apply hidden;
-    }
+.admin-bar .mobile-nav .menu-openphone-menu-container[style="display: block;"] {
+	@apply h-[70vh] sm:h-[100vh];
+}
+
+.menu-openphone-menu-container[style="display: block;"] {
+	@apply h-[70vh] sm:h-[100vh];
 }
 
 .mobile-nav button[aria-controls="primary-menu"] {
-    @apply w-6 h-1 bg-black rounded-lg;
+	@apply h-[2px] w-6 bg-black;
+	position: absolute;
+	top: 1.8rem;
+	right: 1rem;
+}
+
+@media (min-width: 568px) {
+	.mobile-nav button[aria-controls="primary-menu"] {
+		top: 2.9rem;
+	}
+}
+
+.admin-bar .sticky-nav .mobile-nav button[aria-controls="primary-menu"] {
+	@apply absolute top-[1.6rem] right-4 h-[2px] w-6 bg-black sm:top-[2rem] sm:right-6 md:top-[2.2rem];
+}
+
+.admin-bar .sticky-nav.scrolled .mobile-nav.visible button[aria-controls="primary-menu"] {
+	@apply bg-transparent;
+}
+
+.admin-bar .mobile-nav button[aria-controls="primary-menu"] {
+	@apply absolute h-[2px] w-6 bg-black top-[4.4rem] right-[1rem] sm:top-[4.8rem] sm:right-6 wpmd:top-[3.875rem];
+}
+
+.mobile-nav button[aria-controls="primary-menu"] {
+	@apply absolute h-[2px] w-6 bg-black top-[1.6rem] right-[1rem] sm:top-[1.8rem] sm:right-6 wpmd:top-[1.875rem];
+}
+
+.mobile-nav button[aria-controls="primary-menu"][aria-expanded="true"] {
+	@apply bg-transparent;
 }
 
 .mobile-nav button[aria-controls="primary-menu"]::before,
 .mobile-nav button[aria-controls="primary-menu"]::after {
-    @apply w-6 h-1 bg-black rounded-lg block relative;
-    content: '';
+	@apply relative block h-[2px] w-6 bg-black;
+	content: "";
+}
+
+.mobile-nav button[aria-controls="primary-menu"][aria-expanded="true"]::before {
+	top: 0px;
+	transform: rotate(45deg);
+}
+
+.mobile-nav button[aria-controls="primary-menu"][aria-expanded="true"]::after {
+	transform: rotate(-45deg);
+	top: -2px;
 }
 
 .mobile-nav button[aria-controls="primary-menu"]::before {
-    top: -8px;
+	top: -8px;
 }
 
 .mobile-nav button[aria-controls="primary-menu"]::after {
-    bottom: -4px;
+	bottom: -6px;
 }
 
 .mobile-nav .menu-openphone-menu-container {
-    @apply hidden;
+	@apply hidden;
 }
 
 .mobile-nav button[aria-controls="primary-menu"]::before,
 .mobile-nav button[aria-controls="primary-menu"]::after,
 .mobile-nav button[aria-controls="primary-menu"] {
-    @apply md:hidden;
+	@apply lg:hidden;
+}
+
+.mobile-nav .menu-item a {
+	@apply block text-[19px] font-normal;
+}
+
+.mobile-nav .menu-item {
+	@apply mb-5;
+}
+
+.mobile-nav .menu-item a {
+	@apply flex flex-row items-center justify-between;
 }
 
 .mobile-nav .sub-menu {
@@ -163,4 +296,33 @@
 
 .mobile-nav .sub-menu.active {
 	@apply block;
+}
+
+.mobile-nav .sub-menu.active .menu-item a {
+	@apply mb-[10px] px-4 text-base  opacity-80;
+}
+
+.mobile-nav .sub-menu.active .menu-item a:first-child {
+	@apply mt-4;
+}
+
+.mobile-nav .sub-menu.active .menu-item a:last-child {
+	@apply mb-0;
+}
+
+.mobile-nav #mobile-menu > .menu-item.menu-item-has-children > a::after {
+	@apply inline-block h-6 w-6;
+	content: "";
+	background-image: url("images/cheveron-down.svg");
+}
+
+.mobile-nav #mobile-menu > .menu-item.menu-item-has-children > a.active::after {
+	@apply inline-block h-6 w-6;
+	content: "";
+	background-image: url("images/cheveron-down.svg");
+	transform: rotate(180deg);
+}
+
+.mobile-nav #mobile-menu > .menu-item.menu-item-has-children > a.active {
+	@apply text-purple-900;
 }

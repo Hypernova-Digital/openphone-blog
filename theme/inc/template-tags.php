@@ -28,8 +28,6 @@ if (!function_exists('openphone_posted_on')) :
 		);
 
 		printf(
-			'<a href="%1$s" rel="bookmark">%2$s</a>',
-			esc_url(get_permalink()),
 			$time_string // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}

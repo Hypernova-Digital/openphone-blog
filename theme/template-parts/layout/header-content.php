@@ -10,39 +10,38 @@
 
 ?>
 
-<header id="masthead" class="bg-white">
-	<div class="header-content lg:max-w-7xl px-6 py-4  md:px-0 md:py-8 flex flex-row items-center justify-between">
-		<div>
+<header id="masthead" class="">
+	<div class="header-content lg:max-w-7xl px-6 py-4 md:px-4 xl:px-0 xl:py-7 flex flex-row items-center justify-between lg:gap-4">
+		<div class="flex flex-row gap-2 items-center">
 			<?php
-			if (is_front_page()) :
-
-
-			?><a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+			if (function_exists('get_custom_logo')) {
+				$custom_logo_id = get_theme_mod('custom_logo');
+				$logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+				if (has_custom_logo()) {
+					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '" class="site-logo"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
+				} else {
+					echo '<a href="https://www.openphone.com/"><img src="' . esc_url($logo[0]) . '" class="site-logo"></a><a href="' . esc_url(home_url('/')) . '" rel="home" class="flex flex-row items-center"><h1 class="logo-and-title">' . get_bloginfo('name') . '</h1></a>';
+				}
+			} else { ?>
+				<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
 					<h1 class="logo-and-title">
-						<?php if (function_exists('the_custom_logo')) {
-							the_custom_logo();
-						}
-						bloginfo('name'); ?></h1>
+						<?php bloginfo('name'); ?>
+					</h1>
 				</a>
-			<?php
-			else :
-			?><a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-					<p class="logo-and-title">
-						<?php if (function_exists('the_custom_logo')) {
-							the_custom_logo();
-						}
-						bloginfo('name'); ?></p>
-				</a>
-			<?php
-			endif;
-
-			$openphone_description = get_bloginfo('description', 'display');
-			if ($openphone_description || is_customize_preview()) :
-			?>
-				<p><?php echo $openphone_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					?></p>
-			<?php endif; ?>
+			<?php } ?>
 		</div>
+
+		<?php if (is_active_sidebar('header-ctas')) : ?>
+			<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="ml-auto mr-[2.6rem] md:mr-14 header-ctas hidden sm:block lg:hidden md:justify-self-end lg:justify-self-auto">
+				<?php dynamic_sidebar('header-ctas'); ?>
+			</aside>
+		<?php endif; ?>
+
+		<?php if (is_active_sidebar('header-search')) : ?>
+			<aside role="complementary" aria-label="<?php esc_attr_e('Header', 'openphone'); ?>" class="hidden sm:block lg:hidden header-search">
+				<?php dynamic_sidebar('header-search'); ?>
+			</aside>
+		<?php endif; ?>
 
 		<nav id="site-navigation" aria-label="<?php esc_attr_e('Main Navigation', 'openphone'); ?>">
 			<div class="desktop-nav flex items-center">
